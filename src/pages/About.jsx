@@ -114,7 +114,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="min-h-[60vh] sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
+      <section className="min-h-screen sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
@@ -129,10 +129,10 @@ const About = () => {
           <div className="absolute top-20 sm:top-40 left-5 sm:left-20 w-8 sm:w-16 h-8 sm:h-16 border-2 border-gray-300 rounded-full opacity-15 sm:opacity-20 animate-float" style={{ animationDelay: '4s' }} />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 lg:py-32 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 lg:py-24 xl:py-32 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Content Section */}
-            <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-6 sm:space-y-8 w-full overflow-hidden">
               {/* Small intro */}
               <div className="text-sm font-medium text-gray-500 opacity-0 animate-fade-in-up" style={{ fontFamily: 'Inter, sans-serif', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                 Our Story 📖
@@ -140,24 +140,28 @@ const About = () => {
 
               {/* Main Headline */}
               <h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] opacity-0 animate-fade-in-up"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-[1.2] sm:leading-[1.1] tracking-[-0.02em] opacity-0 animate-fade-in-up break-words"
                 style={{ 
                   fontFamily: 'Inter, sans-serif',
                   animationDelay: '0.3s',
-                  animationFillMode: 'forwards'
+                  animationFillMode: 'forwards',
+                  wordWrap: 'break-word',
+                  overflowWrap: 'break-word'
                 }}
               >
-                Making Business<br className="hidden sm:block" />Communication<br className="hidden sm:block" />
+                Making Business<br />Communication<br />
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Affordable</span>
               </h1>
 
               {/* Supporting subtext */}
               <p 
-                className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg opacity-0 animate-fade-in-up"
+                className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-full lg:max-w-lg opacity-0 animate-fade-in-up break-words"
                 style={{ 
                   fontFamily: 'Inter, sans-serif',
                   animationDelay: '0.5s',
-                  animationFillMode: 'forwards'
+                  animationFillMode: 'forwards',
+                  wordWrap: 'break-word',
+                  overflowWrap: 'break-word'
                 }}
               >
                 For over 15 years, we've been the trusted partner for businesses of all sizes 
@@ -183,17 +187,17 @@ const About = () => {
               <div className="pt-6 sm:pt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
                 <div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm font-medium text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm sm:text-lg font-bold text-gray-800">15+</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">15+</span>
                     <span>Years Experience</span>
                   </div>
-                  <div className="hidden sm:block w-px h-4 bg-gray-300" />
+                  <div className="w-px h-3 sm:h-4 bg-gray-300" />
                   <div className="flex items-center gap-2">
-                    <span className="text-sm sm:text-lg font-bold text-gray-800">5K+</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">5K+</span>
                     <span>Happy Customers</span>
                   </div>
-                  <div className="hidden sm:block w-px h-4 bg-gray-300" />
+                  <div className="w-px h-3 sm:h-4 bg-gray-300" />
                   <div className="flex items-center gap-2">
-                    <span className="text-sm sm:text-lg font-bold text-gray-800">99.9%</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">99.9%</span>
                     <span>Uptime</span>
                   </div>
                 </div>
@@ -202,11 +206,11 @@ const About = () => {
 
             {/* Visual Element */}
             <div className="hidden lg:block opacity-0 animate-fade-in-right" style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}>
-              <div className="relative h-96 flex items-center justify-center">
+              <div className="relative h-80 xl:h-96 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-6xl font-bold text-blue-600 mb-2">2009</div>
-                  <div className="text-lg text-gray-900 font-semibold mb-4">Founded in San Francisco</div>
-                  <div className="text-gray-600 max-w-xs">
+                  <div className="text-5xl xl:text-6xl font-bold text-blue-600 mb-2">2009</div>
+                  <div className="text-base xl:text-lg text-gray-900 font-semibold mb-4">Founded in San Francisco</div>
+                  <div className="text-sm xl:text-base text-gray-600 max-w-xs">
                     With a vision to transform business telecommunications through 
                     affordability, reliability, and exceptional customer service.
                   </div>
@@ -215,11 +219,11 @@ const About = () => {
             </div>
             
             {/* Mobile Visual Element */}
-            <div className="lg:hidden mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '1.0s', animationFillMode: 'forwards' }}>
-              <div className="flex justify-center px-4">
-                <div className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-200 shadow-sm max-w-xs">
-                  <div className="text-4xl font-bold text-blue-600 mb-2">2009</div>
-                  <div className="text-sm text-gray-900 font-semibold mb-2">Founded</div>
+            <div className="lg:hidden mt-6 sm:mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '1.0s', animationFillMode: 'forwards' }}>
+              <div className="flex justify-center">
+                <div className="text-center bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm w-full max-w-xs mx-4">
+                  <div className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">2009</div>
+                  <div className="text-sm font-semibold text-gray-900 mb-1 sm:mb-2">Founded</div>
                   <div className="text-xs text-gray-600">
                     15+ years of telecommunications excellence
                   </div>

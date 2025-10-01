@@ -173,7 +173,7 @@ const Header = () => {
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-lg text-[13px] shadow-md"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Get Quote
+              Contact Us
             </button>
           </div>
 

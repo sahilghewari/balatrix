@@ -134,7 +134,7 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
+      <section className="min-h-screen sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{
@@ -144,15 +144,15 @@ const Services = () => {
 
         {/* Floating background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-20 w-32 h-32 border border-blue-200 rounded-lg transform rotate-12 opacity-30 animate-float" />
-          <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full opacity-40 animate-float" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-40 right-60 w-16 h-16 border-2 border-blue-300 rounded-full opacity-20 animate-float" style={{ animationDelay: '4s' }} />
+          <div className="absolute top-10 sm:top-20 right-4 sm:right-20 w-16 sm:w-32 h-16 sm:h-32 border border-blue-200 rounded-lg transform rotate-12 opacity-30 animate-float" />
+          <div className="absolute bottom-16 sm:bottom-32 left-8 sm:left-40 w-12 sm:w-20 h-12 sm:h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full opacity-40 animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-20 sm:top-40 right-12 sm:right-60 w-8 sm:w-16 h-8 sm:h-16 border-2 border-blue-300 rounded-full opacity-20 animate-float" style={{ animationDelay: '4s' }} />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-20 py-32 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 lg:py-24 xl:py-32 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Content Section */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Small intro */}
               <div className="text-sm font-medium text-gray-500 opacity-0 animate-fade-in-up" style={{ fontFamily: 'Inter, sans-serif', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                 Our Services 📞
@@ -160,7 +160,7 @@ const Services = () => {
 
               {/* Main Headline */}
               <h1 
-                className="text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] opacity-0 animate-fade-in-up"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] opacity-0 animate-fade-in-up"
                 style={{ 
                   fontFamily: 'Inter, sans-serif',
                   animationDelay: '0.3s',
@@ -173,7 +173,7 @@ const Services = () => {
 
               {/* Supporting subtext */}
               <p 
-                className="text-xl text-gray-600 leading-relaxed max-w-lg opacity-0 animate-fade-in-up"
+                className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-full lg:max-w-lg opacity-0 animate-fade-in-up"
                 style={{ 
                   fontFamily: 'Inter, sans-serif',
                   animationDelay: '0.5s',
@@ -185,13 +185,13 @@ const Services = () => {
               </p>
 
               {/* CTA Group */}
-              <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-                <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-base"
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
+                <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Get Started
                 </button>
-                <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-8 py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-base"
+                <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Schedule Consultation
@@ -199,20 +199,20 @@ const Services = () => {
               </div>
 
               {/* Trust indicators */}
-              <div className="pt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
-                <div className="flex flex-wrap items-center gap-8 text-sm font-medium text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <div className="pt-6 sm:pt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
+                <div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm font-medium text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-gray-800">6</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">6</span>
                     <span>Core Services</span>
                   </div>
-                  <div className="w-px h-4 bg-gray-300" />
+                  <div className="w-px h-3 sm:h-4 bg-gray-300" />
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-gray-800">24/7</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">24/7</span>
                     <span>Support</span>
                   </div>
-                  <div className="w-px h-4 bg-gray-300" />
+                  <div className="w-px h-3 sm:h-4 bg-gray-300" />
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-gray-800">Instant</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">Instant</span>
                     <span>Setup</span>
                   </div>
                 </div>
@@ -221,28 +221,54 @@ const Services = () => {
 
             {/* Visual Element */}
             <div className="hidden lg:block opacity-0 animate-fade-in-right" style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}>
-              <div className="relative h-96 flex items-center justify-center">
-                <div className="grid grid-cols-2 gap-4 text-center">
-                  <div className="bg-white p-6 rounded-xl shadow-lg border">
-                    <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📞</div>
-                    <div className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Toll-Free Numbers</div>
-                    <div className="text-xs sm:text-sm text-gray-600">US & Canada</div>
+              <div className="relative h-80 xl:h-96 flex items-center justify-center">
+                <div className="grid grid-cols-2 gap-3 lg:gap-4 text-center">
+                  <div className="bg-white p-4 lg:p-6 rounded-xl shadow-lg border">
+                    <div className="text-xl lg:text-2xl xl:text-3xl mb-2 lg:mb-3">📞</div>
+                    <div className="text-sm lg:text-base xl:text-lg font-bold text-gray-900 mb-1 lg:mb-2">Toll-Free Numbers</div>
+                    <div className="text-xs lg:text-sm text-gray-600">US & Canada</div>
                   </div>
-                  <div className="bg-white p-6 rounded-xl shadow-lg border">
-                    <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">☁️</div>
-                    <div className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Cloud System</div>
-                    <div className="text-xs sm:text-sm text-gray-600">Advanced Features</div>
+                  <div className="bg-white p-4 lg:p-6 rounded-xl shadow-lg border">
+                    <div className="text-xl lg:text-2xl xl:text-3xl mb-2 lg:mb-3">☁️</div>
+                    <div className="text-sm lg:text-base xl:text-lg font-bold text-gray-900 mb-1 lg:mb-2">Cloud System</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Advanced Features</div>
                   </div>
-                  <div className="bg-white p-6 rounded-xl shadow-lg border">
-                    <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🔧</div>
-                    <div className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Custom Solutions</div>
-                    <div className="text-xs sm:text-sm text-gray-600">Tailored Setup</div>
+                  <div className="bg-white p-4 lg:p-6 rounded-xl shadow-lg border">
+                    <div className="text-xl lg:text-2xl xl:text-3xl mb-2 lg:mb-3">🔧</div>
+                    <div className="text-sm lg:text-base xl:text-lg font-bold text-gray-900 mb-1 lg:mb-2">Custom Solutions</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Tailored Setup</div>
                   </div>
-                  <div className="bg-white p-6 rounded-xl shadow-lg border">
-                    <div className="text-3xl mb-3">📱</div>
-                    <div className="text-lg font-bold text-gray-900 mb-2">Mobile Apps</div>
-                    <div className="text-sm text-gray-600">Stay Connected</div>
+                  <div className="bg-white p-4 lg:p-6 rounded-xl shadow-lg border">
+                    <div className="text-xl lg:text-2xl xl:text-3xl mb-2 lg:mb-3">📱</div>
+                    <div className="text-sm lg:text-base xl:text-lg font-bold text-gray-900 mb-1 lg:mb-2">Mobile Apps</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Stay Connected</div>
                   </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Mobile Visual Element */}
+            <div className="lg:hidden mt-6 sm:mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '1.0s', animationFillMode: 'forwards' }}>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                  <div className="text-2xl sm:text-3xl mb-2">📞</div>
+                  <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Toll-Free Numbers</div>
+                  <div className="text-xs text-gray-600">US & Canada</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                  <div className="text-2xl sm:text-3xl mb-2">☁️</div>
+                  <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Cloud System</div>
+                  <div className="text-xs text-gray-600">Advanced Features</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                  <div className="text-2xl sm:text-3xl mb-2">🔧</div>
+                  <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Custom Solutions</div>
+                  <div className="text-xs text-gray-600">Tailored Setup</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                  <div className="text-2xl sm:text-3xl mb-2">📱</div>
+                  <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Mobile Apps</div>
+                  <div className="text-xs text-gray-600">Stay Connected</div>
                 </div>
               </div>
             </div>
