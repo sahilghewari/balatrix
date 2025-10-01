@@ -172,7 +172,7 @@ const ServicesOverview = () => {
                 <div className="relative">
                   {/* Main Visual Container */}
                   <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 lg:p-12 transform hover:scale-[1.02] transition-transform duration-500">
-                    {/* Abstract Visual Elements */}
+                    {/* Capability-Specific Visual Content */}
                     <div className="space-y-6">
                       {/* Header Bar */}
                       <div className="flex items-center justify-between">
@@ -182,34 +182,182 @@ const ServicesOverview = () => {
                           <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                         </div>
                         <div className="text-xs font-mono text-gray-400">
-                          {capability.badge.toLowerCase().replace(' ', '-')}.balatrix.com
+                          {capability.badge.toLowerCase().replace(' & ', '-').replace(' ', '-')}.balatrix.com
                         </div>
                       </div>
 
-                      {/* Content Representation */}
-                      <div className="space-y-4">
-                        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                        <div className="h-4 bg-gray-100 rounded w-1/2"></div>
-                        
-                        {/* Data Visualization */}
-                        <div className="grid grid-cols-3 gap-4 py-6">
-                          {[1, 2, 3].map((item) => (
-                            <div key={item} className="space-y-2">
-                              <div className={`h-16 bg-gradient-to-t from-blue-500 to-blue-300 rounded-lg animate-pulse`} 
-                                   style={{ animationDelay: `${item * 0.2}s` }}></div>
-                              <div className="h-2 bg-gray-100 rounded w-full"></div>
+                      {/* Dynamic Content Based on Capability */}
+                      {index === 0 && (
+                        <div className="space-y-4">
+                          {/* Toll-Free Numbers Display */}
+                          <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl">
+                            <div className="text-lg font-bold text-gray-800 mb-4">Available Toll-Free Prefixes</div>
+                            <div className="grid grid-cols-2 gap-3">
+                              {['1-800', '1-888', '1-877', '1-866', '1-855', '1-844'].map((prefix, i) => (
+                                <div key={i} className="bg-white px-3 py-2 rounded-lg shadow-sm border border-gray-200">
+                                  <span className="font-mono text-sm font-semibold text-gray-800">{prefix}</span>
+                                  <span className="text-xs text-green-600 ml-2">Available</span>
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
-
-                        <div className="flex items-center justify-between pt-4">
-                          <div className="flex space-x-2">
-                            <div className="w-8 h-8 bg-blue-100 rounded-full"></div>
-                            <div className="w-8 h-8 bg-purple-100 rounded-full"></div>
                           </div>
-                          <div className="h-6 bg-emerald-100 rounded-full w-20"></div>
+                          
+                          {/* Coverage Map */}
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="text-sm font-semibold text-gray-700 mb-3">Coverage Map</div>
+                            <div className="flex items-center justify-center space-x-6">
+                              <div className="text-center">
+                                <div className="w-16 h-12 bg-blue-500 rounded-md mb-2 flex items-center justify-center">
+                                  <span className="text-white text-xs font-bold">US</span>
+                                </div>
+                                <div className="text-xs text-gray-600">United States</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="w-16 h-12 bg-red-500 rounded-md mb-2 flex items-center justify-center">
+                                  <span className="text-white text-xs font-bold">CA</span>
+                                </div>
+                                <div className="text-xs text-gray-600">Canada</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Live Statistics */}
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="bg-emerald-50 p-3 rounded-lg text-center">
+                              <div className="text-lg font-bold text-emerald-700">2,847</div>
+                              <div className="text-xs text-emerald-600">Numbers Available</div>
+                            </div>
+                            <div className="bg-blue-50 p-3 rounded-lg text-center">
+                              <div className="text-lg font-bold text-blue-700">&lt; 24hrs</div>
+                              <div className="text-xs text-blue-600">Avg Setup Time</div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      )}
+
+                      {index === 1 && (
+                        <div className="space-y-4">
+                          {/* Cloud Dashboard Interface */}
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="text-sm font-semibold text-gray-700 mb-3">Cloud Dashboard</div>
+                            <div className="space-y-3">
+                              <div className="flex items-center justify-between bg-white p-2 rounded border">
+                                <span className="text-xs text-gray-600">Auto Attendant</span>
+                                <div className="w-6 h-3 bg-green-400 rounded-full relative">
+                                  <div className="w-2 h-2 bg-white rounded-full absolute right-0.5 top-0.5"></div>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between bg-white p-2 rounded border">
+                                <span className="text-xs text-gray-600">Call Forwarding</span>
+                                <div className="w-6 h-3 bg-green-400 rounded-full relative">
+                                  <div className="w-2 h-2 bg-white rounded-full absolute right-0.5 top-0.5"></div>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between bg-white p-2 rounded border">
+                                <span className="text-xs text-gray-600">Voicemail to Email</span>
+                                <div className="w-6 h-3 bg-green-400 rounded-full relative">
+                                  <div className="w-2 h-2 bg-white rounded-full absolute right-0.5 top-0.5"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Real-time Analytics */}
+                          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg">
+                            <div className="text-sm font-semibold text-gray-700 mb-3">Real-time Analytics</div>
+                            <div className="grid grid-cols-3 gap-3">
+                              <div className="text-center">
+                                <div className="h-12 bg-gradient-to-t from-blue-500 to-blue-300 rounded mb-2 flex items-end justify-center">
+                                  <div className="w-2 bg-blue-700 h-8 rounded-t"></div>
+                                </div>
+                                <div className="text-xs text-gray-600">Calls</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="h-12 bg-gradient-to-t from-green-500 to-green-300 rounded mb-2 flex items-end justify-center">
+                                  <div className="w-2 bg-green-700 h-10 rounded-t"></div>
+                                </div>
+                                <div className="text-xs text-gray-600">Uptime</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="h-12 bg-gradient-to-t from-purple-500 to-purple-300 rounded mb-2 flex items-end justify-center">
+                                  <div className="w-2 bg-purple-700 h-6 rounded-t"></div>
+                                </div>
+                                <div className="text-xs text-gray-600">Support</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Feature Icons */}
+                          <div className="grid grid-cols-4 gap-2">
+                            {[
+                              { icon: "📞", label: "IVR" },
+                              { icon: "☁️", label: "Cloud" },
+                              { icon: "📧", label: "Email" },
+                              { icon: "👥", label: "Conference" }
+                            ].map((item, i) => (
+                              <div key={i} className="bg-white p-2 rounded-lg border text-center">
+                                <div className="text-lg">{item.icon}</div>
+                                <div className="text-xs text-gray-600">{item.label}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {index === 2 && (
+                        <div className="space-y-4">
+                          {/* Custom Solution Builder */}
+                          <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg">
+                            <div className="text-sm font-semibold text-gray-700 mb-3">Solution Builder</div>
+                            <div className="space-y-3">
+                              <div className="flex items-center space-x-3">
+                                <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                                <span className="text-xs text-gray-700">Business Size: Enterprise</span>
+                              </div>
+                              <div className="flex items-center space-x-3">
+                                <div className="w-4 h-4 bg-green-500 rounded"></div>
+                                <span className="text-xs text-gray-700">Industry: Technology</span>
+                              </div>
+                              <div className="flex items-center space-x-3">
+                                <div className="w-4 h-4 bg-purple-500 rounded"></div>
+                                <span className="text-xs text-gray-700">Users: 250+ employees</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* API Integration Display */}
+                          <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="text-sm font-semibold text-gray-700 mb-3">API Integrations</div>
+                            <div className="grid grid-cols-2 gap-2">
+                              {['Salesforce', 'HubSpot', 'Slack', 'Teams'].map((integration, i) => (
+                                <div key={i} className="bg-white p-2 rounded border text-center">
+                                  <div className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded mx-auto mb-1"></div>
+                                  <div className="text-xs text-gray-600">{integration}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Customization Progress */}
+                          <div className="bg-white p-4 rounded-lg border">
+                            <div className="text-sm font-semibold text-gray-700 mb-3">Setup Progress</div>
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs text-gray-600">Requirements Analysis</span>
+                                <div className="w-16 h-2 bg-green-400 rounded-full"></div>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs text-gray-600">Custom Configuration</span>
+                                <div className="w-16 h-2 bg-blue-400 rounded-full"></div>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs text-gray-600">Testing & Deployment</span>
+                                <div className="w-16 h-2 bg-gray-200 rounded-full"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Floating Elements */}

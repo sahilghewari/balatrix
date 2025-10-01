@@ -50,56 +50,124 @@ const Hero = () => {
     </div>
   );
 
-  // Abstract network visualization
-  const NetworkVisualization = () => (
+  // Balatrix Logo Visualization - Combining Balaji (spiritual) + Matrix (digital)
+  const BalatrixLogo = () => (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Main network nodes */}
+      {/* Central Divine Symbol (Balaji inspired) */}
       <div className="relative">
-        {/* Central node */}
-        <div className="w-4 h-4 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
-        
-        {/* Surrounding nodes with connecting lines */}
-        {[...Array(8)].map((_, i) => {
-          const angle = (i * 45) * (Math.PI / 180);
-          const radius = 80;
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
+        {/* Main Logo Container */}
+        <div className="relative w-96 h-96 flex items-center justify-center">
           
-          return (
-            <div key={i}>
-              {/* Connection line */}
-              <div 
-                className="absolute top-1/2 left-1/2 origin-left bg-gradient-to-r from-gray-300 to-transparent h-px transform -translate-y-1/2"
-                style={{
-                  width: `${radius}px`,
-                  transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
-                  animation: `pulse 3s ease-in-out infinite ${i * 0.3}s`
-                }}
-              />
-              {/* Node */}
-              <div 
-                className="w-2 h-2 bg-gray-400 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"
-                style={{
-                  transform: `translate(${x - 4}px, ${y - 4}px)`,
-                  animationDelay: `${i * 0.5}s`
-                }}
-              />
+          {/* Outer Ring - Digital Matrix */}
+          <div className="absolute inset-0 border-2 border-gray-300 rounded-full opacity-40">
+            {/* Matrix-style dots around the circle */}
+            {[...Array(16)].map((_, i) => {
+              const angle = (i * 22.5) * (Math.PI / 180);
+              const radius = 184;
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius;
+              
+              return (
+                <div
+                  key={i}
+                  className="absolute w-2 h-2 bg-gray-400 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+                  style={{
+                    left: `50%`,
+                    top: `50%`,
+                    transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          {/* Inner Sacred Geometry (Balaji inspired) */}
+          <div className="relative w-42 h-42 bg-gradient-to-br from-gray-900 to-yellow-100 rounded-xl shadow-lg flex items-center justify-center">
+            
+            {/* Sacred Symbol - Stylized B */}
+            <div className="relative">
+              {/* Letter B structure with spiritual touch */}
+              <div className="w-16 h-20 relative">
+                {/* Vertical line */}
+                <div className="absolute left-0 top-0 w-2 h-20 bg-gradient-to-b from-orange-500 to-yellow-600 rounded-full"></div>
+                
+                {/* Top curve */}
+                <div className="absolute left-3 top-1 w-10 h-8 border-4 border-orange-500 rounded-r-full border-l-0"></div>
+                
+                {/* Bottom curve */}
+                <div className="absolute left-3 top-11 w-12 h-8 border-4 border-orange-500 rounded-r-full border-l-0"></div>
+                
+                {/* Divine spark */}
+                <div className="absolute -top-2 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+              </div>
             </div>
-          );
-        })}
+
+            {/* Corner elements - Matrix style */}
+            <div className="absolute top-2 left-2 w-1 h-4 bg-gray-300 rounded"></div>
+            <div className="absolute top-2 right-2 w-4 h-1 bg-gray-300 rounded"></div>
+            <div className="absolute bottom-2 left-2 w-4 h-1 bg-gray-300 rounded"></div>
+            <div className="absolute bottom-2 right-2 w-1 h-4 bg-gray-300 rounded"></div>
+          </div>
+
+          {/* Digital Matrix Elements */}
+          <div className="absolute inset-0">
+            {/* Matrix-style connection lines */}
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-px h-16 bg-gradient-to-b from-transparent via-gray-300 to-transparent"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                  transform: `rotate(${i * 45}deg) translateY(-40px)`,
+                  transformOrigin: 'bottom center',
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Floating Data Points */}
+          <div className="absolute top-8 right-8">
+            <div className="flex flex-col space-y-1">
+              <div className="w-8 h-1 bg-gray-400 rounded opacity-60"></div>
+              <div className="w-6 h-1 bg-gray-400 rounded opacity-60"></div>
+              <div className="w-4 h-1 bg-gray-400 rounded opacity-60"></div>
+            </div>
+          </div>
+
+          <div className="absolute bottom-8 left-8">
+            <div className="flex space-x-1">
+              <div className="w-1 h-8 bg-gray-400 rounded opacity-60"></div>
+              <div className="w-1 h-6 bg-gray-400 rounded opacity-60"></div>
+              <div className="w-1 h-4 bg-gray-400 rounded opacity-60"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Company Name */}
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="text-center">
+            <div className="text-xl font-bold text-gray-800 tracking-wider">
+              <span className="text-gray-400">BALA</span>
+              <span className="text-gray-700">TRIX</span>
+            </div>
+            
+          </div>
+        </div>
       </div>
-      
-      {/* Background geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <FloatingElement delay={0}>
-          <div className="absolute top-20 right-20 w-32 h-32 border border-gray-200 rounded-lg transform rotate-12 opacity-30" />
-        </FloatingElement>
-        <FloatingElement delay={2}>
-          <div className="absolute bottom-32 right-40 w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full opacity-40" />
-        </FloatingElement>
-        <FloatingElement delay={4}>
-          <div className="absolute top-40 right-60 w-16 h-16 border-2 border-gray-300 rounded-full opacity-20" />
-        </FloatingElement>
+
+      {/* Background subtle elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(90deg, rgba(156, 163, 175, 0.1) 1px, transparent 1px),
+                           linear-gradient(rgba(156, 163, 175, 0.1) 1px, transparent 1px)`,
+          backgroundSize: '20px 20px'
+        }} />
+        
+        {/* Corner accents */}
+        <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-gray-200 rounded-tr-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-gray-200 rounded-bl-3xl"></div>
       </div>
     </div>
   );
@@ -128,7 +196,7 @@ const Hero = () => {
             {/* Main Headline with typing effect */}
             <div className="space-y-6">
               <h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] opacity-0 animate-fade-in-up min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[200px]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] opacity-0 animate-fade-in-up min-h-[180px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] xl:min-h-[320px] w-full max-w-4xl"
                 style={{ 
                   fontFamily: 'Inter, sans-serif',
                   animationDelay: '0.3s',
@@ -166,34 +234,22 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* Talk to Sales micro CTA */}
-            <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
-              <a href="tel:+1-800-BALATRIX" className="text-sm font-medium text-gray-700 hover:text-gray-900 underline transition-colors"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                Talk to Sales: +1-800-BALATRIX
-              </a>
-            </div>
-
+           
             {/* Trust Bar */}
             <div className="pt-6 sm:pt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm font-medium text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm sm:text-lg font-bold text-gray-800 counter" data-target="50">0</span>
-                  <span>K+ Numbers Delivered</span>
-                </div>
-                <div className="hidden sm:block w-px h-4 bg-gray-300" />
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center sm:justify-start gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm font-medium text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <div className="flex items-center gap-1 sm:gap-2">
                   <span className="text-sm sm:text-lg font-bold text-gray-800">US & Canada</span>
-                  <span>Coverage</span>
+                  <span className="hidden sm:inline">Coverage</span>
+                  <span className="sm:hidden">Coverage</span>
                 </div>
-                <div className="hidden sm:block w-px h-4 bg-gray-300" />
-                <div className="flex items-center gap-2">
+                <div className="w-px h-4 bg-gray-300" />
+                <div className="flex items-center gap-1 sm:gap-2">
                   <span className="text-sm sm:text-lg font-bold text-gray-800">99.9%</span>
                   <span>Uptime</span>
                 </div>
-                <div className="hidden lg:block w-px h-4 bg-gray-300" />
-                <div className="flex items-center gap-2">
+                <div className="w-px h-4 bg-gray-300" />
+                <div className="flex items-center gap-1 sm:gap-2">
                   <span className="text-sm sm:text-lg font-bold text-gray-800">24/7</span>
                   <span>Support</span>
                 </div>
@@ -204,25 +260,12 @@ const Hero = () => {
           {/* Visual Element */}
           <div className="hidden lg:block opacity-0 animate-fade-in-right" style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}>
             <div className="relative h-96">
-              <NetworkVisualization />
+              <BalatrixLogo />
             </div>
           </div>
         </div>
 
-        {/* Optional client logos section */}
-        <div className="mt-12 sm:mt-16 lg:mt-20 opacity-0 animate-fade-in-up" style={{ animationDelay: '1.3s', animationFillMode: 'forwards' }}>
-          <div className="text-center">
-            <p className="text-xs sm:text-sm font-medium text-gray-500 mb-6 sm:mb-8" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Trusted by growing businesses
-            </p>
-            <div className="flex justify-center items-center gap-6 sm:gap-8 lg:gap-12 opacity-40 hover:opacity-70 transition-opacity">
-              {/* Placeholder for client logos */}
-              <div className="text-gray-400 text-lg sm:text-xl lg:text-2xl font-bold">FORTUNE</div>
-              <div className="text-gray-400 text-lg sm:text-xl lg:text-2xl font-bold">500</div>
-              <div className="text-gray-400 text-lg sm:text-xl lg:text-2xl font-bold">COMPANIES</div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

@@ -361,40 +361,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="bg-gray-50 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Leadership Team
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Meet the experienced leaders driving innovation in business telecommunications
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 text-center shadow-lg">
-                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <svg className="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 font-medium mb-3">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 text-sm">
-                  {member.bio}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
     
     </div>
