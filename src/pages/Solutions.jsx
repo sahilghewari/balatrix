@@ -1,6 +1,16 @@
 import React from 'react';
 
 const Solutions = () => {
+  // Scroll to solutions section
+  const scrollToSolutions = () => {
+    const solutionsSection = document.getElementById('solutions-grid');
+    if (solutionsSection) {
+      solutionsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
   const solutions = [
     {
       id: 1,
@@ -255,7 +265,9 @@ const Solutions = () => {
 
               {/* CTA Group */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-                <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base"
+                <button 
+                  onClick={scrollToSolutions}
+                  className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Find Your Solution
@@ -338,7 +350,7 @@ const Solutions = () => {
       </section>
 
       {/* Solutions Grid */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      <section id="solutions-grid" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 opacity-0 animate-fade-in-up" 
@@ -445,16 +457,6 @@ const Solutions = () => {
                     </ul>
                   </div>
                 </div>
-
-                <button className={`w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${
-                  solution.popular 
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-md' 
-                    : 'bg-gray-900 text-white hover:bg-gray-800'
-                }`}
-                style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  Learn More About {solution.title}
-                </button>
               </div>
             ))}
           </div>

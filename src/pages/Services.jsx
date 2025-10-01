@@ -1,6 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
+  // Scroll to core services section
+  const scrollToCoreServices = () => {
+    const coreServicesSection = document.getElementById('core-services');
+    if (coreServicesSection) {
+      coreServicesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
   const services = [
     {
       id: 1,
@@ -186,16 +197,20 @@ const Services = () => {
 
               {/* CTA Group */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-                <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base"
+                <button 
+                  onClick={scrollToCoreServices}
+                  className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Get Started
                 </button>
-                <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base"
+                <Link 
+                  to="/contact"
+                  className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base inline-block text-center"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Schedule Consultation
-                </button>
+                </Link>
               </div>
 
               {/* Trust indicators */}
@@ -277,7 +292,7 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-gray-50">
+      <section id="core-services" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <div className="text-sm font-medium text-blue-600 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -325,10 +340,6 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-
-                <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
-                  Learn More
-                </button>
               </div>
             ))}
           </div>

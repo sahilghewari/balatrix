@@ -56,8 +56,8 @@ const Footer = () => {
         <div className="hidden sm:block absolute bottom-0 right-0 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl"></div>
         
         {/* Floating Background Text - Hidden on mobile */}
-        <div className="hidden lg:block absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-          <div className="text-[16rem] font-black text-white/[0.015] select-none whitespace-nowrap tracking-wider transform rotate-[-2deg]">
+        <div className="hidden lg:block absolute inset-0 flex items-end justify-center pointer-events-none overflow-hidden pb-8">
+          <div className="text-[16rem] font-black text-white/[0.085] select-none whitespace-nowrap tracking-wider transform rotate-[-2deg]">
             BALATRIX
           </div>
         </div>

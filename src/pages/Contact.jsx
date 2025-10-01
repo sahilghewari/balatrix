@@ -13,6 +13,17 @@ const Contact = () => {
 
   const sectionRef = useRef(null);
 
+  // Scroll to contact form function
+  const scrollToContactForm = () => {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -30,6 +41,17 @@ const Contact = () => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Handle anchor scrolling when page loads
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#contact-form') {
+      // Add a small delay to ensure the page has rendered
+      setTimeout(() => {
+        scrollToContactForm();
+      }, 100);
+    }
   }, []);
 
   const handleInputChange = (e) => {
@@ -68,24 +90,6 @@ const Contact = () => {
       subtext: 'Mon-Fri 8AM-8PM EST, 24/7 for existing customers',
       gradient: 'from-blue-500 to-cyan-500',
       action: 'Call Now'
-    },
-    {
-      icon: "M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-      title: 'Quick Quote',
-      description: 'Get instant pricing for toll-free numbers',
-      contact: 'quotes@balatrix.com',
-      subtext: 'Response within 1 hour',
-      gradient: 'from-purple-500 to-blue-500',
-      action: 'Send Email'
-    },
-    {
-      icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-      title: 'Free Consultation',
-      description: 'Discuss your communication needs',
-      contact: '30-minute consultation',
-      subtext: 'Available by phone or video call',
-      gradient: 'from-emerald-500 to-teal-500',
-      action: 'Book Demo'
     },
     {
       icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
@@ -213,7 +217,9 @@ const Contact = () => {
                 >
                   Talk to Sales
                 </button>
-                <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base"
+                <button 
+                  onClick={scrollToContactForm}
+                  className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Schedule Demo
@@ -248,16 +254,6 @@ const Contact = () => {
                   <div className="text-2xl sm:text-3xl mb-2">📞</div>
                   <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Sales & Support</div>
                   <div className="text-xs text-gray-600">Talk to experts</div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
-                  <div className="text-2xl sm:text-3xl mb-2">✉️</div>
-                  <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Quick Quote</div>
-                  <div className="text-xs text-gray-600">Get instant pricing</div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
-                  <div className="text-2xl sm:text-3xl mb-2">📅</div>
-                  <div className="text-sm sm:text-base font-bold text-gray-900 mb-1">Free Consultation</div>
-                  <div className="text-xs text-gray-600">30-min call</div>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm text-center">
                   <div className="text-2xl sm:text-3xl mb-2">💬</div>
@@ -324,51 +320,58 @@ const Contact = () => {
           </div>
 
           {/* Contact Methods Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 sm:mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-20">
             {contactMethods.map((method, index) => (
               <div 
                 key={index} 
-                className="group relative bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 hover:shadow-2xl hover:shadow-gray-900/10 transition-all duration-500 hover:transform hover:-translate-y-2 fade-in-up"
+                className="group relative bg-white/90 backdrop-blur-sm border border-gray-200/60 rounded-3xl p-8 hover:shadow-2xl hover:shadow-gray-900/10 transition-all duration-500 hover:transform hover:-translate-y-3 fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${method.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${method.gradient} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-500`}></div>
                 
                 <div className="relative z-10">
                   {/* Icon with gradient background */}
-                  <div className={`w-12 h-12 bg-gradient-to-br ${method.gradient} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <div className={`w-16 h-16 bg-gradient-to-br ${method.gradient} rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d={method.icon} />
                     </svg>
                   </div>
 
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-gray-800 transition-colors">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-gray-800 transition-colors">
                     {method.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                  <p className="text-gray-600 mb-4 text-base leading-relaxed">
                     {method.description}
                   </p>
-                  
-                  <p className="font-semibold text-gray-900 mb-1">
-                    {method.contact}
-                  </p>
-                  
-                  <p className="text-gray-500 text-xs mb-4">
-                    {method.subtext}
-                  </p>
 
-                  {/* CTA Button */}
-                  <button className={`w-full bg-gradient-to-r ${method.gradient} text-white py-3 px-4 rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:transform hover:-translate-y-0.5 text-sm`}>
-                    {method.action}
-                  </button>
+                  <div className="space-y-3">
+                    <div className="flex items-center text-gray-900 font-semibold text-lg">
+                      {method.contact}
+                    </div>
+                    
+                    <div className="text-sm text-gray-500">
+                      {method.subtext}
+                    </div>
+
+                    <button className={`inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r ${method.gradient} text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200 hover:scale-105 mt-4`}>
+                      <span>{method.action}</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
+
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
               </div>
             ))}
           </div>
 
           {/* Contact Form and Office Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div id="contact-form" className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Premium Contact Form */}
             <div className="lg:col-span-2 fade-in-up">
               <div className="relative bg-white/80 backdrop-blur-md border border-gray-200/60 rounded-3xl p-8 lg:p-12 shadow-2xl shadow-gray-900/10 hover:shadow-gray-900/20 transition-all duration-500">
@@ -597,9 +600,6 @@ const Contact = () => {
                   <p className="text-sm text-gray-600">
                     Priority support for enterprise customers with dedicated account management
                   </p>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium text-sm hover:underline">
-                    Learn More →
-                  </button>
                 </div>
               </div>
             </div>
@@ -682,9 +682,7 @@ const Contact = () => {
                 <button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-xl">
                   Contact Support
                 </button>
-                <button className="border border-white/20 text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:transform hover:-translate-y-px backdrop-blur-sm">
-                  Browse Help Center
-                </button>
+                
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ContactCTA = () => {
   const sectionRef = useRef(null);
@@ -47,24 +48,7 @@ const ContactCTA = () => {
       action: "Call Now",
       gradient: "from-blue-500 to-cyan-500"
     },
-    {
-      icon: "M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-      title: "Quick Quote",
-      subtitle: "Get pricing via email",
-      contact: "quotes@balatrix.com",
-      description: "Receive detailed pricing within 1 hour",
-      action: "Send Email",
-      gradient: "from-purple-500 to-blue-500"
-    },
-    {
-      icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-      title: "Free Consultation",
-      subtitle: "Schedule a demo call",
-      contact: "15-minute session",
-      description: "See our platform in action",
-      action: "Book Demo",
-      gradient: "from-emerald-500 to-teal-500"
-    }
+  
   ];
   return (
     <section ref={sectionRef} className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">

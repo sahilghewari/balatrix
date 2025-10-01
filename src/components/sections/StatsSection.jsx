@@ -204,13 +204,7 @@ const StatsSection = () => {
 
                     {/* Bottom Accent */}
                     <div className="pt-6 border-t border-white/10">
-                      <div className="flex items-center justify-between">
-                        <button className="text-cyan-400 font-semibold text-sm hover:text-cyan-300 transition-colors group flex items-center">
-                          <span>Learn More</span>
-                          <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
+                      <div className="flex items-center justify-end">
                         <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
                       </div>
                     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [currentTime, setCurrentTime] = useState('');
@@ -222,16 +223,20 @@ const Hero = () => {
 
             {/* CTA Group */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-              <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base touch-manipulation"
+              <Link 
+                to="/contact"
+                className="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-xl text-sm sm:text-base touch-manipulation inline-block text-center"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 Get Your Numbers Now
-              </button>
-              <button className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base touch-manipulation"
+              </Link>
+              <Link 
+                to="/pricing"
+                className="border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-200 hover:transform hover:-translate-y-px text-sm sm:text-base touch-manipulation inline-block text-center"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 View Pricing
-              </button>
+              </Link>
             </div>
 
            

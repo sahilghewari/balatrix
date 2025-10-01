@@ -168,13 +168,13 @@ const Header = () => {
             
             
             
-            <button 
-              onClick={openQuoteModal}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-lg text-[13px] shadow-md"
+            <Link 
+              to="/contact"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 hover:transform hover:-translate-y-0.5 hover:shadow-lg text-[13px] shadow-md inline-block"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Contact Us
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -233,13 +233,14 @@ const Header = () => {
                     <span className="text-base">Client Portal</span>
                   </Link>
                   
-                  <button 
-                    onClick={openQuoteModal}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 shadow-md text-base touch-manipulation"
+                  <Link 
+                    to="/contact"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 shadow-md text-base touch-manipulation inline-block text-center"
                     style={{ fontFamily: 'Inter, sans-serif' }}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Get Your Quote
-                  </button>
+                    Contact Us
+                  </Link>
                 </div>
               </nav>
             </div>
