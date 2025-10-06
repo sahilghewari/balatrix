@@ -72,9 +72,11 @@ const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-2 space-y-3 sm:space-y-6">
             <div>
               <Link to="/" className="inline-block group">
-                <div className="text-xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-blue-400 transition-colors duration-300 mb-2 sm:mb-4">
-                  Balatrix
-                </div>
+                <img 
+                  src="https://i.postimg.cc/CLg39YWx/image-removebg-preview.png" 
+                  alt="Balatrix" 
+                  className="h-12 sm:h-28 lg:h-28 transition-all duration-300 group-hover:brightness-110 mb-2 sm:mb-4"
+                />
               </Link>
               {/* Contact Methods - Compact for mobile */}
             <div className="space-y-2 sm:space-y-4">

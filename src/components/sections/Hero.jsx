@@ -51,128 +51,6 @@ const Hero = () => {
     </div>
   );
 
-  // Balatrix Logo Visualization - Combining Balaji (spiritual) + Matrix (digital)
-  const BalatrixLogo = () => (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Central Divine Symbol (Balaji inspired) */}
-      <div className="relative">
-        {/* Main Logo Container */}
-        <div className="relative w-96 h-96 flex items-center justify-center">
-          
-          {/* Outer Ring - Digital Matrix */}
-          <div className="absolute inset-0 border-2 border-gray-300 rounded-full opacity-40">
-            {/* Matrix-style dots around the circle */}
-            {[...Array(16)].map((_, i) => {
-              const angle = (i * 22.5) * (Math.PI / 180);
-              const radius = 184;
-              const x = Math.cos(angle) * radius;
-              const y = Math.sin(angle) * radius;
-              
-              return (
-                <div
-                  key={i}
-                  className="absolute w-2 h-2 bg-gray-400 rounded-full transform -translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    left: `50%`,
-                    top: `50%`,
-                    transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          {/* Inner Sacred Geometry (Balaji inspired) */}
-          <div className="relative w-42 h-42 bg-gradient-to-br from-gray-900 to-yellow-100 rounded-xl shadow-lg flex items-center justify-center">
-            
-            {/* Sacred Symbol - Stylized B */}
-            <div className="relative">
-              {/* Letter B structure with spiritual touch */}
-              <div className="w-16 h-20 relative">
-                {/* Vertical line */}
-                <div className="absolute left-0 top-0 w-2 h-20 bg-gradient-to-b from-orange-500 to-yellow-600 rounded-full"></div>
-                
-                {/* Top curve */}
-                <div className="absolute left-3 top-1 w-10 h-8 border-4 border-orange-500 rounded-r-full border-l-0"></div>
-                
-                {/* Bottom curve */}
-                <div className="absolute left-3 top-11 w-12 h-8 border-4 border-orange-500 rounded-r-full border-l-0"></div>
-                
-                {/* Divine spark */}
-                <div className="absolute -top-2 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-
-            {/* Corner elements - Matrix style */}
-            <div className="absolute top-2 left-2 w-1 h-4 bg-gray-300 rounded"></div>
-            <div className="absolute top-2 right-2 w-4 h-1 bg-gray-300 rounded"></div>
-            <div className="absolute bottom-2 left-2 w-4 h-1 bg-gray-300 rounded"></div>
-            <div className="absolute bottom-2 right-2 w-1 h-4 bg-gray-300 rounded"></div>
-          </div>
-
-          {/* Digital Matrix Elements */}
-          <div className="absolute inset-0">
-            {/* Matrix-style connection lines */}
-            {[...Array(4)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-px h-16 bg-gradient-to-b from-transparent via-gray-300 to-transparent"
-                style={{
-                  left: '50%',
-                  top: '50%',
-                  transform: `rotate(${i * 45}deg) translateY(-40px)`,
-                  transformOrigin: 'bottom center',
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Floating Data Points */}
-          <div className="absolute top-8 right-8">
-            <div className="flex flex-col space-y-1">
-              <div className="w-8 h-1 bg-gray-400 rounded opacity-60"></div>
-              <div className="w-6 h-1 bg-gray-400 rounded opacity-60"></div>
-              <div className="w-4 h-1 bg-gray-400 rounded opacity-60"></div>
-            </div>
-          </div>
-
-          <div className="absolute bottom-8 left-8">
-            <div className="flex space-x-1">
-              <div className="w-1 h-8 bg-gray-400 rounded opacity-60"></div>
-              <div className="w-1 h-6 bg-gray-400 rounded opacity-60"></div>
-              <div className="w-1 h-4 bg-gray-400 rounded opacity-60"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Company Name */}
-        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="text-center">
-            <div className="text-xl font-bold text-gray-800 tracking-wider">
-              <span className="text-gray-400">BALA</span>
-              <span className="text-gray-700">TRIX</span>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-
-      {/* Background subtle elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(90deg, rgba(156, 163, 175, 0.1) 1px, transparent 1px),
-                           linear-gradient(rgba(156, 163, 175, 0.1) 1px, transparent 1px)`,
-          backgroundSize: '20px 20px'
-        }} />
-        
-        {/* Corner accents */}
-        <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-gray-200 rounded-tr-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-gray-200 rounded-bl-3xl"></div>
-      </div>
-    </div>
-  );
-
   return (
     <section className="min-h-screen bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
       {/* Subtle background pattern */}
@@ -264,8 +142,12 @@ const Hero = () => {
 
           {/* Visual Element */}
           <div className="hidden lg:block opacity-0 animate-fade-in-right" style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}>
-            <div className="relative h-96">
-              <BalatrixLogo />
+            <div className="relative h-96 flex items-center justify-center">
+              <img 
+                src="https://i.postimg.cc/CLg39YWx/image-removebg-preview.png" 
+                alt="Balatrix" 
+                className="h-96 w-auto"
+              />
             </div>
           </div>
         </div>
