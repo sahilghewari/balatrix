@@ -17,71 +17,48 @@ const Pricing = () => {
 
   const pricingTiers = [
     {
-      name: 'Starter',
+      name: 'Starter Plan',
       description: 'Perfect for small businesses and startups',
-      monthlyPrice: 9.99,
-      yearlyPrice: 99.99,
-      savings: '17%',
+      monthlyPrice: 349,
+      yearlyPrice: 3348, // 20% discount: 349 * 12 * 0.8
+      savings: '20%',
       features: [
-        '1 toll-free number included',
-        '500 minutes/month',
-        'Call forwarding',
-        'Voicemail to email',
-        'Basic analytics',
-        'Mobile app access',
-        'Email support',
-        'US & Canada coverage'
+        'Toll-Free Number (TFN): 1',
+        'Free Minutes: 100',
+        'Extensions: 1',
+        'Per Minute Charge: ₹1.99'
       ],
-      limitations: [
-        'Single number only',
-        'Basic features'
-      ],
+      limitations: [],
       popular: false,
       color: 'gray'
     },
     {
-      name: 'Professional',
+      name: 'Professional Plan',
       description: 'Ideal for growing businesses with higher volume needs',
-      monthlyPrice: 19.99,
-      yearlyPrice: 199.99,
-      savings: '17%',
+      monthlyPrice: 999,
+      yearlyPrice: 9590, // 20% discount: 999 * 12 * 0.8
+      savings: '20%',
       features: [
-        '3 toll-free numbers included',
-        '2,000 minutes/month',
-        'Advanced call routing',
-        'Auto-attendant & IVR',
-        'Call analytics & reporting',
-        'CRM integrations',
-        'Priority support',
-        'Mobile & desktop apps',
-        'Conference calling',
-        'Call recording'
+        'Toll-Free Numbers (TFN): 2',
+        'Free Minutes: 500',
+        'Extensions: 2',
+        'Per Minute Charge: ₹1.60'
       ],
-      limitations: [
-        'Up to 10 users'
-      ],
+      limitations: [],
       popular: true,
       color: 'blue'
     },
     {
-      name: 'Enterprise',
-      description: 'For large organizations requiring maximum features',
-      monthlyPrice: 'Custom',
-      yearlyPrice: 'Custom',
-      savings: 'Volume discounts',
+      name: 'Call Center Plan',
+      description: 'For call centers and large organizations',
+      monthlyPrice: 4999,
+      yearlyPrice: 47990, // 20% discount: 4999 * 12 * 0.8
+      savings: '20%',
       features: [
-        'Unlimited toll-free numbers',
-        'Unlimited minutes',
-        'Advanced features',
-        '24/7 phone support',
-        'Dedicated account manager',
-        'Custom integrations',
-        'White-label solutions',
-        'SLA guarantees',
-        'Priority number selection',
-        'Custom reporting',
-        'Multi-location support',
-        'Advanced security'
+        'Toll-Free Numbers (TFN): 5',
+        'Free Minutes: 1500',
+        'Extensions: 10',
+        'Per Minute Charge: ₹1.45'
       ],
       limitations: [],
       popular: false,
@@ -91,28 +68,25 @@ const Pricing = () => {
 
   const addOns = [
     {
-      name: 'Additional Numbers',
+      name: 'Additional TFN',
       description: 'Extra toll-free numbers beyond your plan limit',
-      price: '4.99',
-      unit: 'per number/month'
-    },
-    {
-      name: 'Extra Minutes',
-      description: 'Additional calling minutes when you exceed your plan',
-      price: '0.02',
-      unit: 'per minute'
-    },
-    {
-      name: 'Vanity Numbers',
-      description: 'Custom memorable toll-free numbers for your business',
-      price: '29.99',
-      unit: 'one-time setup'
-    },
-    {
-      name: 'Advanced Analytics',
-      description: 'Detailed call analytics and business intelligence reports',
-      price: '14.99',
+      payAsYouGoPrice: '199',
+      oneTimePrice: '99',
       unit: 'per month'
+    },
+    {
+      name: 'Additional Extension',
+      description: 'Extra extensions beyond your plan limit',
+      payAsYouGoPrice: '199',
+      oneTimePrice: '99',
+      unit: 'per month'
+    },
+    {
+      name: 'Per Minute Charge',
+      description: 'Additional calling minutes when you exceed your plan',
+      payAsYouGoPrice: '1.99',
+      oneTimePrice: '—',
+      unit: 'per minute'
     }
   ];
 
@@ -197,7 +171,7 @@ const Pricing = () => {
                 }}
               >
                 Choose the perfect plan for your business. All plans include our core features 
-                with 99.9% uptime guarantee and expert support. No hidden fees, no surprises.
+                with 99.9% uptime guarantee and expert support. Pay annually and get 20% discount.
               </p>
 
               {/* Billing Toggle */}
@@ -222,9 +196,24 @@ const Pricing = () => {
                 </div>
                 {billingCycle === 'yearly' && (
                   <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium w-fit">
-                    Save 17%
+                    Save 20%
                   </span>
                 )}
+              </div>
+
+              {/* Quarterly Payment Option */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.65s', animationFillMode: 'forwards' }}>
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-blue-900 mb-1">🔄 Quarterly Payment Option</h4>
+                    <p className="text-sm text-blue-800">Pay quarterly and skip one-time setup charges</p>
+                  </div>
+                </div>
               </div>
 
               {/* CTA Group */}
@@ -249,7 +238,7 @@ const Pricing = () => {
               <div className="pt-6 sm:pt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
                 <div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm font-medium text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>
                   <div className="flex items-center gap-2">
-                    <span className="text-base sm:text-lg font-bold text-gray-800">$9.99</span>
+                    <span className="text-base sm:text-lg font-bold text-gray-800">₹349</span>
                     <span>Starting Price</span>
                   </div>
                   <div className="w-px h-3 sm:h-4 bg-gray-300" />
@@ -270,7 +259,7 @@ const Pricing = () => {
             <div className="hidden lg:block opacity-0 animate-fade-in-right" style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}>
               <div className="relative h-80 xl:h-96 flex items-center justify-center">
                 <div className="text-center space-y-4 lg:space-y-6">
-                  <div className="text-5xl xl:text-6xl font-bold text-green-600">$9.99</div>
+                  <div className="text-5xl xl:text-6xl font-bold text-green-600">₹349</div>
                   <div className="text-base xl:text-lg text-gray-900 font-semibold">Starting from</div>
                   <div className="text-sm xl:text-base text-gray-600 max-w-xs">
                     Professional toll-free numbers with all essential features included
@@ -288,7 +277,7 @@ const Pricing = () => {
             {/* Mobile Visual Element */}
             <div className="lg:hidden mt-6 sm:mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '1.0s', animationFillMode: 'forwards' }}>
               <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm text-center mx-4">
-                <div className="text-4xl sm:text-5xl font-bold text-green-600 mb-2">$9.99</div>
+                <div className="text-4xl sm:text-5xl font-bold text-green-600 mb-2">₹349</div>
                 <div className="text-sm sm:text-base text-gray-900 font-semibold mb-2">Starting from</div>
                 <div className="text-xs sm:text-sm text-gray-600 mb-3">
                   Professional toll-free numbers with all essential features included
@@ -353,7 +342,7 @@ const Pricing = () => {
                     ) : (
                       <div>
                         <span className="text-5xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                          ${billingCycle === 'monthly' ? tier.monthlyPrice : Math.floor(tier.yearlyPrice / 12)}
+                          ₹{billingCycle === 'monthly' ? tier.monthlyPrice : Math.floor(tier.yearlyPrice / 12)}
                         </span>
                         <span className="text-gray-600 ml-2 text-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
                           /{billingCycle === 'monthly' ? 'month' : 'month'}
@@ -383,22 +372,6 @@ const Pricing = () => {
                       </li>
                     ))}
                   </ul>
-                  
-                  {tier.limitations.length > 0 && (
-                    <div className="mt-6">
-                      <h4 className="font-semibold text-gray-900 mb-4">Limitations:</h4>
-                      <ul className="space-y-2">
-                        {tier.limitations.map((limitation, limitIndex) => (
-                          <li key={limitIndex} className="flex items-start">
-                            <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-gray-600 text-sm">{limitation}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
 
                 {tier.name === 'Enterprise' ? (
@@ -434,14 +407,14 @@ const Pricing = () => {
               ENHANCE YOUR PLAN
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Add-on Services
+              Pay as you Go Plans
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
               Extend your plan with additional services tailored to your specific needs
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {addOns.map((addon, index) => (
               <div key={index} className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2 border border-gray-100">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -449,9 +422,21 @@ const Pricing = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>{addon.name}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>{addon.description}</p>
-                <div className="text-center">
-                  <div className="text-3xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1">${addon.price}</div>
-                  <div className="text-sm text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>{addon.unit}</div>
+                <div className="space-y-4">
+                  <div className="text-center border-b border-gray-100 pb-4">
+                    <div className="text-sm text-gray-500 mb-1">Pay As You Go</div>
+                    <div className="text-2xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">₹{addon.payAsYouGoPrice}</div>
+                    <div className="text-sm text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>{addon.unit}</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-gray-500 mb-1">One-Time Charge</div>
+                    <div className="text-2xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                      {addon.oneTimePrice === '—' ? '—' : `₹${addon.oneTimePrice}`}
+                    </div>
+                    {addon.oneTimePrice !== '—' && (
+                      <div className="text-sm text-gray-500" style={{ fontFamily: 'Inter, sans-serif' }}>one-time setup</div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
