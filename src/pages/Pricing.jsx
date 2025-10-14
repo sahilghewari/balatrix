@@ -93,15 +93,15 @@ const Pricing = () => {
   const faqs = [
     {
       question: 'Can I change my plan at any time?',
-      answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and billing is prorated accordingly.'
+      answer: 'Yes, you can upgrade or downgrade your plan at any time. Please contact support, and billing is updated accordingly.'
     },
     {
       question: 'What happens if I exceed my plan limits?',
-      answer: 'Overage charges apply at standard rates. We\'ll notify you before you reach your limits and can automatically upgrade your plan if needed.'
+      answer: 'Overage charges apply at standard rates. We\'ll notify you before you reach your limits and can automatically upgrade your plan or add Credits if needed.'
     },
     {
       question: 'Do you offer custom enterprise pricing?',
-      answer: 'Yes, for organizations requiring more than 25,000 numbers or custom solutions, we offer tailored enterprise pricing. Contact our sales team for a quote.'
+      answer: 'Yes, for organizations requiring custom solutions, we offer tailored enterprise pricing. Contact our sales team for a quote.'
     },
     {
       question: 'Is there a setup fee?',
