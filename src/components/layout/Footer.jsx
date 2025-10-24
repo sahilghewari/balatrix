@@ -155,9 +155,9 @@ const Footer = () => {
           <div className="flex flex-col space-y-3 lg:flex-row lg:justify-between lg:items-center lg:space-y-0">
             <div className="flex flex-col space-y-2 lg:flex-row lg:items-center lg:space-y-0 lg:space-x-6 text-xs text-gray-400">
               <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-                <span>&copy; 2024 Balatrix Technologies, Inc.</span>
+                <span>&copy; 2024 Kamat Techservices Private Limited</span>
                 <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded mt-1 sm:mt-0 w-fit">
-                  Est. 2019
+                  Est. 2015
                 </span>
               </div>
               <div className="hidden sm:flex items-center space-x-1 text-xs">
@@ -180,7 +180,7 @@ const Footer = () => {
                   Security
                 </Link>
                 <Link to="/cookies" className="hover:text-white transition-colors duration-200">
-                  Cookies
+                  Refund & Cancellations
                 </Link>
               </div>
             </div>

@@ -24,7 +24,7 @@ const Pricing = () => {
       savings: '20%',
       features: [
         'Toll-Free Number (TFN): 1',
-        'Free Minutes: 100',
+        'Free Credit: ₹199',
         'Extensions: 1',
         'Per Minute Charge: ₹1.99'
       ],
@@ -40,7 +40,7 @@ const Pricing = () => {
       savings: '20%',
       features: [
         'Toll-Free Numbers (TFN): 2',
-        'Free Minutes: 500',
+        'Free Credit: ₹700',
         'Extensions: 2',
         'Per Minute Charge: ₹1.60'
       ],
@@ -56,7 +56,7 @@ const Pricing = () => {
       savings: '20%',
       features: [
         'Toll-Free Numbers (TFN): 5',
-        'Free Minutes: 1500',
+        'Free Credit: ₹3500',
         'Extensions: 10',
         'Per Minute Charge: ₹1.45'
       ],

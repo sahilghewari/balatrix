@@ -104,9 +104,9 @@ const Contact = () => {
 
   const officeLocations = [
     {
-      city: 'San Francisco',
-      country: 'United States',
-      address: '123 Technology Drive, San Francisco, CA 94105',
+      city: 'Mumbai',
+      country: 'INDIA',
+      address: '538, MasterMind 1, Royal Palms, Goregaon East, Mumbai 400065',
       phone: '+1 (415) 555-0123',
       type: 'Headquarters',
       flag: '🇺🇸'
@@ -542,18 +542,18 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Main Office</h4>
                     <p className="text-gray-600 leading-relaxed">
-                      123 Business Center Drive<br />
-                      Tech District, Suite 500<br />
-                      San Francisco, CA 94105<br />
-                      United States
+                      538 Master Mind 1, <br />
+                      Royal Palms Goregaon (East)<br />
+                      Mumbai 400065<br />
+                      INDIA
                     </p>
                   </div>
 
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Business Hours</h4>
                     <div className="space-y-1 text-gray-600">
-                      <p>Monday - Friday: 8:00 AM - 6:00 PM PST</p>
-                      <p>Saturday: 9:00 AM - 2:00 PM PST</p>
+                      <p>Monday - Friday: 8:00 AM - 6:00 PM EST</p>
+                      <p>Saturday: 9:00 AM - 2:00 PM EST</p>
                       <p>Sunday: Closed</p>
                     </div>
                   </div>
@@ -567,7 +567,7 @@ const Contact = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                           </svg>
                         </div>
-                        <span className="text-gray-700">+1 (555) 123-4567</span>
+                        <span className="text-gray-700">+91 9-604-604-179</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">

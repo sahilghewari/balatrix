@@ -34,7 +34,7 @@ const About = () => {
 
   const milestones = [
     {
-      year: '2009',
+      year: '2015',
       title: 'Company Founded',
       description: 'Started with a vision to make toll-free numbers affordable and accessible'
     },
@@ -208,8 +208,8 @@ const About = () => {
             <div className="hidden lg:block opacity-0 animate-fade-in-right" style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}>
               <div className="relative h-80 xl:h-96 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-5xl xl:text-6xl font-bold text-blue-600 mb-2">2009</div>
-                  <div className="text-base xl:text-lg text-gray-900 font-semibold mb-4">Founded in San Francisco</div>
+                  <div className="text-5xl xl:text-6xl font-bold text-blue-600 mb-2">2015</div>
+                  <div className="text-base xl:text-lg text-gray-900 font-semibold mb-4">Founded in Mumbai</div>
                   <div className="text-sm xl:text-base text-gray-600 max-w-xs">
                     With a vision to transform business telecommunications through 
                     affordability, reliability, and exceptional customer service.
@@ -222,7 +222,7 @@ const About = () => {
             <div className="lg:hidden mt-6 sm:mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '1.0s', animationFillMode: 'forwards' }}>
               <div className="flex justify-center">
                 <div className="text-center bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm w-full max-w-xs mx-4">
-                  <div className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">2009</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">2015</div>
                   <div className="text-sm font-semibold text-gray-900 mb-1 sm:mb-2">Founded</div>
                   <div className="text-xs text-gray-600">
                     15+ years of telecommunications excellence
@@ -261,9 +261,13 @@ const About = () => {
               <div className="space-y-4 text-gray-700">
                 <p>
                   Balatrix was born from a simple observation: getting toll-free numbers 
-                  was unnecessarily complex and expensive. In 2009, our founders recognized 
+                  was unnecessarily complex and expensive. In 2015, our founders recognized 
                   that businesses needed a partner who could deliver affordable toll-free 
                   communication solutions with the same reliability they expected from other services.
+                </p>
+                 <p>
+                  Balatrix is registered as Kamat Techservices Private Limited, through ROC MUMBAI.
+                  Balatrix is a Registered Trademark Owned by Kamat Techservices Private Limited.
                 </p>
                 <p>
                   What started as a mission to simplify toll-free number provisioning has evolved into 
@@ -280,8 +284,8 @@ const About = () => {
             </div>
             <div className="bg-gray-100 rounded-2xl p-8">
               <div className="text-center">
-                <div className="text-6xl font-bold text-blue-600 mb-2">2009</div>
-                <div className="text-lg text-gray-900 font-semibold mb-4">Founded in San Francisco</div>
+                <div className="text-6xl font-bold text-blue-600 mb-2">2015</div>
+                <div className="text-lg text-gray-900 font-semibold mb-4">Founded in Mumbai</div>
                 <div className="text-gray-600">
                   With a vision to transform business telecommunications through 
                   reliability, innovation, and exceptional customer service.
