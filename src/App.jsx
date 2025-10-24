@@ -32,7 +32,7 @@ function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/security" element={<Security />} />
-            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/Refund & Cancellations" element={<Cookies />} />
             <Route path="/portal" element={<div className="pt-20 p-8">Client Portal Coming Soon</div>} />
           </Routes>
         </main>
