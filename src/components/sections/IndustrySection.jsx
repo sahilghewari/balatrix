@@ -62,7 +62,14 @@ const IndustrySection = () => {
                         >
                             <div className="h-56 w-full overflow-hidden relative">
                                 <div className="absolute inset-0 bg-slate-900/5 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img src={ind.image} alt={ind.title} className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105" />
+                                <img 
+                                    src={ind.image} 
+                                    alt={ind.title} 
+                                    width="400"
+                                    height="300"
+                                    loading="lazy"
+                                    className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105" 
+                                />
                             </div>
                             <div className="p-8 flex flex-col flex-grow">
                                 <h3 className="text-2xl font-bold text-slate-900 mb-3">{ind.title}</h3>

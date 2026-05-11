@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/seo/SEO';
 import { Link } from 'react-router-dom';
 
 const Services = () => {
@@ -127,6 +128,12 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Our Services" 
+        description="Explore our core services including enterprise-grade cloud telephony, real-time analytics, automated billing, and advanced call center capabilities." 
+        canonicalUrl="https://balatrix.com/services"
+        keywords="cloud telephony services, real-time analytics, automated billing, multi-tenancy telecom"
+      />
       {/* Hero Section */}
       <section className="min-h-screen sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         {/* Subtle background pattern */}

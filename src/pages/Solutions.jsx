@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/seo/SEO';
 
 const Solutions = () => {
   // Scroll to solutions section
@@ -206,6 +207,12 @@ const Solutions = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Business Solutions" 
+        description="Tailored telecommunications solutions designed for your specific business needs. Discover our plans for startups, SMBs, and enterprises." 
+        canonicalUrl="https://balatrix.com/solutions"
+        keywords="business communication solutions, enterprise voip, small business phone system, call center telecom"
+      />
       {/* Hero Section */}
       <section className="min-h-screen sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         {/* Subtle background pattern */}

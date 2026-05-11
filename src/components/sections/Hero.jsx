@@ -53,6 +53,8 @@ const Hero = () => {
               <img
                 src="/images/hero_dashboard_1772447946359.png"
                 alt="Balatrix Live Communications Analytics"
+                width="1200"
+                height="800"
                 className="w-full h-auto object-cover object-center transform transition-transform duration-700 group-hover:scale-[1.03]"
               />
 

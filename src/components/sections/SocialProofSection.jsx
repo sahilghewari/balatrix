@@ -30,6 +30,9 @@ const SocialProofSection = () => {
                         <img
                             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200"
                             alt="Sarah Jenkins"
+                            width="80"
+                            height="80"
+                            loading="lazy"
                             className="w-20 h-20 rounded-full shadow-lg mb-8 border-4 border-white object-cover group-hover:scale-105 transition-transform duration-500"
                         />
 

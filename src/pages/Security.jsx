@@ -1,8 +1,14 @@
 import React from 'react';
+import SEO from '../components/seo/SEO';
 
 const Security = () => {
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Security & Compliance" 
+        description="Learn about our enterprise-grade security measures, compliance frameworks, and how we protect your business communications." 
+        canonicalUrl="https://balatrix.com/security"
+      />
       {/* Hero Section */}
       <section className="min-h-[50vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         <div className="absolute inset-0 opacity-[0.02]">

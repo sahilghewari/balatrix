@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SEO from '../components/seo/SEO';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -155,6 +156,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with Balatrix for support, sales, or enterprise quotes. Our team is available 24/7 to assist with your cloud telephony needs." 
+        canonicalUrl="https://balatrix.com/contact"
+      />
       {/* Hero Section */}
       <section className="min-h-screen sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         {/* Subtle background pattern */}

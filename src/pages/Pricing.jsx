@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import SEO from '../components/seo/SEO';
+import { generateProductSchema, generateFAQSchema } from '../utils/schemaGenerator';
 import { Link } from "react-router-dom";
 
 const Pricing = () => {
@@ -126,6 +128,16 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO 
+        title="Pricing & Plans" 
+        description="Simple, transparent pricing for toll-free numbers and cloud communication. Plans start at $9.99/month. Choose the perfect plan for your business." 
+        canonicalUrl="https://balatrix.com/pricing"
+        keywords="toll-free number pricing, business phone plans, voip pricing, cloud communication cost"
+        schema={[
+          generateProductSchema("Balatrix Cloud Telephony", "Affordable toll-free numbers and business communication", 9.99),
+          generateFAQSchema(faqs)
+        ]}
+      />
       {/* Hero Section */}
       <section className="min-h-screen sm:min-h-[70vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
         {/* Subtle background pattern */}
