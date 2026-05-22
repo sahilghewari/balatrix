@@ -176,33 +176,6 @@ const Pricing = () => {
                 24x7 Free Support.
               </p>
 
-              {/* Billing Toggle */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-                <div className="flex items-center gap-4 bg-slate-50 border border-slate-200 p-2 rounded-2xl w-fit">
-                  <span className={`text-sm font-bold px-4 py-2 rounded-xl transition-all cursor-pointer ${billingCycle === 'monthly' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`} onClick={() => setBillingCycle('monthly')}>
-                    Monthly
-                  </span>
-                  <span className={`text-sm font-bold px-4 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-2 ${billingCycle === 'yearly' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`} onClick={() => setBillingCycle('yearly')}>
-                    Annual
-                    <span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-[10px] uppercase font-bold tracking-wider">Save 20%</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Quarterly Payment Option */}
-              <div className="bg-[#032B93]/5 border border-[#032B93]/10 rounded-2xl p-4 w-fit opacity-0 animate-fade-in-up" style={{ animationDelay: '0.65s', animationFillMode: 'forwards' }}>
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 bg-[#032B93] rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 mb-1">Quarterly Payment Option</h4>
-                    <p className="text-sm text-slate-500 font-medium">Pay quarterly and skip one-time setup charges</p>
-                  </div>
-                </div>
-              </div>
 
               {/* CTA Group */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
@@ -286,6 +259,34 @@ const Pricing = () => {
             <p className="subheading max-w-2xl mx-auto">
               All plans include our core features with 99.9% uptime guarantee
             </p>
+
+            {/* Billing Toggle */}
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 mt-10">
+              <div className="flex items-center gap-4 bg-slate-50 border border-slate-200 p-2 rounded-2xl w-fit">
+                <span className={`text-sm font-bold px-4 py-2 rounded-xl transition-all cursor-pointer ${billingCycle === 'monthly' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`} onClick={() => setBillingCycle('monthly')}>
+                  Monthly
+                </span>
+                <span className={`text-sm font-bold px-4 py-2 rounded-xl transition-all cursor-pointer flex items-center gap-2 ${billingCycle === 'yearly' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-700'}`} onClick={() => setBillingCycle('yearly')}>
+                  Annual
+                  <span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-[10px] uppercase font-bold tracking-wider">Save 20%</span>
+                </span>
+              </div>
+
+              {/* Quarterly Payment Option */}
+              <div className="bg-[#032B93]/5 border border-[#032B93]/10 rounded-2xl p-4 w-fit text-left">
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 bg-[#032B93] rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 mb-1">Quarterly Payment Option</h4>
+                    <p className="text-sm text-slate-500 font-medium">Pay quarterly and skip one-time setup charges</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

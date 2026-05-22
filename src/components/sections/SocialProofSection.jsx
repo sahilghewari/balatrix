@@ -11,16 +11,7 @@ const SocialProofSection = () => {
                     </h2>
                 </div>
 
-                {/* Logo Grid */}
-                <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 mb-20">
-                    <div className="text-xl font-bold font-mono tracking-tighter text-slate-800">ACME Corp</div>
-                    <div className="text-xl font-extrabold italic text-slate-800 tracking-wider">GLOBEX</div>
-                    <div className="text-xl font-bold text-slate-800 flex items-center gap-1">
-                        <div className="w-6 h-6 bg-slate-800 rounded-sm transform rotate-45"></div> SOYUZ
-                    </div>
-                    <div className="text-xl font-sans font-black tracking-tight text-slate-800">MASSIVE. <span className="text-blue-500 text-sm">inc</span></div>
-                    <div className="text-xl font-serif font-bold text-slate-800">Vandelay</div>
-                </div>
+
 
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Main Case Study */}
