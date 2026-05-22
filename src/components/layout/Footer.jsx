@@ -87,7 +87,7 @@ const Footer = () => {
                     </svg>
                   </div>
                   <div>
-                    <div className="font-semibold text-slate-900 break-all">anant@balatrix.com</div>
+                    <div className="font-semibold text-slate-900 break-all">sales@balatrix.com</div>
                     <div className="text-sm text-slate-500">Get Your Quote</div>
                   </div>
                 </div>
