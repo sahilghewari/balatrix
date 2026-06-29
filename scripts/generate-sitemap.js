@@ -18,7 +18,8 @@ const routes = [
   { path: '/contact', priority: '0.8', changefreq: 'monthly' },
   { path: '/privacy', priority: '0.5', changefreq: 'yearly' },
   { path: '/terms', priority: '0.5', changefreq: 'yearly' },
-  { path: '/security', priority: '0.7', changefreq: 'yearly' }
+  { path: '/security', priority: '0.7', changefreq: 'yearly' },
+  { path: '/refund', priority: '0.5', changefreq: 'yearly' }
 ];
 
 const generateSitemap = () => {

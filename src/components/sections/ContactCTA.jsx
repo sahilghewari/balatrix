@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ContactCTA = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-white">
+    <section className="py-24 relative overflow-hidden bg-transparent border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="relative rounded-[2.5rem] overflow-hidden bg-[#0B1120] border border-slate-800 shadow-2xl">
 

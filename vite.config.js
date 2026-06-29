@@ -24,7 +24,8 @@ export default defineConfig({
         '/contact', 
         '/privacy', 
         '/terms', 
-        '/security'
+        '/security',
+        '/refund'
       ],
       renderer: new Renderer({
         renderAfterTime: 500,

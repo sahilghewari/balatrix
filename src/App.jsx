@@ -19,8 +19,8 @@ const Cookies = lazy(() => import('./pages/Cookies'));
 
 // Loading component
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+  <div className="min-h-screen flex items-center justify-center bg-[#03050e]">
+    <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div>
   </div>
 );
 
@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="App min-h-screen bg-gray-50">
+      <div className="App min-h-screen bg-[#03050e] text-gray-100 selection:bg-blue-600/30 selection:text-white transition-colors duration-300 overflow-x-hidden">
         <Header />
         <main>
           <Suspense fallback={<PageLoader />}>

@@ -23,19 +23,23 @@ const Header = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
+    
+    // Auto-trigger Quote Modal if query parameters contain lead tags
+    const params = new URLSearchParams(location.search);
+    const quoteParam = params.get('quote');
+    if (quoteParam === 'true' || quoteParam === 'reseller' || quoteParam === 'tollfree' || quoteParam === 'consultation') {
+      setIsQuoteModalOpen(true);
+    }
   }, [location]);
 
   const navigation = [
-
     {
       name: 'Solutions',
       href: '/solutions',
-
     },
     {
       name: 'Services',
       href: '/services',
-
     },
     {
       name: 'Pricing',
@@ -45,9 +49,7 @@ const Header = () => {
     {
       name: 'About Us',
       href: '/about',
-
     },
-
   ];
 
   const handleMouseEnter = (index) => {
@@ -71,24 +73,24 @@ const Header = () => {
     <>
       <header
         className={`fixed w-full top-0 z-50 transition-all duration-300 ease-out border-b ${isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-slate-200 shadow-sm'
-          : 'bg-white border-transparent'
+          ? 'bg-[#03050e]/80 backdrop-blur-md border-white/5 shadow-2xl shadow-blue-500/5'
+          : 'bg-transparent border-transparent'
           }`}
         style={{ height: '72px' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[72px]">
-            {/* Logo */}
+            {/* Logo with bright invert to fit the dark theme */}
             <Link to="/" className="flex items-center group">
               <img
                 src={logo}
                 alt="Balatrix"
-                className={`h-8 sm:h-10 transition-all duration-300 group-hover:opacity-90 object-contain`}
+                className="h-8 sm:h-10 transition-all duration-300 group-hover:opacity-90 object-contain brightness-0 invert"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-6">
               {navigation.map((item, index) => (
                 <div
                   key={item.name}
@@ -98,16 +100,12 @@ const Header = () => {
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center space-x-1 font-medium text-[14px] transition-all duration-200 py-2 px-4 rounded-lg ${isScrolled
-                      ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/50'
-                      }`}
+                    className="flex items-center space-x-1 font-semibold text-[14px] transition-all duration-200 py-2 px-3.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/5"
                   >
                     <span>{item.name}</span>
                     {item.hasDropdown && (
                       <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''
-                          }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === index ? 'rotate-180' : ''}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -117,32 +115,32 @@ const Header = () => {
                     )}
                   </Link>
 
-                  {/* Dropdown Menu */}
+                  {/* Dropdown Menu - Glassmorphic styled */}
                   {item.hasDropdown && activeDropdown === index && (
-                    <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-xl shadow-2xl py-4 z-50 animate-slideDown">
-                      <div className="px-4 py-2 border-b border-gray-200 mb-2">
-                        <h3 className="font-semibold text-gray-900 text-sm">{item.name}</h3>
+                    <div className="absolute top-full left-0 mt-2 w-80 bg-[#080b16]/95 backdrop-blur-xl border border-white/5 rounded-xl shadow-2xl py-4 z-50 animate-slideDown">
+                      <div className="px-4 py-2 border-b border-white/5 mb-2">
+                        <h3 className="font-semibold text-white text-sm">{item.name}</h3>
                       </div>
                       {item.items?.map((subItem, subIndex) => (
                         <Link
                           key={subIndex}
                           to={subItem.href}
-                          className="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors duration-150 group"
+                          className="flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors duration-150 group"
                         >
                           <div>
                             <div className="flex items-center space-x-2">
-                              <span className="font-medium text-gray-900 text-sm group-hover:text-blue-600 transition-colors duration-150">
+                              <span className="font-medium text-gray-200 text-sm group-hover:text-blue-400 transition-colors duration-150">
                                 {subItem.name}
                               </span>
                               {subItem.badge && (
-                                <span className="bg-blue-100 text-blue-600 text-xs font-medium px-2 py-0.5 rounded-full">
+                                <span className="bg-blue-900/40 text-blue-300 text-xs font-medium px-2 py-0.5 rounded-full border border-blue-500/20">
                                   {subItem.badge}
                                 </span>
                               )}
                             </div>
                             <p className="text-gray-400 text-xs mt-1">{subItem.desc}</p>
                           </div>
-                          <svg className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-gray-400 group-hover:text-blue-400 transition-colors duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
@@ -157,28 +155,23 @@ const Header = () => {
             <div className="hidden lg:flex items-center space-x-4">
               {/* Status Indicator */}
               <div className="hidden xl:flex items-center space-x-2 text-sm mr-4">
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-gray-600 text-[14px] font-medium">24x7 Free Support</span>
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
+                <span className="text-gray-400 text-[14px] font-medium">24x7 Support Active</span>
               </div>
 
-
-
-              <Link
-                to="/contact"
-                className="btn btn-primary"
+              <button
+                onClick={openQuoteModal}
+                className="btn btn-primary px-6 py-2.5 text-sm"
               >
                 Contact Us
-              </Link>
+              </button>
             </div>
 
             {/* Mobile menu button */}
             <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2 rounded-lg transition-all duration-200 touch-manipulation ${isScrolled
-                  ? 'text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200'
-                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/50 active:bg-gray-200/50'
-                  }`}
+                className="p-2 rounded-lg transition-all duration-200 touch-manipulation text-gray-300 hover:text-white hover:bg-white/5 active:bg-white/10"
                 aria-label="Toggle mobile menu"
               >
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,16 +186,16 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation - Rebuilt for dark glassmorphism */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden absolute top-full left-0 right-0 bg-white backdrop-blur-xl border-b border-gray-200 shadow-2xl animate-slideDown">
+            <div className="lg:hidden absolute top-full left-0 right-0 bg-[#03050e]/95 backdrop-blur-xl border-b border-white/5 shadow-2xl z-50">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
                 <nav className="flex flex-col space-y-2">
                   {navigation.map((item, index) => (
                     <div key={index}>
                       <Link
                         to={item.href}
-                        className="flex items-center justify-between text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 px-4 py-4 rounded-xl font-medium transition-all duration-200 touch-manipulation"
+                        className="flex items-center justify-between text-gray-300 hover:text-white hover:bg-white/5 px-4 py-3.5 rounded-xl font-semibold transition-all duration-200 touch-manipulation"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <span className="text-base">{item.name}</span>
@@ -215,22 +208,13 @@ const Header = () => {
                     </div>
                   ))}
 
-                  <div className="border-t border-gray-200 pt-6 mt-6">
-                    <Link
-                      to="/portal"
-                      className="flex items-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 px-4 py-4 rounded-xl font-medium transition-all duration-200 mb-4 touch-manipulation"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span className="text-base">Client Portal</span>
-                    </Link>
-
-                    <Link
-                      to="/contact"
-                      className="btn btn-primary w-full text-center mt-2"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                  <div className="border-t border-white/5 pt-6 mt-6">
+                    <button
+                      onClick={openQuoteModal}
+                      className="btn btn-primary w-full text-center py-3"
                     >
                       Contact Us
-                    </Link>
+                    </button>
                   </div>
                 </nav>
               </div>

@@ -3,28 +3,23 @@ import SEO from '../components/seo/SEO';
 
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-transparent">
       <SEO 
         title="Terms of Service" 
         description="Read the Balatrix Terms of Service to understand the rules, guidelines, and terms that govern your use of our platform." 
         canonicalUrl="https://balatrix.com/terms"
       />
       {/* Hero Section */}
-      <section className="min-h-[50vh] bg-gradient-to-br from-white via-gray-50/50 to-gray-50 flex items-center justify-center overflow-hidden relative">
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
+      <section className="min-h-[45vh] bg-transparent flex items-center justify-center overflow-hidden relative border-b border-white/5 pt-20">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="telecom-grid opacity-[0.2]" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
             Terms of Service
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Please read these Terms carefully before using our VoIP and PBX services.
           </p>
         </div>
