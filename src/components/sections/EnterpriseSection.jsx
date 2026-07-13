@@ -1,113 +1,151 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const EnterpriseSection = () => {
-    return (
-        <section className="bg-transparent py-24 lg:py-32 relative overflow-hidden border-t border-white/5">
-            {/* Background glow effects */}
-            <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-900/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
-            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-cyan-900/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
+  return (
+    <section className="canvas-dark py-24 lg:py-32 relative overflow-hidden">
+      {/* Background patterns */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-[var(--color-accent)]/10 rounded-full blur-[100px]" />
+      </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-                    {/* Content */}
-                    <div className="order-2 lg:order-1">
-                        <div className="inline-flex items-center space-x-2 bg-blue-950/40 border border-blue-500/25 text-blue-300 px-4 py-1.5 rounded-full mb-6">
-                            <span className="font-semibold text-xs tracking-wider">ENTERPRISE TIER</span>
-                        </div>
+          {/* Text Content */}
+          <div className="order-2 lg:order-1 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center space-x-2 bg-[var(--canvas-dark-elevated)] border border-[var(--border-dark)] text-[var(--color-accent-light)] px-4 py-1.5 rounded-full"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] animate-pulse"></span>
+              <span className="font-semibold text-xs tracking-wider uppercase">Enterprise Tier</span>
+            </motion.div>
 
-                        <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
-                            Built for Scale.<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Designed for Reliability.</span>
-                        </h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-display-lg text-[var(--text-dark-primary)] leading-tight"
+            >
+              Built for Scale.<br />
+              <span className="font-normal text-[var(--color-accent)]">Designed for Reliability.</span>
+            </motion.h2>
 
-                        <p className="text-xl text-gray-400 leading-relaxed mb-10">
-                            When communication is mission-critical, Balatrix delivers the fail-safes, scale, and dedicated support your enterprise requires.
-                        </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-lg text-[var(--text-dark-secondary)] leading-relaxed font-normal max-w-lg"
+            >
+              When communications are mission-critical, Balatrix delivers the active redundancies, compliance, and dedicated support your global enterprise demands.
+            </motion.p>
 
-                        <ul className="space-y-6 mb-10">
-                            {[
-                                { title: '100% Uptime SLA', desc: 'Financially backed guarantees for mission-critical infrastructure.' },
-                                { title: 'Anycast DNS Network', desc: 'Active-active redundancy across global data centers.' },
-                                { title: 'Dedicated Support Pods', desc: 'Direct Slack channels and 24/7 technical escalations.' }
-                            ].map((item, idx) => (
-                                <li key={idx} className="flex gap-4">
-                                    <div className="flex-shrink-0 mt-1">
-                                        <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/15 text-cyan-400">
-                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-white font-bold text-lg">{item.title}</h4>
-                                        <p className="text-gray-400 mt-1 text-sm">{item.desc}</p>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-
-                        <Link to="/contact" className="btn btn-primary text-lg px-8 py-4">
-                            Talk to Sales
-                        </Link>
+            <ul className="space-y-6 pt-2">
+              {[
+                { title: '100% Uptime SLA', desc: 'Financially backed SLA guarantee for absolute infrastructure durability.', icon: '🔒' },
+                { title: 'Active-Active Redundancy', desc: 'Distributed DID mapping across multiple redundant node centers.', icon: '⚡' },
+                { title: 'Dedicated Support Pods', desc: 'Real-time engineer escalations and direct Slack operations access.', icon: '🎯' }
+              ].map((item, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 + 0.3 }}
+                  className="flex gap-4"
+                >
+                  <div className="flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[var(--canvas-dark-elevated)] flex items-center justify-center border border-[var(--border-dark)] text-sm">
+                      {item.icon}
                     </div>
+                  </div>
+                  <div>
+                    <h4 className="text-[var(--text-dark-primary)] font-semibold text-[16px] leading-tight">{item.title}</h4>
+                    <p className="text-[var(--text-dark-secondary)] mt-1 text-[13px] font-normal leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
 
-                    {/* Visual Data / Tech Graphic with Photo */}
-                    <div className="relative order-1 lg:order-2">
-                        <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(3,43,147,0.3)] border border-white/10 group bg-slate-900/10 p-2">
-                            {/* Unsplash Data Center Photo */}
-                            <img
-                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1200"
-                                alt="Global Data Center Infrastructure"
-                                className="w-full h-full object-cover min-h-[500px] transform group-hover:scale-[1.02] transition-transform duration-700 rounded-2xl opacity-80"
-                            />
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="pt-4"
+            >
+              <Link to="/contact" className="btn-pill btn-pill-primary text-base px-8 py-3.5">
+                Talk to Sales
+              </Link>
+            </motion.div>
+          </div>
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10 rounded-2xl"></div>
+          {/* Visual Element: Data Center Graphic with Latency Test Overlay */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98, x: 30 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative order-1 lg:order-2"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.6)] border border-white/10 bg-white/5 p-2">
+              <img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
+                alt="Global Data Center Infrastructure"
+                className="w-full h-auto object-cover min-h-[480px] rounded-xl opacity-60"
+              />
 
-                            {/* Glassmorphism Latency Display */}
-                            <div className="absolute bottom-6 left-6 right-6 border border-white/10 bg-slate-950/85 backdrop-blur-xl p-6 rounded-2xl shadow-2xl animate-fade-in z-20">
-                                <h3 className="text-gray-400 font-bold text-xs tracking-widest mb-4 flex justify-between items-center uppercase">
-                                    <span>Global Latency Test</span>
-                                    <span className="text-cyan-400 flex items-center gap-2 font-mono bg-cyan-950/50 border border-cyan-500/20 px-2 py-1 rounded">
-                                        <span className="relative flex h-2 w-2">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
-                                        </span>
-                                        PASS [12ms]
-                                    </span>
-                                </h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--canvas-dark)] via-transparent to-transparent z-10 rounded-xl" />
 
-                                <div className="space-y-3">
-                                    {[
-                                        { region: 'US-EAST (N. Virginia)', latency: '12ms' },
-                                        { region: 'US-WEST (Oregon)', latency: '15ms' },
-                                        { region: 'EU-CENTRAL (Frankfurt)', latency: '18ms' },
-                                        { region: 'AP-SOUTH (Mumbai)', latency: '24ms' }
-                                    ].map((node, i) => (
-                                        <div key={i} className="flex items-center justify-between p-2.5 rounded-lg bg-white/[0.02] border border-white/5 hover:bg-white/5 transition-colors">
-                                            <div className="flex flex-col">
-                                                <span className="text-white font-semibold text-xs sm:text-sm">{node.region}</span>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                <div className="flex space-x-1">
-                                                    {[1, 2, 3, 4, 5].map(bar => (
-                                                        <div key={bar} className={`w-1.5 h-3 rounded-sm ${bar <= 4 ? 'bg-cyan-500 shadow-[0_0_6px_rgba(6,182,212,0.4)]' : 'bg-white/10'}`} />
-                                                    ))}
-                                                </div>
-                                                <span className="text-gray-400 font-mono font-medium text-xs sm:text-sm min-w-[40px] text-right">{node.latency}</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+              {/* Technical Latency Display Widget */}
+              <div className="absolute bottom-6 left-6 right-6 border border-[var(--border-dark)] bg-[var(--canvas-dark-elevated)]/95 backdrop-blur-md p-5 rounded-xl shadow-2xl z-20">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-[11px] font-bold text-[var(--text-dark-muted)] tracking-widest uppercase">Global Network Routing</span>
+                  <span className="text-[var(--color-accent-light)] flex items-center gap-1.5 font-mono text-[10px] bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 px-2 py-0.5 rounded">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--color-accent)]"></span>
+                    </span>
+                    12ms avg
+                  </span>
                 </div>
+
+                <div className="space-y-2">
+                  {[
+                    { region: 'US-EAST (N. Virginia)', latency: '12ms', bars: 5 },
+                    { region: 'US-WEST (Oregon)', latency: '15ms', bars: 5 },
+                    { region: 'EU-CENTRAL (Frankfurt)', latency: '18ms', bars: 4 },
+                    { region: 'AP-SOUTH (Mumbai)', latency: '24ms', bars: 3 }
+                  ].map((node, i) => (
+                    <div key={i} className="flex items-center justify-between p-2 rounded-lg bg-[var(--canvas-dark-deep)]/50 border border-[var(--border-dark)]">
+                      <span className="text-[var(--text-dark-primary)] font-medium text-xs">{node.region}</span>
+                      <div className="flex items-center gap-3">
+                        <div className="flex space-x-0.5">
+                          {[1, 2, 3, 4, 5].map(bar => (
+                            <div key={bar} className={`w-1 h-2.5 rounded-sm transition-all ${bar <= node.bars ? 'bg-[var(--color-accent)]' : 'bg-white/10'}`} />
+                          ))}
+                        </div>
+                        <span className="text-[var(--text-dark-secondary)] font-mono text-xs min-w-[36px] text-right">{node.latency}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-        </section>
-    );
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default EnterpriseSection;

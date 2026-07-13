@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import SEO from '../components/seo/SEO';
 
 const Contact = () => {
@@ -16,7 +17,6 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const sectionRef = useRef(null);
 
-  // Scroll to contact form function
   const scrollToContactForm = () => {
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -27,26 +27,6 @@ const Contact = () => {
     }
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Handle anchor scrolling when page loads
   useEffect(() => {
     const hash = window.location.hash;
     if (hash === '#contact-form') {
@@ -69,11 +49,9 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       console.log('Form submitted:', formData);
       
-      // Sync lead details to Zoho SalesIQ if active in browser
       if (window.$zoho && window.$zoho.salesiq) {
         try {
           window.$zoho.salesiq.visitor.name(formData.firstName + ' ' + formData.lastName);
@@ -182,303 +160,377 @@ const Contact = () => {
     <div className="min-h-screen bg-transparent">
       <SEO 
         title="Contact Us" 
-        description="Get in touch with Balatrix. Contact our sales and support teams for toll-free numbers,Hosted PBX pricing, or platform custom setups." 
+        description="Get in touch with Balatrix. Contact our sales and support teams for toll-free numbers, Hosted PBX pricing, or platform custom setups." 
         canonicalUrl="https://balatrix.com/contact"
         keywords="contact balatrix, toll free support, voip customer service, wholesale telecom sales"
       />
       
-      {/* Hero Section */}
-      <section className="min-h-screen sm:min-h-[70vh] bg-transparent flex items-center justify-center overflow-hidden relative">
+      {/* 1. Hero Section - Obsidian Dark */}
+      <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="telecom-grid opacity-[0.3]" />
-          <div className="absolute top-[20%] right-[10%] w-[380px] h-[380px] bg-blue-900/10 rounded-full blur-[110px]" />
-          <div className="absolute bottom-[20%] left-[10%] w-[380px] h-[380px] bg-cyan-900/10 rounded-full blur-[110px]" />
+          <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-[10%] left-[10%] w-[350px] h-[350px] bg-[var(--color-accent-light)]/5 rounded-full blur-[100px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 lg:py-24 xl:py-32 relative z-10 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-            {/* Content Section */}
-            <div className="space-y-6 sm:space-y-8 w-full overflow-hidden">
-              <div className="inline-flex items-center space-x-1.5 bg-blue-950/40 border border-blue-500/20 text-blue-300 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
-                <span>Contact Channels 📞</span>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center lg:text-left">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center space-x-2 bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent-light)] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider"
+              >
+                <span>Support Channels</span>
+              </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
-                Connect With<br />Our<br />
-                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Experts</span>
-              </h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-display-lg text-[var(--text-dark-primary)] leading-tight"
+              >
+                Connect With <br />
+                Our <span className="font-normal text-[var(--color-accent)]">Experts.</span>
+              </motion.h1>
 
-              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed max-w-full lg:max-w-xl">
-                Need high-volume trunking support or have custom reseller PBX requirements? Our team is available 24/7 to design the perfect cloud voice routing blueprint for your teams.
-              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-lg text-[var(--text-dark-secondary)] font-normal leading-relaxed max-w-lg mx-auto lg:mx-0"
+              >
+                Need high-volume trunking support or have custom reseller PBX requirements? Our team is available 24x7 to assist you.
+              </motion.p>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <button onClick={scrollToContactForm} className="btn btn-primary text-base px-8 py-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+              >
+                <button onClick={scrollToContactForm} className="btn-pill btn-pill-primary px-8 py-3.5">
                   Send Message
                 </button>
-                <a href="tel:+18442252435" className="btn btn-secondary text-base px-8 py-4 text-center">
+                <a href="tel:+18442252435" className="btn-pill btn-pill-secondary px-8 py-3.5 text-center">
                   Call Sales
                 </a>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Desktop Visual Element */}
-            <div className="hidden lg:block">
-              <div className="relative h-80 xl:h-96 flex items-center justify-center">
-                <div className="glass-card p-12 rounded-3xl border-white/5 max-w-sm w-full text-center relative overflow-hidden bg-slate-900/50">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-bl-full -z-10"></div>
-                  <div className="text-6xl mb-6">📞</div>
-                  <div className="text-2xl font-bold text-white mb-3">Get In Touch</div>
-                  <div className="text-sm text-gray-400 mb-8 font-medium">
-                    Multiple ways to connect with our expert support team
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-sm text-gray-300 font-bold bg-white/5 py-3 rounded-xl border border-white/5">
-                    <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>24/7 availability</span>
-                  </div>
+            {/* Right-hand side card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="hidden lg:block"
+            >
+              <div className="glass-card p-10 rounded-2xl border-[var(--border-dark)] max-w-sm mx-auto text-center relative overflow-hidden">
+                <div className="text-5xl mb-4">📞</div>
+                <h3 className="text-lg font-bold text-[var(--text-dark-primary)] mb-2">Get In Touch</h3>
+                <p className="text-xs text-[var(--text-dark-secondary)] mb-6 font-normal">Multiple ways to connect with our expert team.</p>
+                <div className="flex items-center justify-center gap-2 text-xs text-[var(--text-dark-primary)] bg-[var(--canvas-dark-deep)] py-2.5 rounded-xl border border-[var(--border-dark)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-emerald)] animate-pulse animate-float-slow"></span>
+                  <span>24/7 Availability Support</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Contact Methods Section */}
-      <section ref={sectionRef} className="relative py-24 bg-transparent border-t border-white/5 overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 space-y-4">
-            <div className="text-sm font-bold text-blue-400 tracking-widest uppercase mb-4">
-              METHODS
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white">
-              Choose Your Preferred <em>Contact Method</em>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Get the support you need, when you need it. Multiple ways to connect with our expert team.
-            </p>
+      {/* 2. Contact Methods Section - Cool Light */}
+      <section ref={sectionRef} className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              className="text-xs font-bold text-[var(--color-accent)] tracking-widest uppercase mb-4"
+            >
+              Methods
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7 }}
+              className="font-display-md text-[var(--text-dark-primary)] mb-4"
+            >
+              Preferred <em className="text-[var(--color-accent)]">Channels</em>
+            </motion.h2>
           </div>
 
-          {/* Contact Methods Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-24">
-            {contactMethods.map((method, index) => (
-              <div key={index} className="group glass-card rounded-3xl p-8 border-white/5 flex flex-col justify-between">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {contactMethods.map((method, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="glass-card p-8 flex flex-col justify-between group border-[var(--border-dark)] hover:border-[var(--color-accent)]/50"
+              >
                 <div>
-                  <div className="w-16 h-16 bg-blue-500/10 text-blue-400 border border-blue-500/15 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <div className="w-12 h-12 bg-[var(--canvas-dark-elevated)] text-[var(--color-accent)] border border-[var(--border-dark)] rounded-full flex items-center justify-center mb-6 shadow-sm group-hover:scale-105 transition-transform">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d={method.icon} />
                     </svg>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {method.title}
-                  </h3>
-                  <p className="text-gray-400 mb-6 font-medium text-sm">
-                    {method.description}
-                  </p>
+                  <h3 className="text-lg font-bold text-[var(--text-dark-primary)] mb-2 group-hover:text-[var(--color-accent)] transition-colors">{method.title}</h3>
+                  <p className="text-[var(--text-dark-secondary)] text-xs mb-6 font-normal">{method.description}</p>
 
-                  <div className="space-y-3">
-                    <div className="text-2xl font-extrabold text-blue-400">
-                      {method.contact}
-                    </div>
-                    <div className="text-xs font-semibold text-gray-500 tracking-wider">
-                      {method.subtext}
-                    </div>
+                  <div className="space-y-1">
+                    <div className="text-xl font-bold text-[var(--text-dark-primary)]">{method.contact}</div>
+                    <div className="text-[10px] text-[var(--text-dark-muted)] font-semibold">{method.subtext}</div>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-white/5">
-                  <button className="w-full btn btn-primary py-3.5">
+                <div className="mt-8 pt-4 border-t border-[var(--border-dark)]">
+                  <button className="w-full py-2.5 font-semibold text-sm text-center btn-pill-primary">
                     {method.action}
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Contact Form and Office Info */}
-          <div id="contact-form" className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mt-12 mb-24">
-            {/* Form */}
+      {/* 3. Form and Office Details - Obsidian Dark */}
+      <section id="contact-form" className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-[var(--color-accent)]/10 rounded-full blur-[100px] animate-pulse-glow" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            
+            {/* Form Container */}
             <div className="lg:col-span-2">
-              <div className="glass-card rounded-3xl p-8 lg:p-12 border border-white/5 bg-slate-900/40">
-                <div className="relative z-10">
-                  <div className="mb-10 flex items-center space-x-4">
-                    <div className="w-14 h-14 bg-blue-500/10 text-blue-400 border border-blue-500/15 rounded-2xl flex items-center justify-center shadow-sm">
-                      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="glass-card rounded-2xl p-8 lg:p-12 border-[var(--border-dark)]"
+              >
+                <div className="mb-10 flex items-center gap-4">
+                  <div className="w-12 h-12 bg-[var(--color-accent)]/10 text-[var(--color-accent)] border border-[var(--color-accent)]/20 rounded-full flex items-center justify-center shadow-sm">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-0.5">Send Us a Message</h3>
+                    <p className="text-[11px] text-[var(--text-dark-secondary)] font-normal">Complete fields below and our engineers will review your request.</p>
+                  </div>
+                </div>
+
+                {submitStatus === 'success' ? (
+                  <div className="flex flex-col items-center justify-center py-16 text-center space-y-4">
+                    <div className="w-12 h-12 rounded-full bg-[var(--color-emerald)]/10 flex items-center justify-center border border-[var(--color-emerald)]/20 shadow-[0_0_15px_rgba(16,185,129,0.25)] animate-bounce">
+                      <svg className="w-6 h-6 text-[var(--color-emerald)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <div>
-                      <h3 className="text-3xl font-bold text-white mb-1">Send Us a Message</h3>
-                      <p className="text-xs text-gray-400">Fill in the fields below and we'll get back to you shortly.</p>
-                    </div>
+                    <h4 className="text-xl font-bold text-[var(--text-dark-primary)]">Message Transmitted!</h4>
+                    <p className="text-xs text-[var(--text-dark-secondary)] max-w-xs font-normal">We've received your request. A sales engineer will follow up in 2 hours.</p>
                   </div>
-
-                  {submitStatus === 'success' ? (
-                    <div className="flex flex-col items-center justify-center py-16 text-center space-y-4">
-                      <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.25)] animate-bounce">
-                        <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <h4 className="text-2xl font-bold text-white">Message Transmitted!</h4>
-                      <p className="text-sm text-gray-400 max-w-sm">We've received your inquiry. A representative will contact you within 2 hours.</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">First Name</label>
-                          <input
-                            type="text"
-                            name="firstName"
-                            required
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            placeholder="Michael"
-                            className="w-full bg-slate-950/40 border border-white/5 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Last Name</label>
-                          <input
-                            type="text"
-                            name="lastName"
-                            required
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            placeholder="Rodriguez"
-                            className="w-full bg-slate-950/40 border border-white/5 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email Address</label>
-                          <input
-                            type="email"
-                            name="email"
-                            required
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="mrodriguez@company.com"
-                            className="w-full bg-slate-950/40 border border-white/5 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Phone Number</label>
-                          <input
-                            type="tel"
-                            name="phone"
-                            required
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            placeholder="+1 (555) 019-2435"
-                            className="w-full bg-slate-950/40 border border-white/5 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Company Name</label>
-                          <input
-                            type="text"
-                            name="company"
-                            value={formData.company}
-                            onChange={handleInputChange}
-                            placeholder="Acme Corp"
-                            className="w-full bg-slate-950/40 border border-white/5 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Department</label>
-                          <select
-                            name="subject"
-                            value={formData.subject}
-                            onChange={handleInputChange}
-                            className="w-full bg-slate-950/40 border border-white/5 text-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25"
-                          >
-                            {departments.map((dept) => (
-                              <option key={dept.value} value={dept.value} className="bg-[#080b16]">{dept.label}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Message Description</label>
-                        <textarea
-                          name="message"
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">First Name</label>
+                        <input
+                          type="text"
+                          name="firstName"
                           required
-                          rows="5"
-                          value={formData.message}
+                          value={formData.firstName}
                           onChange={handleInputChange}
-                          placeholder="How can our technical support or wholesales trunk team assist you today? Please include details."
-                          className="w-full bg-slate-950/40 border border-white/5 text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/25 resize-none"
+                          placeholder="Michael"
+                          className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] placeholder-[var(--text-dark-muted)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all"
                         />
                       </div>
-
-                      <div>
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="btn btn-primary w-full py-4 text-center disabled:opacity-50"
-                        >
-                          {isSubmitting ? 'Transmitting Data...' : 'Transmit Message'}
-                        </button>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">Last Name</label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          required
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          placeholder="Rodriguez"
+                          className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] placeholder-[var(--text-dark-muted)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all"
+                        />
                       </div>
-                    </form>
-                  )}
-                </div>
-              </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">Email Address</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="mrodriguez@company.com"
+                          className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] placeholder-[var(--text-dark-muted)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">Phone Number</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="+1 (555) 019-2435"
+                          className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] placeholder-[var(--text-dark-muted)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">Company Name</label>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          placeholder="Acme Corp"
+                          className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] placeholder-[var(--text-dark-muted)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">Department</label>
+                        <select
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleInputChange}
+                          className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all"
+                        >
+                          {departments.map((dept) => (
+                            <option key={dept.value} value={dept.value} className="bg-[var(--canvas-dark-deep)]">{dept.label}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold text-[var(--text-dark-muted)] uppercase tracking-widest">Message Description</label>
+                      <textarea
+                        name="message"
+                        required
+                        rows="4"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder="Detail how we can assist you..."
+                        className="w-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-primary)] placeholder-[var(--text-dark-muted)] rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-[var(--color-accent)]/50 focus:ring-1 focus:ring-[var(--color-accent)]/25 transition-all resize-none"
+                      />
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn-pill-primary w-full py-3 disabled:opacity-50"
+                      >
+                        {isSubmitting ? 'Transmitting Data...' : 'Transmit Message'}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </motion.div>
             </div>
 
             {/* Office Locations */}
             <div className="space-y-6">
-              <h3 className="text-xl font-bold text-white mb-4">Office Locations</h3>
-              {officeLocations.map((office, index) => (
-                <div key={index} className="glass-card p-6 rounded-2xl border-white/5 flex flex-col justify-between">
+              <h3 className="text-lg font-bold text-[var(--text-dark-primary)] mb-2">Office Locations</h3>
+              {officeLocations.map((office, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.6, delay: idx * 0.05 }}
+                  className="glass-card p-6 rounded-2xl border-[var(--border-dark)] flex flex-col justify-between hover:border-[var(--color-accent)]/50 transition-colors"
+                >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-bold text-white text-base">
+                      <h4 className="font-bold text-[var(--text-dark-primary)] text-sm">
                         {office.city} {office.flag}
                       </h4>
-                      <span className="text-[10px] font-bold bg-blue-950/40 text-blue-300 border border-blue-500/15 px-2 py-0.5 rounded-full">
+                      <span className="text-[9px] font-bold bg-[var(--color-accent)]/15 text-[var(--color-accent-light)] border border-[var(--color-accent)]/30 px-2 py-0.5 rounded-full">
                         {office.type}
                       </span>
                     </div>
-                    <p className="text-gray-400 text-xs leading-relaxed mb-4">
+                    <p className="text-[var(--text-dark-secondary)] text-xs leading-relaxed mb-4 font-normal">
                       {office.address}
                     </p>
                   </div>
-                  <div className="border-t border-white/5 pt-4 flex items-center space-x-2 text-xs font-semibold text-blue-400">
+                  <div className="border-t border-[var(--border-dark)] pt-4 flex items-center space-x-2 text-xs font-semibold text-[var(--color-accent)]">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     <span>{office.phone}</span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* FAQs */}
-          <div className="border-t border-white/5 pt-20 mb-20">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-extrabold text-white mb-4">Frequently Asked Questions</h2>
-              <p className="text-sm text-gray-400">Quick answers to common questions about contacting our team</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {faqData.map((faq, index) => (
-                <div key={index} className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 hover:border-blue-500/10 transition-colors">
-                  <h4 className="font-bold text-white text-base mb-2">{faq.question}</h4>
-                  <p className="text-gray-400 text-xs leading-relaxed">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
+      {/* 4. FAQs - Cool Light */}
+      <section className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              className="font-display-md text-[var(--text-dark-primary)] mb-4"
+            >
+              Frequently Asked <em className="text-[var(--color-accent)]">Questions</em>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              className="text-base text-[var(--text-dark-secondary)] font-normal"
+            >
+              Quick answers regarding SLA responses and compliance inquiries.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {faqData.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="bg-[var(--canvas-dark-elevated)] border border-[var(--border-dark)] rounded-xl p-6 hover:border-[var(--color-accent)]/20 transition-all duration-300"
+              >
+                <h4 className="font-bold text-[var(--text-dark-primary)] text-sm mb-2 flex items-start">
+                  <span className="text-[var(--color-accent)] mr-3 text-lg leading-none mt-0.5">Q.</span>
+                  {faq.question}
+                </h4>
+                <p className="text-[var(--text-dark-secondary)] text-xs leading-relaxed font-normal ml-6 pl-1">{faq.answer}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
