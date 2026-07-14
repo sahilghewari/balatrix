@@ -6,334 +6,204 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Discord-Inspired Dark Theme */
-  --canvas-dark: #000000;
-  /* Main chat/content area */
-  --canvas-dark-elevated: #2B2D31;
-  /* Sidebar/elevated */
-  --canvas-dark-deep: #1E1F22;
-  /* Deepest background */
-
-  --canvas-dark-card: #2B2D31;
-  /* Card background */
-  --canvas-dark-card-hover: #1E1F22;
-
-  /* Text Colors */
-  --text-dark-primary: #F2F3F5;
-  /* High emphasis (Headings) */
-  --text-dark-secondary: #DBDEE1;
-  /* Medium emphasis (Body) */
-  --text-dark-muted: #949BA4;
-  /* Low emphasis */
-
-  /* Borders */
-  --border-dark: rgba(255, 255, 255, 0.08);
-  --border-dark-hover: rgba(255, 255, 255, 0.15);
-
-  /* Clean Light Canvas (For light mode if used) */
-  --canvas-light: #f7f9fc;
-  --canvas-light-elevated: #ffffff;
-  --canvas-light-card: #eef2f7;
-  --text-light-primary: #0c1425;
-  --text-light-secondary: #3d4f6a;
-  --text-light-muted: #627590;
-  --border-light: rgba(12, 20, 37, 0.08);
-
-  /* Balatrix Blurple Accent (Discord Inspired) */
-  --color-accent: #5865F2;
-  /* Core Blurple */
-  --color-accent-hover: #4752C4;
-  --color-accent-active: #3C45A5;
-  --color-accent-light: #7983F5;
-
-  /* Secondary Accents */
-  --color-emerald: #23A559;
-  /* Success/Active */
-  --color-amber: #FEE75C;
-  --color-red: #DA373C;
-
-  /* Semantic Colors for Gradients */
-  --color-blue-500: #5865F2;
-  --color-blue-400: #7983F5;
+  /* Color System - Premium Dark Theme */
+  --bg-primary: #03050e;     /* Deep dark slate black */
+  --bg-secondary: #080b16;   /* Darker blue-gray */
+  --bg-dark: #020308;        /* Pure obsidian black */
+  
+  /* Primary Accent - Balatrix Brand Blue & Cyan Glows */
+  --color-blue-600: #032B93;
+  --color-blue-700: #011954;
+  --color-blue-500: #2563eb;
+  --color-blue-400: #60a5fa;
   --color-cyan-500: #06b6d4;
-  --color-cyan-400: #22d3ee;
+  --color-teal-500: #14b8a6;
+  
+  /* Text Colors */
+  --text-primary: #f3f4f6;     /* Off-white */
+  --text-secondary: #9ca3af;   /* Muted gray */
+  --text-muted: #6b7280;       /* Dark gray */
+  --text-inverse: #03050e;
+  
+  /* Borders */
+  --border-light: rgba(255, 255, 255, 0.06);
+  --border-dark: rgba(255, 255, 255, 0.12);
+  
+  /* Gradients */
+  --grad-telecom: linear-gradient(135deg, #032B93 0%, #2563eb 50%, #06b6d4 100%);
+  --grad-dark: linear-gradient(180deg, #080b16 0%, #03050e 100%);
 }
 
 /* Base resets & behavior */
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
-  background-color: var(--canvas-dark);
-  color: var(--text-dark-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
 body {
-  background-color: var(--canvas-dark);
-  color: var(--text-dark-secondary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar - Discord Style */
+/* Custom Scrollbar for Dark Mode */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--canvas-dark-deep);
-  border-radius: 4px;
+  background: var(--bg-primary);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1A1B1E;
+  background: #1e293b;
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #202225;
+  background: #334155;
 }
 
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 800;
-  /* Discord uses heavy weights for headings */
-  letter-spacing: -0.02em;
-  color: var(--text-dark-primary);
-}
-
-.font-display-xl {
-  font-size: 2.75rem;
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-@media (min-width: 768px) {
-  .font-display-xl {
-    font-size: 4rem;
-  }
-}
-
-.font-display-lg {
-  font-size: 2.25rem;
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
-@media (min-width: 768px) {
-  .font-display-lg {
-    font-size: 3rem;
-  }
-}
-
-.font-display-md {
-  font-size: 1.875rem;
-  line-height: 1.2;
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: #ffffff;
 }
 
-@media (min-width: 768px) {
-  .font-display-md {
-    font-size: 2.5rem;
-  }
+/* Styled Italic highlight layout */
+h1 em, h2 em, h3 em {
+  font-style: italic;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: #60a5fa;
+  background: linear-gradient(to right, #60a5fa, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Styled italic highlights */
-h1 em,
-h2 em,
-h3 em,
-.em-highlight {
-  font-style: normal;
-  color: var(--color-accent);
+/* Micro-animations */
+@keyframes float-crystal {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(8deg); }
 }
 
-/* ── Canvas Mode Containers ── */
-.canvas-dark {
-  background-color: var(--canvas-dark) !important;
-  color: var(--text-dark-secondary) !important;
+@keyframes float-crystal-reverse {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-6deg); }
 }
 
-.canvas-dark h1,
-.canvas-dark h2,
-.canvas-dark h3,
-.canvas-dark h4 {
-  color: var(--text-dark-primary) !important;
+@keyframes pulse-light {
+  0%, 100% { opacity: 0.08; transform: scale(1); }
+  50% { opacity: 0.14; transform: scale(1.1); }
 }
 
-.canvas-dark p {
-  color: var(--text-dark-secondary) !important;
+.animate-float-poly {
+  animation: float-crystal 8s ease-in-out infinite;
 }
 
-.canvas-light {
-  background-color: var(--canvas-light) !important;
-  color: var(--text-light-secondary) !important;
+.animate-float-poly-slow {
+  animation: float-crystal-reverse 12s ease-in-out infinite;
 }
 
-.canvas-light h1,
-.canvas-light h2,
-.canvas-light h3,
-.canvas-light h4 {
-  color: var(--text-light-primary) !important;
+.animate-pulse-glow {
+  animation: pulse-light 10s ease-in-out infinite;
 }
 
-.canvas-light p {
-  color: var(--text-light-secondary) !important;
-}
-
-/* ── Premium Card System (Discord Style) ── */
-.premium-card {
-  border-radius: 12px;
-  background: var(--canvas-dark-elevated);
-  border: 1px solid transparent;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.premium-card:hover {
-  background: var(--canvas-dark-card-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
-/* ── Glassmorphic Alternative ── */
+/* Glassmorphism Styles */
 .glass-card {
-  background: rgb(33, 33, 34);
+  background: rgba(11, 15, 30, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(19, 22, 23, 0.08);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(26, 27, 27, 0.9);
-  border-color: rgba(28, 32, 33, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(61, 60, 60, 0.2);
+  background: rgba(15, 22, 42, 0.6);
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 0 12px 40px 0 rgba(3, 43, 147, 0.15);
+  transform: translateY(-4px);
 }
 
 .glass-header {
-  background: rgba(77, 80, 87, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(49, 51, 52, 0.05);
-  transition: background-color 0.3s ease;
+  background: rgba(3, 5, 14, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
 
-/* ── Buttons ── */
-.btn-pill {
+/* Glowing Buttons */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.95rem;
-  border-radius: 9999px;
-  /* Pill shape */
-  padding: 12px 28px;
-  transition: all 0.2s ease;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
-  border: none;
-  line-height: 1.25;
 }
 
-.btn-pill-primary {
-  background-color: var(--color-accent);
+.btn-primary {
+  background: linear-gradient(135deg, #032B93 0%, #2563eb 100%);
   color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(3, 43, 147, 0.3);
 }
 
-.btn-pill-primary:hover {
-  background-color: var(--color-accent-hover);
-  box-shadow: 0 8px 15px rgba(88, 101, 242, 0.3);
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
   transform: translateY(-1px);
 }
 
-.btn-pill-secondary {
-  background-color: var(--canvas-dark-elevated);
-  color: var(--text-dark-primary);
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  color: #f3f4f6;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.btn-pill-secondary:hover {
-  background-color: var(--canvas-dark-card-hover);
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
 }
 
-.btn-pill-white {
-  background: #ffffff;
-  color: var(--canvas-dark-deep);
+/* Background Grids */
+.telecom-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
 }
 
-.btn-pill-white:hover {
-  background: #f6f6f6;
-  color: var(--color-accent-hover);
+/* Prose Dark Mode Overrides */
+.prose {
+  color: var(--text-secondary) !important;
 }
-
-/* ── Animations ── */
-@keyframes float-slow {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: #ffffff !important;
 }
-
-.animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
+.prose strong {
+  color: #ffffff !important;
 }
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.7;
-    transform: scale(1.05);
-  }
+.prose li {
+  color: var(--text-secondary) !important;
 }
-
-.animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+.prose a {
+  color: #60a5fa !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(96, 165, 250, 0.3);
 }
-
-@keyframes slide-up-fade {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slide-up {
-  animation: slide-up-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Utility classes */
-.transition-canvas {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.accent-glow {
-  box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+.prose a:hover {
+  color: #93c5fd !important;
+  text-decoration-color: #93c5fd;
 }
