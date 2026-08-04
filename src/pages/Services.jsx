@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
 import SEO from '../components/seo/SEO';
+import TiltCard from '../components/common/TiltCard';
 
 const Services = () => {
+  const pageRef = useRef(null);
+  const servicesContainerRef = useRef(null);
+  const servicesRowRef = useRef(null);
+
+  useEffect(() => {
+    const context = gsap.context(() => {
+      const row = servicesRowRef.current;
+      if (!row) return;
+
+      const scrollWidth = row.scrollWidth;
+      const windowWidth = window.innerWidth;
+      const translateAmount = scrollWidth - windowWidth + (windowWidth * 0.2);
+
+      gsap.to(row, {
+        x: -translateAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: servicesContainerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          pin: '.services-sticky-wrapper',
+          invalidateOnRefresh: true,
+        }
+      });
+    }, servicesContainerRef);
+
+    return () => context.revert();
+  }, []);
+
   const scrollToCoreServices = () => {
     const coreServices = document.getElementById('core-services');
     if (coreServices) {
@@ -17,11 +49,11 @@ const Services = () => {
   const services = [
     {
       id: 1,
-      title: "US & Canada Toll-Free Numbers",
+      title: "US & Canada Wholesale Toll-Free Numbers",
       description: "Provision premium toll-free numbers instantly. Build customer trust with a nationwide corporate presence and custom prefix extensions.",
       features: [
         "Instant online provisioning",
-        "SMS-enabled toll-free numbers",
+        "Vanity numbers",
         "Local prefix routing options",
         "Free incoming call minutes"
       ],
@@ -40,7 +72,7 @@ const Services = () => {
         "Multi-level IVR & auto-attendant",
         "Time-based routing (Schedules)",
         "Departments & extensions setup",
-        "Voicemail-to-email routing"
+        "Call Monitoring"
       ],
       icon: (
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5">
@@ -56,7 +88,7 @@ const Services = () => {
         "In-browser dialing pad",
         "High-definition Opus audio codec",
         "Real-time wallet balance display",
-        "Call history & recording access"
+        "Call history & recording access (Contact)"
       ],
       icon: (
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5">
@@ -66,22 +98,6 @@ const Services = () => {
     },
     {
       id: 4,
-      title: "Custom Integrations & APIs",
-      description: "Integrate calling, SMS, and wallet events directly into your SaaS platform or billing engine using our developer-first REST APIs.",
-      features: [
-        "RESTful pricing & provisioning APIs",
-        "Real-time webhook call event streams",
-        "Client wallet recharge APIs",
-        "Complete technical documentation"
-      ],
-      icon: (
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      )
-    },
-    {
-      id: 5,
       title: "Whitelabel Reseller Platform",
       description: "Launch your own branded cloud PBX business. Set up custom domains, upload logos, manage clients, and configure custom margins.",
       features: [
@@ -106,14 +122,16 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent">
-      <SEO 
-        title="Services" 
-        description="Comprehensive cloud telephony and VoIP services including US/Canada toll-free numbers, hosted cloud PBX, web softphone, and whitelabel reseller platforms." 
+    <div ref={pageRef} className="min-h-screen bg-transparent">
+      <SEO
+        title="Services"
+        description="Comprehensive cloud telephony and VoIP services including US/Canada toll-free numbers, hosted cloud PBX, web softphone, and whitelabel reseller platforms."
         canonicalUrl="https://balatrix.com/services"
         keywords="cloud telephony services, toll free numbers, hosted pbx, browser phone, voip api, whitelabel pbx"
       />
-      
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.55] mix-blend-screen sm:opacity-[0.75]">
+      </div>
+
       {/* 1. Hero Section - Obsidian Dark */}
       <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -123,7 +141,7 @@ const Services = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
+
             <div className="space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -193,84 +211,69 @@ const Services = () => {
       </section>
 
       {/* 2. Services Grid - Cool Light */}
-      <section id="core-services" className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              className="text-xs font-bold text-[var(--color-accent)] tracking-widest uppercase mb-4"
-            >
-              Our Offerings
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7 }}
-              className="font-display-md text-[var(--text-dark-primary)] mb-4"
-            >
-              Our Core <em className="text-[var(--color-accent)]">Services</em>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-base text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal"
-            >
-              Comprehensive communication systems engineered for peak performance and extreme compliance.
-            </motion.p>
+      <section ref={servicesContainerRef} id="core-services" className="services-scroll-section relative bg-transparent border-t border-[var(--border-dark)] h-[220vh]">
+        <div className="services-sticky-wrapper sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute top-[30%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, idx) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative premium-card p-8 flex flex-col h-full"
-              >
-                {service.popular && (
-                  <div className="absolute -top-3 left-6 z-10">
-                    <span className="bg-[var(--color-accent)] text-white px-3.5 py-1 rounded-full text-[10px] font-bold shadow-md tracking-wider uppercase">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
+          <div className="relative z-10 w-full flex flex-col justify-between py-12 md:py-16">
+            <div className="text-center mb-10 md:mb-14 shrink-0 px-4">
+              <div className="text-xs font-bold text-[var(--color-accent)] tracking-widest uppercase mb-3">
+                Our Offerings
+              </div>
+              <h2 className="font-display-md text-[var(--text-dark-primary)] mb-4">
+                Our Core <em className="text-[var(--color-accent)]">Services</em>
+              </h2>
+              <p className="text-base text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal">
+                Comprehensive communication systems engineered for peak performance and extreme compliance.
+              </p>
+            </div>
 
-                <div className="w-11 h-11 bg-[var(--canvas-dark-elevated)] text-[var(--color-accent)] rounded-full flex items-center justify-center mb-6 border border-[var(--border-dark)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-350 shadow-sm shrink-0">
-                  {service.icon}
-                </div>
+            {/* Horizontal Cards row */}
+            <div className="w-full overflow-hidden px-[10vw]">
+              <div ref={servicesRowRef} className="services-cards-row flex flex-row gap-8 w-max">
+                {services.map((service, idx) => (
+                  <div key={service.id} className="w-[400px] sm:w-[500px] md:w-[600px] shrink-0">
+                    <TiltCard
+                      className="premium-card p-8 flex flex-col h-full group relative"
+                    >
+                      {service.popular && (
+                        <div className="absolute -top-3 left-6 z-10">
+                          <span className="bg-[var(--color-accent)] text-white px-3.5 py-1 rounded-full text-[10px] font-bold shadow-md tracking-wider uppercase">
+                            Most Popular
+                          </span>
+                        </div>
+                      )}
 
-                <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-[var(--text-dark-secondary)] text-xs mb-8 leading-relaxed flex-grow font-normal">
-                  {service.description}
-                </p>
-
-                <ul className="space-y-2.5 mt-auto pt-6 border-t border-[var(--border-dark)]">
-                  {service.features.map((feature, index) => (
-                    <li key={index} className="flex items-start text-[13px] font-medium text-[var(--text-dark-secondary)]">
-                      <div className="w-4.5 h-4.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] border border-[var(--color-accent)]/20 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5">
-                        <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
+                      <div className="w-11 h-11 bg-[var(--canvas-dark-elevated)] text-[var(--color-accent)] rounded-full flex items-center justify-center mb-6 border border-[var(--border-dark)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-350 shadow-sm shrink-0">
+                        {service.icon}
                       </div>
-                      <span className="leading-snug">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+
+                      <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-[var(--text-dark-secondary)] text-xs mb-8 leading-relaxed flex-grow font-normal text-left">
+                        {service.description}
+                      </p>
+
+                      <ul className="space-y-2.5 mt-auto pt-6 border-t border-[var(--border-dark)]">
+                        {service.features.map((feature, index) => (
+                          <li key={index} className="flex items-start text-[13px] font-medium text-[var(--text-dark-secondary)]">
+                            <div className="w-4.5 h-4.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] border border-[var(--color-accent)]/20 rounded-full flex items-center justify-center mr-2.5 flex-shrink-0 mt-0.5">
+                              <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                            <span className="leading-snug text-left">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </TiltCard>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -336,10 +339,10 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
+              { metric: '50k', label: 'Numbers Deployed' },
+              { metric: '25k+', label: 'Active Numbers' },
               { metric: '99.99%', label: 'Uptime SLA' },
-              { metric: '5K+', label: 'Happy Customers' },
-              { metric: '150+', label: 'Countries Covered' },
-              { metric: '24/7', label: 'Expert Support' }
+              { metric: 'USA, Canada', label: 'Countries Served' }
             ].map((stat, idx) => (
               <motion.div
                 key={idx}

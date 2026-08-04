@@ -9,8 +9,8 @@ const ProductVisuals = () => {
       {/* Background Orbs */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="telecom-grid opacity-30" />
-        <div className="absolute right-[10%] top-[20%] w-[400px] h-[400px] bg-sky-900/10 rounded-full blur-[120px] animate-pulse-glow" />
-        <div className="absolute left-[5%] bottom-[20%] w-[300px] h-[300px] bg-blue-900/8 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '4s' }} />
+        <div className="absolute right-[10%] top-[20%] w-[400px] h-[400px] bg-sky-900/20 rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="absolute left-[5%] bottom-[20%] w-[300px] h-[300px] bg-blue-900/15 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '4s' }} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -59,29 +59,15 @@ const ProductVisuals = () => {
           >
             <div>
               <h3 className="text-lg font-semibold text-[var(--text-dark-primary)] mb-2 tracking-wide">Real-time Analytics</h3>
-              <p className="text-[var(--text-dark-secondary)] text-sm mb-12 font-normal">Monitor call volumes, SLA compliance, and network health instantly.</p>
+              <p className="text-[var(--text-dark-secondary)] text-sm mb-6 sm:mb-8 lg:mb-10 font-normal">Monitor call volumes, SLA compliance, and network health instantly.</p>
             </div>
 
-            <div className="relative h-64 bg-slate-950/30 border border-white/5 rounded-xl overflow-hidden mt-auto flex items-end p-6">
-              {/* Mock Graph Bars */}
-              <div className="absolute inset-x-0 bottom-0 flex items-end px-6 pb-6 space-x-2 h-44">
-                {chartBars.map((h, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex-1 rounded-t-sm relative group-hover:opacity-90 transition-opacity"
-                    style={{ 
-                      height: `${h}%`,
-                      background: `linear-gradient(to top, rgba(14,165,233,0.15), rgba(6,182,212,0.08))`
-                    }}
-                    initial={{ height: 0 }}
-                    whileInView={{ height: `${h}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.1 + (i * 0.05) }}
-                  >
-                    <div className="absolute bottom-full left-0 w-full h-[2px] bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-light)] shadow-[0_0_8px_var(--color-accent)]" />
-                  </motion.div>
-                ))}
-              </div>
+            <div className="relative mt-auto bg-black border border-white/5 rounded-xl overflow-hidden flex items-center justify-center p-2 sm:p-4">
+              <img 
+                src="/images/ivr-tree.png" 
+                alt="IVR Tree Diagram" 
+                className="w-full h-auto object-contain"
+              />
             </div>
           </motion.div>
 

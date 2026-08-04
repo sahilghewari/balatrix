@@ -1,9 +1,14 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 import './App.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Lazy load pages for better performance (Code Splitting)
 const Home = lazy(() => import('./pages/Home'));
@@ -16,6 +21,9 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Security = lazy(() => import('./pages/Security'));
 const Cookies = lazy(() => import('./pages/Cookies'));
+const PBX = lazy(() => import('./pages/PBX'));
+const WholesaleTollFreeDID = lazy(() => import('./pages/WholesaleTollFreeDID'));
+const PBXWhitelable = lazy(() => import('./pages/PBXWhitelable'));
 
 // Loading component
 const PageLoader = () => (
@@ -25,16 +33,52 @@ const PageLoader = () => (
 );
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.8,
+    });
+    window.lenis = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
+    };
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
-      <div className="App min-h-screen bg-[#03050e] text-gray-100 selection:bg-blue-600/30 selection:text-white transition-colors duration-300 overflow-x-hidden">
+      <div className="App min-h-screen bg-[var(--canvas-dark)] text-gray-100 selection:bg-blue-600/30 selection:text-white transition-canvas overflow-x-hidden">
         <Header />
         <main>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/pbx" element={<PBX />} />
+              <Route path="/services/tollfree" element={<WholesaleTollFreeDID />} />
+              <Route path="/services/pbx-whitelable" element={<PBXWhitelable />} />
               <Route path="/solutions" element={<Solutions />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/about" element={<About />} />
@@ -47,7 +91,7 @@ function App() {
             </Routes>
           </Suspense>
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );

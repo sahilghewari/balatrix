@@ -89,9 +89,9 @@ const StatsSection = () => {
       </div>
       
       {/* Premium Gradient Orbs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-blue-600/20 to-transparent blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-radial from-purple-600/15 to-transparent blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-radial from-cyan-500/10 to-transparent blur-3xl"></div>
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-blue-600/30 to-transparent blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-radial from-purple-600/25 to-transparent blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-radial from-cyan-500/18 to-transparent blur-3xl"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enterprise Stats Dashboard */}

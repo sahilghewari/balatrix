@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import SEO from '../components/seo/SEO';
 
 const Contact = () => {
+  const pageRef = useRef(null);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -47,26 +48,26 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       console.log('Form submitted:', formData);
-      
+
       if (window.$zoho && window.$zoho.salesiq) {
         try {
           window.$zoho.salesiq.visitor.name(formData.firstName + ' ' + formData.lastName);
           window.$zoho.salesiq.visitor.email(formData.email);
           window.$zoho.salesiq.visitor.contactnumber(formData.phone);
-          
+
           const notes = `Contact Page Submission. Company: ${formData.company || 'N/A'}, Subject: ${formData.subject}, Message: ${formData.message}`;
           window.$zoho.salesiq.visitor.question(notes);
         } catch (err) {
           console.warn('Zoho SalesIQ sync failed:', err);
         }
       }
-      
+
       setSubmitStatus('success');
-      
+
       setTimeout(() => {
         setFormData({
           firstName: '',
@@ -113,22 +114,6 @@ const Contact = () => {
       phone: '+1 (905) 495-2435',
       type: 'Headquarters',
       flag: '🇨🇦'
-    },
-    {
-      city: 'London',
-      country: 'United Kingdom',
-      address: '45 Finsbury Square, London EC2A 1PX',
-      phone: '+44 20 7123 2435',
-      type: 'European Operations',
-      flag: '🇬🇧'
-    },
-    {
-      city: 'Singapore',
-      country: 'Singapore',
-      address: '1 Marina Boulevard, Singapore 018989',
-      phone: '+65 6808 2435',
-      type: 'Asia-Pacific Hub',
-      flag: '🇸🇬'
     }
   ];
 
@@ -157,14 +142,16 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent">
-      <SEO 
-        title="Contact Us" 
-        description="Get in touch with Balatrix. Contact our sales and support teams for toll-free numbers, Hosted PBX pricing, or platform custom setups." 
+    <div ref={pageRef} className="min-h-screen bg-transparent">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Balatrix. Contact our sales and support teams for toll-free numbers, Hosted PBX pricing, or platform custom setups."
         canonicalUrl="https://balatrix.com/contact"
         keywords="contact balatrix, toll free support, voip customer service, wholesale telecom sales"
       />
-      
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.55] mix-blend-screen sm:opacity-[0.75]">
+      </div>
+
       {/* 1. Hero Section - Obsidian Dark */}
       <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -174,7 +161,7 @@ const Contact = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
+
             <div className="space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -312,7 +299,7 @@ const Contact = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            
+
             {/* Form Container */}
             <div className="lg:col-span-2">
               <motion.div

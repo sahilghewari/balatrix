@@ -1,8 +1,40 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
 import SEO from '../components/seo/SEO';
+import TiltCard from '../components/common/TiltCard';
 
 const Solutions = () => {
+  const pageRef = useRef(null);
+  const solutionsContainerRef = useRef(null);
+  const solutionsRowRef = useRef(null);
+
+  useEffect(() => {
+    const context = gsap.context(() => {
+      const row = solutionsRowRef.current;
+      if (!row) return;
+
+      const scrollWidth = row.scrollWidth;
+      const windowWidth = window.innerWidth;
+      const translateAmount = scrollWidth - windowWidth + (windowWidth * 0.2);
+
+      gsap.to(row, {
+        x: -translateAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: solutionsContainerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          pin: '.solutions-sticky-wrapper',
+          invalidateOnRefresh: true,
+        }
+      });
+    }, solutionsContainerRef);
+
+    return () => context.revert();
+  }, []);
+
   const scrollToSolutions = () => {
     const solutionsSection = document.getElementById('solutions-grid');
     if (solutionsSection) {
@@ -17,10 +49,10 @@ const Solutions = () => {
     {
       id: 1,
       title: "Small Business",
-      subtitle: "Startups & Small Companies (1-15 employees)",
+      subtitle: "Startups & Small Companies",
       description: "Affordable communication solutions. Get professional phone presence without the enterprise overhead.",
       features: [
-        "Affordable pricing starting at $9.99",
+        "Affordable pricing",
         "Instant number setup",
         "Call forwarding to any device",
         "Voicemail to email notifications"
@@ -34,13 +66,12 @@ const Solutions = () => {
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
         </svg>
-      ),
-      popular: true
+      )
     },
     {
       id: 2,
       title: "Medium Business",
-      subtitle: "Growing Companies (20-50 employees)",
+      subtitle: "Growing Companies",
       description: "Advanced communication features for expanding companies that need departments and queues.",
       features: [
         "Multiple numbers included",
@@ -61,8 +92,8 @@ const Solutions = () => {
     },
     {
       id: 3,
-      title: "Enterprise Infrastructure",
-      subtitle: "Large Organizations (100+ employees)",
+      title: "Wholesale Infrastructure",
+      subtitle: "Large Organizations",
       description: "Comprehensive communication system for organizations requiring high volume and uptime SLAs.",
       features: [
         "Unlimited numbers capacity",
@@ -79,7 +110,8 @@ const Solutions = () => {
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
         </svg>
-      )
+      ),
+      popular: true
     },
     {
       id: 4,
@@ -101,7 +133,8 @@ const Solutions = () => {
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
         </svg>
-      )
+      ),
+      popular: true
     }
   ];
 
@@ -148,51 +181,17 @@ const Solutions = () => {
     }
   ];
 
-  const caseStudies = [
-    {
-      company: "Growing Retail Hub",
-      industry: "Retail",
-      challenge: "Managing caller demands across 250 locations with low trunk capacity and high carrier bills.",
-      solution: "Deployed a centralized virtual PBX routing system with instant prefix number provisioning.",
-      results: [
-        "40% drop in voice expenses",
-        "99.9% routing SLA achieved",
-        "Reduced abandoned calls"
-      ]
-    },
-    {
-      company: "Health-Tech Provider",
-      industry: "Healthcare",
-      challenge: "Needed a compliant voice framework that could scale from 10 to 1,000 active extensions.",
-      solution: "Leveraged Balatrix multi-region server configuration and compliance frameworks.",
-      results: [
-        "Compliance check in 4 weeks",
-        "Scaled 800+ lines instantly",
-        "Zero security interruptions"
-      ]
-    },
-    {
-      company: "Apex Global Fin",
-      industry: "Finance",
-      challenge: "Required dedicated routing endpoints with audit trails across 10 regions.",
-      solution: "Implemented automated DID provisioning paired with immutable audit trails.",
-      results: [
-        "Active routing in 10 countries",
-        "100% compliance SLA verified",
-        "Audit check workflow reduced"
-      ]
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-transparent">
-      <SEO 
-        title="Business Solutions" 
-        description="Tailored telecommunications solutions designed for your specific business needs. Discover our plans for startups, SMBs, and enterprises." 
+    <div ref={pageRef} className="min-h-screen bg-transparent">
+      <SEO
+        title="Business Solutions"
+        description="Tailored telecommunications solutions designed for your specific business needs. Discover our plans for startups, SMBs, and enterprises."
         canonicalUrl="https://balatrix.com/solutions"
         keywords="business communication solutions, enterprise voip, small business phone system, call center telecom"
       />
-      
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.55] mix-blend-screen sm:opacity-[0.75]">
+      </div>
+
       {/* 1. Hero Section - Obsidian Dark */}
       <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -202,7 +201,7 @@ const Solutions = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
+
             <div className="space-y-8">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -251,10 +250,10 @@ const Solutions = () => {
               className="hidden lg:grid grid-cols-2 gap-4 text-center"
             >
               {[
-                { title: 'Startup', desc: '1-15 members' },
-                { title: 'Growing', desc: '20-50 members' },
-                { title: 'Enterprise', desc: '100+ members' },
-                { title: 'Reseller', desc: 'White-label PBX' }
+                { title: 'Startup' },
+                { title: 'Growing' },
+                { title: 'Wholesale' },
+                { title: 'Reseller' }
               ].map((card, i) => (
                 <div key={i} className="glass-card p-6 rounded-xl">
                   <div className="text-lg font-bold text-[var(--text-dark-primary)] mb-1">{card.title}</div>
@@ -268,103 +267,93 @@ const Solutions = () => {
       </section>
 
       {/* 2. Solutions Grid - Cool Light */}
-      <section id="solutions-grid" className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              className="font-display-md text-[var(--text-dark-primary)] mb-4"
-            >
-              Choose Your <em className="text-[var(--color-accent)]">Business Model</em>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              className="text-base text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal"
-            >
-              Each model addresses the compliance, latency, and extension scopes specific to your organizational size.
-            </motion.p>
+      <section ref={solutionsContainerRef} id="solutions-grid" className="solutions-scroll-section relative bg-transparent border-t border-[var(--border-dark)] h-[220vh]">
+        <div className="solutions-sticky-wrapper sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute top-[30%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {solutions.map((solution, idx) => (
-              <motion.div
-                key={solution.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.7, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="premium-card p-8 flex flex-col justify-between group relative"
-              >
-                {solution.popular && (
-                  <div className="absolute -top-3 left-8 z-10">
-                    <span className="bg-[var(--color-accent)] text-white px-3.5 py-1 rounded-full text-[10px] font-bold shadow-md tracking-wider uppercase">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
+          <div className="relative z-10 w-full flex flex-col justify-between py-12 md:py-16">
+            <div className="text-center mb-10 md:mb-14 shrink-0 px-4">
+              <h2 className="font-display-md text-[var(--text-dark-primary)] mb-4">
+                Choose Your <em className="text-[var(--color-accent)]">Business Model</em>
+              </h2>
+              <p className="text-base text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal">
+                Each model addresses the compliance, latency, and extension scopes specific to your organizational size.
+              </p>
+            </div>
 
-                <div>
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-11 h-11 bg-[var(--canvas-dark-elevated)] text-[var(--color-accent)] rounded-full flex items-center justify-center border border-[var(--border-dark)] group-hover:scale-105 transition-transform duration-350 shrink-0">
-                      {solution.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-1 group-hover:text-[var(--color-accent)] transition-colors">
-                        {solution.title}
-                      </h3>
-                      <p className="text-xs font-semibold text-[var(--text-dark-muted)]">
-                        {solution.subtitle}
-                      </p>
-                    </div>
-                  </div>
+            {/* Horizontal Cards row */}
+            <div className="w-full overflow-hidden px-[10vw]">
+              <div ref={solutionsRowRef} className="solutions-cards-row flex flex-row gap-8 w-max">
+                {solutions.map((solution, idx) => (
+                  <div key={solution.id} className="w-[400px] sm:w-[600px] md:w-[640px] shrink-0">
+                    <TiltCard
+                      className="premium-card flex flex-col justify-between h-full group relative"
+                    >
+                      {solution.popular && (
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10">
+                          <span className="bg-[var(--color-accent)] text-white px-4 py-1.5 rounded-full text-[11px] font-bold shadow-md tracking-wider uppercase whitespace-nowrap">
+                            Most Popular
+                          </span>
+                        </div>
+                      )}
 
-                  <p className="text-[var(--text-dark-secondary)] text-xs mb-8 leading-relaxed font-normal">
-                    {solution.description}
-                  </p>
-                </div>
+                      <div>
+                        <div className="flex items-start gap-5 mb-8">
+                          <div className="w-14 h-14 rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] flex items-center justify-center shrink-0 group-hover:bg-[var(--color-accent)] group-hover:text-white transition-colors duration-300 shadow-sm">
+                            {solution.icon}
+                          </div>
+                          <div>
+                            <h3 className="text-2xl font-extrabold text-[var(--text-dark-primary)] mb-1.5">{solution.title}</h3>
+                            <p className="text-[var(--text-dark-muted)] text-xs font-bold tracking-wider uppercase">
+                              {solution.subtitle}
+                            </p>
+                          </div>
+                        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[var(--border-dark)] pt-6">
-                  <div>
-                    <h4 className="font-bold text-[var(--text-dark-primary)] mb-3 text-[10px] uppercase tracking-widest">
-                      Key Features:
-                    </h4>
-                    <ul className="space-y-2">
-                      {solution.features.map((feature, index) => (
-                        <li key={index} className="flex items-start text-[13px] text-[var(--text-dark-secondary)] font-normal">
-                          <svg className="w-3.5 h-3.5 text-[var(--color-accent)] mr-2 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                        <p className="text-[var(--text-dark-secondary)] text-sm sm:text-base mb-8 leading-relaxed font-normal">
+                          {solution.description}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-[var(--border-dark)] pt-8">
+                        <div>
+                          <h4 className="font-extrabold text-[var(--text-dark-primary)] mb-4 text-xs uppercase tracking-widest">
+                            Key Features:
+                          </h4>
+                          <ul className="space-y-3">
+                            {solution.features.map((feature, index) => (
+                              <li key={index} className="flex items-start text-sm sm:text-base text-[var(--text-dark-secondary)] font-normal">
+                                <svg className="w-4 h-4 text-[var(--color-accent)] mr-2.5 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-extrabold text-[var(--text-dark-primary)] mb-4 text-xs uppercase tracking-widest">
+                            Key Benefits:
+                          </h4>
+                          <ul className="space-y-3">
+                            {solution.benefits.map((benefit, index) => (
+                              <li key={index} className="flex items-start text-sm sm:text-base text-[var(--text-dark-secondary)] font-normal">
+                                <svg className="w-4 h-4 text-[var(--color-emerald)] mr-2.5 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>{benefit}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </TiltCard>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-[var(--text-dark-primary)] mb-3 text-[10px] uppercase tracking-widest">
-                      Key Benefits:
-                    </h4>
-                    <ul className="space-y-2">
-                      {solution.benefits.map((benefit, index) => (
-                        <li key={index} className="flex items-start text-[13px] text-[var(--text-dark-secondary)] font-normal">
-                          <svg className="w-3.5 h-3.5 text-[var(--color-emerald)] mr-2 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -395,7 +384,7 @@ const Solutions = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {industries.map((industry, index) => (
               <motion.div
                 key={index}
@@ -433,87 +422,6 @@ const Solutions = () => {
         </div>
       </section>
 
-      {/* 4. Case Studies Section - Cool Light */}
-      <section className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[10%] right-[10%] w-[350px] h-[350px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              className="font-display-md text-[var(--text-dark-primary)] mb-4"
-            >
-              Success <em className="text-[var(--color-accent)]">Stories</em>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              className="text-base text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal"
-            >
-              See how companies scale and optimize voice communications utilizing our Anycast network.
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                className="premium-card p-8 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-bold text-lg text-[var(--text-dark-primary)]">
-                      {study.company}
-                    </h3>
-                    <span className="bg-[var(--color-accent)]/10 text-[var(--color-accent-light)] text-[10px] font-bold px-3 py-1 rounded-full border border-[var(--color-accent)]/20 uppercase tracking-wide">
-                      {study.industry}
-                    </span>
-                  </div>
-
-                  <div className="mb-4">
-                    <h4 className="font-bold text-[var(--text-dark-primary)] text-[9px] uppercase tracking-widest mb-1.5">
-                      Challenge:
-                    </h4>
-                    <p className="text-[var(--text-dark-secondary)] text-xs leading-relaxed font-normal">{study.challenge}</p>
-                  </div>
-
-                  <div className="mb-6">
-                    <h4 className="font-bold text-[var(--text-dark-primary)] text-[9px] uppercase tracking-widest mb-1.5">
-                      Solution:
-                    </h4>
-                    <p className="text-[var(--text-dark-secondary)] text-xs leading-relaxed font-normal">{study.solution}</p>
-                  </div>
-                </div>
-
-                <div className="border-t border-[var(--border-dark)] pt-5 mt-auto">
-                  <h4 className="font-bold text-[var(--text-dark-primary)] text-[9px] uppercase tracking-widest mb-3">
-                    Results:
-                  </h4>
-                  <ul className="space-y-2">
-                    {study.results.map((result, resultIndex) => (
-                      <li key={resultIndex} className="flex items-start text-xs text-[var(--text-dark-secondary)] font-normal">
-                        <svg className="w-3.5 h-3.5 text-[var(--color-emerald)] mr-2 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

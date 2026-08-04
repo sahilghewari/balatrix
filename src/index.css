@@ -7,7 +7,7 @@
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Discord-Inspired Dark Theme */
-  --canvas-dark: #000000;
+  --canvas-dark: #03050d;
   /* Main chat/content area */
   --canvas-dark-elevated: #2B2D31;
   /* Sidebar/elevated */
@@ -37,7 +37,7 @@
   --text-light-primary: #0c1425;
   --text-light-secondary: #3d4f6a;
   --text-light-muted: #627590;
-  --border-light: rgba(12, 20, 37, 0.08);
+  --border-light: rgba(243, 243, 243, 0.08);
 
   /* Balatrix Blurple Accent (Discord Inspired) */
   --color-accent: #5865F2;
@@ -61,6 +61,7 @@
 
 /* Base resets & behavior */
 html {
+  font-size: 17px;
   scroll-behavior: smooth;
   font-family: var(--font-sans);
   background-color: var(--canvas-dark);
@@ -68,8 +69,18 @@ html {
   overflow-x: hidden;
 }
 
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
 body {
   background-color: var(--canvas-dark);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(242, 127, 88, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.04) 0%, transparent 60%);
+  background-attachment: fixed;
   color: var(--text-dark-secondary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -159,7 +170,8 @@ h3 em,
 
 /* ── Canvas Mode Containers ── */
 .canvas-dark {
-  background-color: var(--canvas-dark) !important;
+  background-color: transparent !important;
+  background-image: none !important;
   color: var(--text-dark-secondary) !important;
 }
 
@@ -193,42 +205,96 @@ h3 em,
 /* ── Premium Card System (Discord Style) ── */
 .premium-card {
   border-radius: 12px;
-  background: var(--canvas-dark-elevated);
-  border: 1px solid transparent;
+  background: rgba(64, 66, 73, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.2s ease-in-out;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2rem !important;
+  /* Decreased padding slightly */
 }
 
 .premium-card:hover {
-  background: var(--canvas-dark-card-hover);
+  background: rgba(80, 82, 90, 0.25);
   transform: translateY(-4px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-  border-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Global typography sizing inside all premium cards */
+.premium-card h3 {
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.premium-card p {
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+}
+
+.premium-card ul li,
+.premium-card li {
+  font-size: 0.875rem !important;
+}
+
+.premium-card li svg {
+  width: 1rem !important;
+  height: 1rem !important;
 }
 
 /* ── Glassmorphic Alternative ── */
 .glass-card {
-  background: rgb(33, 33, 34);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(19, 22, 23, 0.08);
+  background: rgba(60, 60, 65, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   transition: all 0.3s ease;
+  padding: 2rem !important;
+  /* Decreased padding slightly */
 }
 
 .glass-card:hover {
-  background: rgba(26, 27, 27, 0.9);
-  border-color: rgba(28, 32, 33, 0.15);
+  background: rgba(70, 70, 75, 0.25);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(61, 60, 60, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Global typography sizing inside all glass cards */
+.glass-card h3 {
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.glass-card p {
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+}
+
+.glass-card span {
+  font-size: 0.875rem !important;
+}
+
+.glass-card svg {
+  width: 1rem !important;
+  height: 1rem !important;
 }
 
 .glass-header {
-  background: rgba(77, 80, 87, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(49, 51, 52, 0.05);
-  transition: background-color 0.3s ease;
+  background: linear-gradient(135deg, rgba(208, 226, 245, 0) 0%, rgba(208, 226, 245, 0) 50%, rgba(208, 226, 245, 0) 100%), !important;
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0), inset 0 1px 0 0 rgb(0, 0, 0), inset 0 -1px 0 0 rgb(0, 0, 0);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-header.scrolled {
+  background: linear-gradient(135deg, rgba(208, 226, 245, 0) 0%, rgba(208, 226, 245, 0) 50%, rgba(208, 226, 245, 0) 100%), !important;
+  box-shadow: 0 16px 50px 0 rgba(0, 0, 0, 0), inset 0 1px 0 0 rgb(0, 0, 0), inset 0 -1px 0 0 rgb(0, 0, 0);
 }
 
 /* ── Buttons ── */
@@ -237,45 +303,82 @@ h3 em,
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   border-radius: 9999px;
   /* Pill shape */
-  padding: 12px 28px;
-  transition: all 0.2s ease;
+  padding: 8px 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   border: none;
   line-height: 1.25;
 }
 
+@media (min-width: 640px) {
+  .btn-pill {
+    font-size: 0.95rem;
+    padding: 12px 28px;
+  }
+}
+
 .btn-pill-primary {
-  background-color: var(--color-accent);
+  background-color: rgb(53, 66, 206);
   color: #ffffff;
+  box-shadow: 0 4px 12px rgba(88, 101, 242, 0.1);
 }
 
 .btn-pill-primary:hover {
-  background-color: var(--color-accent-hover);
-  box-shadow: 0 8px 15px rgba(88, 101, 242, 0.3);
-  transform: translateY(-1px);
+  background-color: var(--color-accent-light);
+  box-shadow: 0 12px 24px -6px rgba(88, 101, 242, 0.45), 0 0 0 4px rgba(88, 101, 242, 0.15);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .btn-pill-secondary {
-  background-color: var(--canvas-dark-elevated);
+  background-color: rgba(64, 66, 73, 0.4);
   color: var(--text-dark-primary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
 }
 
 .btn-pill-secondary:hover {
-  background-color: var(--canvas-dark-card-hover);
+  background-color: rgba(80, 82, 90, 0.65);
+  border-color: rgba(255, 255, 255, 0.25);
   color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn-pill-white {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
   color: var(--canvas-dark-deep);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 
 .btn-pill-white:hover {
-  background: #f6f6f6;
+  background: #ffffff;
   color: var(--color-accent-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.15);
+}
+
+/* ── Standard Buttons ── */
+.btn-primary {
+  background-color: rgba(121, 131, 245, 0.8);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-light);
+}
+
+.btn-secondary {
+  background-color: rgba(64, 66, 73, 0.6);
+  color: var(--text-dark-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(80, 82, 90, 0.7);
+  color: #ffffff;
 }
 
 /* ── Animations ── */
@@ -335,5 +438,11 @@ h3 em,
 }
 
 .accent-glow {
-  box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+  box-shadow: 0 0 20px rgba(18, 140, 234, 0.4);
+}
+
+/* Remove section and footer dividing border lines */
+section, footer {
+  border-top: none !important;
+  border-bottom: none !important;
 }

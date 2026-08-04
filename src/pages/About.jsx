@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SEO from '../components/seo/SEO';
 
 const About = () => {
+  const pageRef = useRef(null);
   const teamMembers = [
     {
       name: 'Michael Chen',
@@ -105,99 +106,95 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent">
-      <SEO 
-        title="About Us" 
-        description="Learn about Balatrix, our story, and our mission to provide affordable, enterprise-grade cloud communication and toll-free numbers." 
+    <div ref={pageRef} className="min-h-screen bg-transparent">
+      <SEO
+        title="About Us"
+        description="Learn about Balatrix, our story, and our mission to provide affordable, enterprise-grade cloud communication and toll-free numbers."
         canonicalUrl="https://balatrix.com/about"
       />
-      
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.55] mix-blend-screen sm:opacity-[0.75]">
+      </div>
+
       {/* 1. Hero Section */}
-      <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
+      <section className="canvas-dark min-h-[70vh] flex items-center justify-center overflow-hidden relative pt-20">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-[var(--color-accent-light)]/5 rounded-full blur-[100px]" />
+          <div className="absolute top-[20%] left-[50%] -translate-x-1/2 w-[500px] h-[500px] bg-[var(--color-accent)]/15 rounded-full blur-[150px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center lg:text-left">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
-            <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center space-x-2 bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent-light)] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6"
-              >
-                <span>About Balatrix</span>
-              </motion.div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 text-center flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center space-x-2 bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent-light)] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-8"
+          >
+            <span>About Balatrix</span>
+          </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="font-display-lg text-[var(--text-dark-primary)] leading-tight mb-6"
-              >
-                Engineering <br />
-                <span className="font-normal text-[var(--color-accent)]">Connections.</span>
-              </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-6 text-center tracking-tight"
+          >
+            Engineering <br />
+            <span className="font-normal text-[var(--color-accent)]">Connections.</span>
+          </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-lg text-[var(--text-dark-secondary)] font-normal leading-relaxed max-w-2xl mx-auto mb-12"
-              >
-                We are a team of telecommunications engineers and software developers dedicated to building the most reliable voice infrastructure for modern businesses.
-              </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto mb-10 text-center"
+          >
+            We are a team of telecommunications engineers and software developers dedicated to building the most reliable voice infrastructure for modern businesses.
+          </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
-              >
-                <Link to="/contact" className="btn-pill btn-pill-primary px-8 py-3.5">
-                  Get Your Number
-                </Link>
-                <Link to="/contact" className="btn-pill btn-pill-secondary px-8 py-3.5">
-                  Contact Us
-                </Link>
-              </motion.div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto"
+          >
+            <Link to="/contact" className="btn-pill btn-pill-primary px-8 py-3.5 text-center w-full sm:w-auto font-semibold">
+              Get Your Number
+            </Link>
+            <Link to="/contact" className="btn-pill btn-pill-secondary px-8 py-3.5 text-center w-full sm:w-auto font-semibold">
+              Contact Us
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       {/* 2. Mission Statement */}
       <section className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[10%] right-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
+          <div className="absolute top-[10%] left-[50%] -translate-x-1/2 w-[500px] h-[500px] bg-[var(--color-accent)]/10 rounded-full blur-[150px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="font-display-md text-[var(--text-dark-primary)] mb-6">
-                Our <em className="text-[var(--color-accent)]">Mission</em>
-              </h2>
-              <div className="space-y-6 text-[var(--text-dark-secondary)] font-normal text-sm leading-relaxed">
-                <p>
-                  At Balatrix, we believe that enterprise-grade telecommunications should not be locked behind complex legacy systems or exorbitant pricing models.
-                </p>
-                <p>
-                  Founded in 2021 by a team of SIP trunking experts and systems architects, our goal was simple: to construct a fully unified, cloud-native PBX network capable of sub-millisecond routing across North America, accessible via a single, intuitive interface.
-                </p>
-                <p>
-                  Today, we process millions of calls monthly, ensuring compliance, clarity, and continuity for businesses ranging from agile startups to expansive call centers. We don't just route calls; we engineer connections.
-                </p>
-              </div>
-            </motion.div>
-          </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center"
+          >
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
+              Our <span className="font-normal text-[var(--color-accent)]">Mission</span>
+            </h2>
+
+            <div className="space-y-6 text-slate-300 font-normal text-lg md:text-lg lg:text-xl max-w-5xl mx-auto text-justify">
+              <p>
+                At Balatrix, we believe that enterprise-grade telecommunications should not be locked behind complex legacy systems or exorbitant pricing models.
+              </p>
+              <p>
+                Founded in 2021 by a team of SIP trunking experts and systems architects, our goal was simple: to construct a fully unified, cloud-native PBX network capable of sub-millisecond routing across North America, accessible via a single, intuitive interface.
+              </p>
+              <p className="text-white font-medium">
+                Today, we process millions of calls monthly, ensuring compliance, clarity, and continuity for businesses ranging from agile startups to expansive call centers. We don't just route calls; <span className="text-[var(--color-accent)]">we engineer connections.</span>
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -323,7 +320,7 @@ const About = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
@@ -333,8 +330,8 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-[var(--canvas-dark-elevated)] border border-[var(--border-dark)] rounded-2xl p-6 text-center group hover:border-[var(--color-accent)]/50 transition-colors"
               >
-                <div className="w-24 h-24 mx-auto rounded-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-4xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300">
-                  {member.image}
+                <div className="w-24 h-24 mx-auto rounded-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] overflow-hidden mb-5 group-hover:scale-105 transition-transform duration-300">
+                  <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-lg font-bold text-[var(--text-dark-primary)] mb-1">{member.name}</h3>
                 <p className="text-[var(--color-accent)] text-xs font-semibold uppercase tracking-wider mb-4">{member.role}</p>

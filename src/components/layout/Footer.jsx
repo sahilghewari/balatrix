@@ -20,7 +20,7 @@ const Footer = () => {
     {
       title: 'Services',
       links: [
-        { name: 'Toll-Free Numbers', href: '/services' }
+        { name: 'Toll-Free Numbers', href: '/services/tollfree' }
       ]
     },
     {
@@ -39,7 +39,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[var(--canvas-dark-deep)] text-[var(--text-dark-secondary)] border-t border-[var(--border-dark)] overflow-hidden pt-20">
+    <footer className="relative z-30 bg-[var(--canvas-dark-deep)] text-[var(--text-dark-secondary)] border-t border-[var(--border-dark)] overflow-hidden pt-20">
       {/* Background Grids & Orbs */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute bottom-0 right-[10%] w-[450px] h-[450px] bg-[var(--color-accent)]/10 rounded-full blur-[120px] animate-pulse-glow" />
@@ -57,7 +57,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-[14px] text-gray-400 leading-relaxed max-w-sm">
-              Enterprise-grade cloud business communications and toll-free virtual PBX solutions. Trusted globally for scalable, instant, and reliable service.
+              Enterprise-grade cloud business communications and toll-free virtual Whitelabel PBX solutions. Trusted globally for scalable, instant, and reliable service.
             </p>
 
             {/* Direct Contact Blocks */}
@@ -85,6 +85,18 @@ const Footer = () => {
                   <div className="text-[11px] text-gray-500">Get Custom Pricing</div>
                 </div>
               </div>
+
+              <a href="https://wa.me/18442252435" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 group cursor-pointer">
+                <div className="w-9 h-9 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-emerald-600/20 group-hover:border-emerald-500/30 transition-all duration-300 border border-white/5">
+                  <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">+1 (844) 225-2435</div>
+                  <div className="text-[11px] text-gray-500">Whatsapp Contact</div>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -135,17 +147,17 @@ const Footer = () => {
             <Link to="/security" className="hover:text-white transition-colors duration-200">
               Security
             </Link>
-            
+
             {/* Social Icons */}
             <div className="flex items-center space-x-3 pl-2 border-l border-white/10">
-              <a href="#" className="text-gray-500 hover:text-white transition-colors duration-250" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/balatrix/" className="text-gray-500 hover:text-white transition-colors duration-250" aria-label="LinkedIn">
                 <svg className="h-4.5 w-4.5" fill="currentColor" viewBox="0 0 24 24">
                   <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
                 </svg>
               </a>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors duration-250" aria-label="Twitter">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
+              <a href="https://wa.me/18442252435" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors duration-250" aria-label="WhatsApp">
+                <svg className="h-4.5 w-4.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                 </svg>
               </a>
             </div>

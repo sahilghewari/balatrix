@@ -1,7 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import TiltCard from '../common/TiltCard';
 
 const FeaturesSection = () => {
+  const containerRef = useRef(null);
+  const rowRef = useRef(null);
   const features = [
     {
       title: 'Enterprise-Grade Cloud Telephony',
@@ -12,7 +15,7 @@ const FeaturesSection = () => {
         "Ring groups (simultaneous, hunt, round-robin)",
         "Intelligent call forwarding (internal or external)",
         "Call monitoring (listen, whisper, barge)",
-        "Time-Based Routing (Schedules)"
+        "Operational Routing (Schedules)"
       ],
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,8 +29,7 @@ const FeaturesSection = () => {
       bullets: [
         'Live Command Center (Active calls, CPS)',
         'Call Detail Records (CDRs)',
-        'Visual Analytics Over Time',
-        'Call Health & Quality Metrics'
+        'Visual Analytics Over Time'
       ],
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,81 +100,88 @@ const FeaturesSection = () => {
     }
   ];
 
+  useEffect(() => {
+    const context = gsap.context(() => {
+      const row = rowRef.current;
+      if (!row) return;
+
+      const scrollWidth = row.scrollWidth;
+      const windowWidth = window.innerWidth;
+      const translateAmount = scrollWidth - windowWidth + (windowWidth * 0.2); // include horizontal padding
+
+      gsap.to(row, {
+        x: -translateAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          pin: '.sticky-wrapper',
+          invalidateOnRefresh: true,
+        }
+      });
+    }, containerRef);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <section className="canvas-dark py-24 relative overflow-hidden border-b border-[var(--border-dark)]">
-      {/* Background Grids */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute left-[50%] top-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/5 rounded-full blur-[140px] -translate-x-1/2" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
-            className="text-xs font-bold text-[var(--color-accent)] tracking-widest uppercase mb-4"
-          >
-            Capabilities
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display-md text-[var(--text-dark-primary)] leading-tight"
-          >
-            Everything you need to scale.
-          </motion.p>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-4 text-base text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal"
-          >
-            Uncompromising quality and feature-rich capabilities designed for modern technical teams and contact centers.
-          </motion.p>
+    <section ref={containerRef} className="features-scroll-section relative bg-transparent border-b border-[var(--border-dark)] h-[220vh]">
+      <div className="sticky-wrapper sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full">
+        {/* Background Grids */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute left-[50%] top-[30%] w-[500px] h-[500px] bg-[var(--color-accent)]/5 rounded-full blur-[140px] -translate-x-1/2" />
         </div>
 
-        {/* Features Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-              className="premium-card p-8 flex flex-col h-full group"
-            >
-              <div className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent-light)] mb-6 group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
-                {feature.icon}
-              </div>
-              
-              <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors duration-200">
-                {feature.title}
-              </h3>
-              
-              <p className="text-[var(--text-dark-secondary)] text-sm mb-6 leading-relaxed flex-grow font-normal">
-                {feature.description}
-              </p>
-              
-              <ul className="space-y-2.5 border-t border-[var(--border-dark)] pt-5">
-                {feature.bullets.map((bullet, bulletIdx) => (
-                  <li key={bulletIdx} className="flex items-start space-x-2.5 text-[var(--text-dark-muted)] text-[13px]">
-                    <svg className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-medium leading-normal">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+        <div className="relative z-10 w-full flex flex-col justify-between py-12 md:py-16">
+          <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14 shrink-0 px-4">
+            <h2 className="text-xs font-bold text-[var(--color-accent)] tracking-widest uppercase mb-3">
+              Capabilities
+            </h2>
+
+            <p className="font-display-md text-[var(--text-dark-primary)] leading-tight">
+              Everything you need to scale.
+            </p>
+
+            <p className="mt-2.5 text-sm text-[var(--text-dark-secondary)] max-w-xl mx-auto font-normal">
+              Uncompromising quality and feature-rich capabilities designed for modern technical teams and contact centers.
+            </p>
+          </div>
+
+          {/* Features Cards Horizontal Row */}
+          <div className="w-full overflow-hidden px-[10vw]">
+            <div ref={rowRef} className="features-cards-row flex flex-row gap-8 w-max">
+              {features.map((feature, idx) => (
+                <div key={idx} className="w-[400px] sm:w-[500px] md:w-[600px] shrink-0">
+                  <TiltCard className="premium-card p-8 flex flex-col h-full group">
+                    <div className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent-light)] mb-6 group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
+                      {feature.icon}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-3 group-hover:text-[var(--color-accent)] transition-colors duration-200">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-[var(--text-dark-secondary)] text-sm mb-6 leading-relaxed flex-grow font-normal">
+                      {feature.description}
+                    </p>
+
+                    <ul className="space-y-2.5 border-t border-[var(--border-dark)] pt-5">
+                      {feature.bullets.map((bullet, bulletIdx) => (
+                        <li key={bulletIdx} className="flex items-start space-x-2.5 text-[var(--text-dark-muted)] text-[13px]">
+                          <svg className="w-4 h-4 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span className="font-medium leading-normal">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </TiltCard>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

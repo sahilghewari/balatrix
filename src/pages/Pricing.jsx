@@ -1,11 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
 import SEO from '../components/seo/SEO';
 import { generateProductSchema, generateFAQSchema } from '../utils/schemaGenerator';
+import TiltCard from '../components/common/TiltCard';
 
 const Pricing = () => {
+  const pageRef = useRef(null);
+  const pricingContainerRef = useRef(null);
+  const pricingRowRef = useRef(null);
   const [billingCycle, setBillingCycle] = useState('monthly');
+
+  useEffect(() => {
+    const context = gsap.context(() => {
+      const row = pricingRowRef.current;
+      if (!row) return;
+
+      const scrollWidth = row.scrollWidth;
+      const windowWidth = window.innerWidth;
+      const translateAmount = scrollWidth - windowWidth + (windowWidth * 0.2);
+
+      gsap.to(row, {
+        x: -translateAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: pricingContainerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+          pin: '.pricing-sticky-wrapper',
+          invalidateOnRefresh: true,
+        }
+      });
+    }, pricingContainerRef);
+
+    return () => context.revert();
+  }, []);
 
 
 
@@ -130,10 +161,10 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent">
-      <SEO 
-        title="Pricing & Plans" 
-        description="Simple, transparent pricing for toll-free numbers and cloud communication. Plans start at $9.99/month. Choose the perfect plan for your business." 
+    <div ref={pageRef} className="min-h-screen bg-transparent">
+      <SEO
+        title="Pricing & Plans"
+        description="Simple, transparent pricing for toll-free numbers and cloud communication. Plans start at $9.99/month. Choose the perfect plan for your business."
         canonicalUrl="https://balatrix.com/pricing"
         keywords="toll-free number pricing, business phone plans, voip pricing, cloud communication cost"
         schema={[
@@ -141,7 +172,9 @@ const Pricing = () => {
           generateFAQSchema(faqs.map(f => ({ question: f.question, answer: f.answer })))
         ]}
       />
-      
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.55] mix-blend-screen sm:opacity-[0.75]">
+      </div>
+
       {/* 1. Hero Section - Obsidian Dark */}
       <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -162,7 +195,7 @@ const Pricing = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-display-lg text-[var(--text-dark-primary)] leading-tight mb-6 text-5xl md:text-7xl"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.08] tracking-tight mb-6 text-white"
           >
             Scale Your <br />
             <span className="font-normal text-[var(--color-accent)]">Communications.</span>
@@ -172,7 +205,7 @@ const Pricing = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg text-[var(--text-dark-secondary)] font-normal leading-relaxed max-w-2xl mx-auto mb-12"
+            className="text-base sm:text-lg md:text-xl text-[var(--text-dark-secondary)] max-w-2xl mx-auto font-normal leading-relaxed"
           >
             No hidden fees, no complex contracts. Choose the plan that aligns with your volume requirements and compliance needs.
           </motion.p>
@@ -180,101 +213,87 @@ const Pricing = () => {
       </section>
 
       {/* 2. Pricing Cards - Cool Light */}
-      <section id="pricing-tiers" className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
-        </div>
+      <section ref={pricingContainerRef} id="pricing-tiers" className="pricing-scroll-section relative bg-transparent border-t border-[var(--border-dark)] h-[185vh]">
+        <div className="pricing-sticky-wrapper sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute top-[30%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
+          </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Billing Toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col items-center justify-center space-y-4 mb-16"
-          >
-            <div className="flex items-center bg-[var(--canvas-dark-elevated)] p-1.5 rounded-full border border-[var(--border-dark)] relative">
-              <button
-                onClick={() => setBillingCycle('monthly')}
-                className={`relative z-10 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  billingCycle === 'monthly' ? 'text-white' : 'text-[var(--text-dark-secondary)] hover:text-[var(--text-dark-primary)]'
-                }`}
-              >
-                Monthly Billing
-              </button>
-              <button
-                onClick={() => setBillingCycle('annual')}
-                className={`relative z-10 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  billingCycle === 'annual' ? 'text-white' : 'text-[var(--text-dark-secondary)] hover:text-[var(--text-dark-primary)]'
-                }`}
-              >
-                Annual Billing
-              </button>
-              
-              <div 
-                className="absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] bg-[var(--color-accent)] rounded-full transition-transform duration-300 ease-in-out shadow-[0_0_15px_rgba(88,101,242,0.4)]"
-                style={{ transform: billingCycle === 'annual' ? 'translateX(100%)' : 'translateX(0)' }}
-              />
-            </div>
-            
-            <div className="bg-[var(--color-accent)]/20 text-[var(--color-accent-light)] text-xs font-bold px-3 py-1 rounded-full border border-[var(--color-accent)]/30 uppercase tracking-wider">
-              Save up to 20% with Annual Billing
-            </div>
-          </motion.div>
+          <div className="relative z-10 w-full flex flex-col justify-between py-12 md:py-16">
+            {/* Billing Toggle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col items-center justify-center space-y-4 mb-10 md:mb-12 shrink-0"
+            >
+              <div className="flex items-center bg-[var(--canvas-dark-elevated)] p-1.5 rounded-full border border-[var(--border-dark)] relative">
+                <button
+                  onClick={() => setBillingCycle('monthly')}
+                  className={`relative z-10 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${billingCycle === 'monthly' ? 'text-white' : 'text-[var(--text-dark-secondary)] hover:text-[var(--text-dark-primary)]'
+                    }`}
+                >
+                  Monthly Billing
+                </button>
+                <button
+                  onClick={() => setBillingCycle('annual')}
+                  className={`relative z-10 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${billingCycle === 'annual' ? 'text-white' : 'text-[var(--text-dark-secondary)] hover:text-[var(--text-dark-primary)]'
+                    }`}
+                >
+                  Annual Billing
+                </button>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {pricingTiers.map((tier, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`premium-card rounded-2xl relative flex flex-col h-full ${
-                  tier.popular ? 'border-[var(--color-accent)] ring-1 ring-[var(--color-accent)]/30' : ''
-                }`}
-              >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-0 right-0 flex justify-center z-10">
-                    <span className="bg-[var(--color-accent)] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-md">
-                      Most Popular
-                    </span>
+                <div
+                  className="absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] bg-[var(--color-accent)] rounded-full transition-transform duration-300 ease-in-out shadow-[0_0_15px_rgba(88,101,242,0.4)]"
+                  style={{ transform: billingCycle === 'annual' ? 'translateX(100%)' : 'translateX(0)' }}
+                />
+              </div>
+
+              <div className="bg-[var(--color-accent)]/20 text-[var(--color-accent-light)] text-xs font-bold px-3 py-1 rounded-full border border-[var(--color-accent)]/30 uppercase tracking-wider">
+                Save up to 20% with Annual Billing
+              </div>
+            </motion.div>
+
+            {/* Horizontal Cards row */}
+            <div className="w-full overflow-hidden px-[10vw]">
+              <div ref={pricingRowRef} className="pricing-cards-row flex flex-row gap-8 w-max">
+                {pricingTiers.map((tier, index) => (
+                  <div key={index} className="w-[400px] sm:w-[500px] md:w-[550px] shrink-0">
+                    <TiltCard className={`premium-card rounded-2xl relative flex flex-col h-full ${tier.popular ? 'border-[var(--color-accent)] ring-1 ring-[var(--color-accent)]/30' : ''
+                      }`}>
+                      {tier.popular && (
+                        <div className="absolute -top-4 left-0 right-0 flex justify-center z-10">
+                          <span className="bg-[var(--color-accent)] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-md">
+                            Most Popular
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="p-8 border-b border-[var(--border-dark)]">
+                        <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-2">{tier.name}</h3>
+                        <p className="text-[var(--text-dark-secondary)] text-xs font-normal mb-6 h-8">{tier.description}</p>
+                      </div>
+
+                      <div className="p-8 flex-grow bg-[var(--canvas-dark-deep)] rounded-b-2xl">
+                        <h4 className="font-bold text-[var(--text-dark-primary)] text-[10px] uppercase tracking-widest mb-4">
+                          What's included:
+                        </h4>
+                        <ul className="space-y-3.5">
+                          {tier.features.map((feature, fIndex) => (
+                            <li key={fIndex} className="flex items-start">
+                              <svg className="w-4 h-4 text-[var(--color-accent)] mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="text-[13px] text-[var(--text-dark-secondary)] font-normal leading-snug">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </TiltCard>
                   </div>
-                )}
-                
-                <div className="p-8 border-b border-[var(--border-dark)]">
-                  <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-2">{tier.name}</h3>
-                  <p className="text-[var(--text-dark-secondary)] text-xs font-normal mb-6 h-8">{tier.description}</p>
-                  
-                  <div className="mb-2">
-                    <span className="text-4xl font-extralight text-[var(--text-dark-primary)] tracking-tight">
-                      ${billingCycle === 'monthly' ? tier.monthlyPrice : tier.annualPrice}
-                    </span>
-                    <span className="text-[var(--text-dark-secondary)] text-sm font-normal"> /mo</span>
-                  </div>
-                  
-                  <button className={`w-full justify-center py-2.5 mt-6 text-sm font-semibold ${tier.popular ? 'bg-[var(--color-accent)] text-white' : 'bg-[var(--border-dark)] text-white'}`}>
-                    {tier.cta}
-                  </button>
-                </div>
-
-                <div className="p-8 flex-grow bg-[var(--canvas-dark-deep)] rounded-b-2xl">
-                  <h4 className="font-bold text-[var(--text-dark-primary)] text-[10px] uppercase tracking-widest mb-4">
-                    What's included:
-                  </h4>
-                  <ul className="space-y-3.5">
-                    {tier.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-start">
-                        <svg className="w-4 h-4 text-[var(--color-accent)] mr-3 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-[13px] text-[var(--text-dark-secondary)] font-normal leading-snug">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

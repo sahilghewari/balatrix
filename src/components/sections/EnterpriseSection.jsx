@@ -7,8 +7,8 @@ const EnterpriseSection = () => {
     <section className="canvas-dark py-24 lg:py-32 relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-[var(--color-accent)]/10 rounded-full blur-[100px]" />
+        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/15 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-[var(--color-accent)]/20 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -45,7 +45,7 @@ const EnterpriseSection = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-lg text-[var(--text-dark-secondary)] leading-relaxed font-normal max-w-lg"
             >
-              When communications are mission-critical, Balatrix delivers the active redundancies, compliance, and dedicated support your global enterprise demands.
+              When communications are mission-critical, Balatrix delivers the active redundancies, compliance, and dedicated support your enterprise demands.
             </motion.p>
 
             <ul className="space-y-6 pt-2">
@@ -109,31 +109,28 @@ const EnterpriseSection = () => {
               <div className="absolute bottom-6 left-6 right-6 border border-[var(--border-dark)] bg-[var(--canvas-dark-elevated)]/95 backdrop-blur-md p-5 rounded-xl shadow-2xl z-20">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-[11px] font-bold text-[var(--text-dark-muted)] tracking-widest uppercase">Global Network Routing</span>
-                  <span className="text-[var(--color-accent-light)] flex items-center gap-1.5 font-mono text-[10px] bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 px-2 py-0.5 rounded">
+                  <span className="text-emerald-100 flex items-center gap-1.5 font-mono text-[10px] bg-emerald-100/10 border border-emerald-100/20 px-2.5 py-0.5 rounded">
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--color-accent)]"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
                     </span>
-                    12ms avg
+                    Health
                   </span>
                 </div>
 
                 <div className="space-y-2">
                   {[
-                    { region: 'US-EAST (N. Virginia)', latency: '12ms', bars: 5 },
-                    { region: 'US-WEST (Oregon)', latency: '15ms', bars: 5 },
-                    { region: 'EU-CENTRAL (Frankfurt)', latency: '18ms', bars: 4 },
-                    { region: 'AP-SOUTH (Mumbai)', latency: '24ms', bars: 3 }
+                    { region: 'US-EAST (N. Virginia)', bars: 5 },
+                    { region: 'US-WEST (Oregon)', bars: 5 },
+                    { region: 'CA-CENTRAL (Toronto)', bars: 4 },
+                    { region: 'CA-EAST (Montreal)', bars: 3 }
                   ].map((node, i) => (
                     <div key={i} className="flex items-center justify-between p-2 rounded-lg bg-[var(--canvas-dark-deep)]/50 border border-[var(--border-dark)]">
                       <span className="text-[var(--text-dark-primary)] font-medium text-xs">{node.region}</span>
-                      <div className="flex items-center gap-3">
-                        <div className="flex space-x-0.5">
-                          {[1, 2, 3, 4, 5].map(bar => (
-                            <div key={bar} className={`w-1 h-2.5 rounded-sm transition-all ${bar <= node.bars ? 'bg-[var(--color-accent)]' : 'bg-white/10'}`} />
-                          ))}
-                        </div>
-                        <span className="text-[var(--text-dark-secondary)] font-mono text-xs min-w-[36px] text-right">{node.latency}</span>
+                      <div className="flex space-x-0.5">
+                        {[1, 2, 3, 4, 5].map(bar => (
+                          <div key={bar} className={`w-1 h-2.5 rounded-sm transition-all ${bar <= node.bars ? 'bg-emerald-400' : 'bg-white/10'}`} />
+                        ))}
                       </div>
                     </div>
                   ))}
