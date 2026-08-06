@@ -153,13 +153,13 @@ const Contact = () => {
       </div>
 
       {/* 1. Hero Section - Obsidian Dark */}
-      <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-20">
+      <section className="canvas-dark min-h-[75vh] flex items-center justify-center overflow-hidden relative pt-32 md:pt-40 pb-12 mt-6 md:mt-12">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-[var(--color-accent)]/10 rounded-full blur-[120px]" />
           <div className="absolute bottom-[10%] left-[10%] w-[350px] h-[350px] bg-[var(--color-accent-light)]/5 rounded-full blur-[100px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center lg:text-left">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-20 text-center lg:text-left">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             <div className="space-y-8">
@@ -228,7 +228,7 @@ const Contact = () => {
       </section>
 
       {/* 2. Contact Methods Section - Cool Light */}
-      <section ref={sectionRef} className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
+      <section ref={sectionRef} className="canvas-dark py-24 pt-32 md:pt-40 mt-12 md:mt-20 relative border-t border-[var(--border-dark)]">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
         </div>

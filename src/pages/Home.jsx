@@ -22,7 +22,7 @@ const Home = () => {
         keywords="toll-free numbers, business phone numbers, cloud communication, VoIP, business phone system, US Canada toll-free"
         schema={generateOrganizationSchema()}
       />
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.55] mix-blend-screen sm:opacity-[0.75]">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 w-screen h-screen z-[20] overflow-hidden opacity-[0.50] mix-blend-screen sm:opacity-[0.60]">
         <SIPCommunicationVisualization background scrollTarget={pageRef} />
       </div>
       <Hero />

@@ -20,7 +20,9 @@ const Footer = () => {
     {
       title: 'Services',
       links: [
-        { name: 'Toll-Free Numbers', href: '/services/tollfree' }
+        { name: 'PBX', href: '/services/pbx' },
+        { name: 'Toll-Free Numbers', href: '/services/tollfree' },
+        { name: 'PBX Whitelable', href: '/services/pbx-whitelable' }
       ]
     },
     {

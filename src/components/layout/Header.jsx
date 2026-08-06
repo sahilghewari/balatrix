@@ -38,7 +38,7 @@ const Header = () => {
       dropdown: [
         { name: 'PBX', href: '/services/pbx', icon: PhoneCall },
         { name: 'Wholesale Toll-Free DID', href: '/services/tollfree', icon: PhoneIncoming },
-        { name: 'PBX Whitelable', href: '/services/pbx-whitelable', icon: Building2 },
+        { name: 'PBX Whitelabel', href: '/services/pbx-whitelabel', icon: Building2 },
       ]
     },
     { name: 'Pricing', href: '/pricing' },

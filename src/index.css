@@ -442,7 +442,8 @@ h3 em,
 }
 
 /* Remove section and footer dividing border lines */
-section, footer {
+section,
+footer {
   border-top: none !important;
   border-bottom: none !important;
 }

@@ -31,7 +31,7 @@ import {
 import SEO from '../components/seo/SEO';
 import EnterpriseQuoteModal from '../components/modals/EnterpriseQuoteModal';
 
-const PBXWhitelable = () => {
+const PBXWhitelabel = () => {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
     const [activeFaq, setActiveFaq] = useState(null);
     const [activePlatformTab, setActivePlatformTab] = useState('branding');
@@ -296,10 +296,10 @@ const PBXWhitelable = () => {
 
             <div className="pt-24 pb-20 overflow-hidden">
                 {/* Background Ambient Glow */}
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[500px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
 
                 {/* Hero Section */}
-                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 text-center">
+                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-[calc(85vh-6rem)] flex flex-col justify-center items-center text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -373,7 +373,7 @@ const PBXWhitelable = () => {
                 </section>
 
                 {/* Platform Feature Modules Interactive Explorer */}
-                <section id="platform-suite" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <section id="platform-suite" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 mt-12 md:mt-20">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl sm:text-4xl font-bold text-white">
                             Turnkey Telephony Platform Architecture
@@ -441,7 +441,7 @@ const PBXWhitelable = () => {
                         <p className="text-slate-400 mt-3 max-w-2xl mx-auto">Everything needed to run a professional, scalable cloud telecom business.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                         {resellerFeatures.map((item, idx) => {
                             const Icon = item.icon;
                             return (
@@ -539,4 +539,4 @@ const PBXWhitelable = () => {
     );
 };
 
-export default PBXWhitelable;
+export default PBXWhitelabel;

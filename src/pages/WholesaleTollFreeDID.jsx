@@ -307,7 +307,7 @@ const WholesaleTollFreeDID = () => {
                         <p className="text-slate-400 mt-3 max-w-2xl mx-auto">Engineered for high reliability, maximum uptime, and effortless integration.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                         {features.map((item, idx) => {
                             const Icon = item.icon;
                             return (

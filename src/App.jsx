@@ -23,7 +23,7 @@ const Security = lazy(() => import('./pages/Security'));
 const Cookies = lazy(() => import('./pages/Cookies'));
 const PBX = lazy(() => import('./pages/PBX'));
 const WholesaleTollFreeDID = lazy(() => import('./pages/WholesaleTollFreeDID'));
-const PBXWhitelable = lazy(() => import('./pages/PBXWhitelable'));
+const PBXWhitelabel = lazy(() => import('./pages/PBXWhitelabel'));
 
 // Loading component
 const PageLoader = () => (
@@ -78,7 +78,7 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/services/pbx" element={<PBX />} />
               <Route path="/services/tollfree" element={<WholesaleTollFreeDID />} />
-              <Route path="/services/pbx-whitelable" element={<PBXWhitelable />} />
+              <Route path="/services/pbx-whitelabel" element={<PBXWhitelabel />} />
               <Route path="/solutions" element={<Solutions />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/about" element={<About />} />

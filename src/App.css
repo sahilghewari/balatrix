@@ -2,18 +2,24 @@
 
 /* Custom animations for enhanced UI */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }
@@ -24,6 +30,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -35,6 +42,7 @@
     opacity: 0;
     transform: translateX(-20px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -42,9 +50,12 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
   }
@@ -74,6 +85,7 @@
 
 /* Responsive improvements */
 @media (max-width: 768px) {
+
   .animate-float,
   .animate-float-delayed {
     animation-duration: 4s;

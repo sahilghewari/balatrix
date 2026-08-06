@@ -211,7 +211,7 @@ const Services = () => {
       </section>
 
       {/* 2. Services Grid - Cool Light */}
-      <section ref={servicesContainerRef} id="core-services" className="services-scroll-section relative bg-transparent border-t border-[var(--border-dark)] h-[220vh]">
+      <section ref={servicesContainerRef} id="core-services" className="services-scroll-section relative bg-transparent border-t border-[var(--border-dark)] h-[220vh] mt-16 md:mt-10 pt-6 md:pt-10">
         <div className="services-sticky-wrapper sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="absolute top-[30%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
@@ -318,7 +318,7 @@ const Services = () => {
                 className="text-center relative z-10"
               >
                 <div className="w-18 h-18 mx-auto bg-[var(--canvas-dark-deep)] rounded-full flex items-center justify-center mb-6 border border-[var(--border-dark)]">
-                  <div className="bg-[var(--color-accent)] text-white w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold shadow-[0_0_15px_var(--color-accent)]">
+                  <div className="bg-[var(--color-accent)] text-white w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold shadow-[0_0_150px_var(--color-accent)]">
                     {process.step}
                   </div>
                 </div>

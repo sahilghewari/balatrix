@@ -116,7 +116,7 @@ const About = () => {
       </div>
 
       {/* 1. Hero Section */}
-      <section className="canvas-dark min-h-[70vh] flex items-center justify-center overflow-hidden relative pt-20">
+      <section className="canvas-dark min-h-screen flex items-center justify-center overflow-hidden relative pt-0 pb-0">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-[20%] left-[50%] -translate-x-1/2 w-[500px] h-[500px] bg-[var(--color-accent)]/15 rounded-full blur-[150px]" />
         </div>
@@ -134,7 +134,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-6 text-center tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6 text-white"
           >
             Engineering <br />
             <span className="font-normal text-[var(--color-accent)]">Connections.</span>
@@ -166,7 +166,7 @@ const About = () => {
       </section>
 
       {/* 2. Mission Statement */}
-      <section className="canvas-dark py-24 relative border-t border-[var(--border-dark)]">
+      <section className="canvas-dark pt-30 pb-24 relative border-t border-[var(--border-dark)]">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-[10%] left-[50%] -translate-x-1/2 w-[500px] h-[500px] bg-[var(--color-accent)]/10 rounded-full blur-[150px]" />
         </div>

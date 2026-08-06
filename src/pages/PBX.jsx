@@ -357,11 +357,11 @@ const PBX = () => {
 
             <div className="pt-24 pb-20 overflow-hidden">
                 {/* Ambient Background Lights */}
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-                <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+                <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
                 {/* Hero Section */}
-                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 text-center">
+                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 min-h-[calc(85vh-6rem)] flex flex-col justify-center items-center text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -436,7 +436,7 @@ const PBX = () => {
                 </section>
 
                 {/* Interactive Feature Architecture Showcase */}
-                <section id="pbx-features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <section id="pbx-features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 mt-12 md:mt-20">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl sm:text-4xl font-bold text-white">
                             Designed for Complete Telephony Control
@@ -504,7 +504,7 @@ const PBX = () => {
                         <p className="text-slate-400 mt-3 max-w-2xl mx-auto">Everything you need to deliver world-class business phone communications.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                         {featuresList.map((item, idx) => {
                             const Icon = item.icon;
                             return (
