@@ -69,9 +69,9 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="App min-h-screen bg-[var(--canvas-dark)] text-gray-100 selection:bg-blue-600/30 selection:text-white transition-canvas overflow-x-hidden">
+      <div className="App min-h-screen bg-[var(--canvas-dark)] text-gray-100 selection:bg-blue-600/30 selection:text-white transition-canvas">
         <Header />
-        <main>
+        <main className="overflow-x-hidden">
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
