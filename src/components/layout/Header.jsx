@@ -12,12 +12,30 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 20;
-      setIsScrolled(scrolled);
+      const scrollPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      setIsScrolled(scrollPos > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    let timer;
+    const checkLenis = () => {
+      if (window.lenis) {
+        window.lenis.on('scroll', (e) => {
+          const scrollPos = e.scroll !== undefined ? e.scroll : window.scrollY;
+          setIsScrolled(scrollPos > 20);
+        });
+      } else {
+        timer = setTimeout(checkLenis, 250);
+      }
+    };
+    checkLenis();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
