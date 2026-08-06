@@ -60,7 +60,14 @@ const Header = () => {
     <>
       <header
         className={`fixed w-full top-0 z-50 transition-all duration-300 ease-out glass-header ${isScrolled ? 'scrolled' : ''}`}
-        style={{ height: '76px' }}
+        style={{
+          height: '76px',
+          background: isScrolled ? 'rgba(10, 12, 24, 0.82)' : 'rgba(10, 12, 24, 0.55)',
+          backdropFilter: 'blur(28px) saturate(200%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(200%)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+          boxShadow: isScrolled ? '0 8px 32px rgba(0,0,0,0.45)' : '0 4px 24px rgba(0,0,0,0.3)',
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-[76px]">
