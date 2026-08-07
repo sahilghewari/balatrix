@@ -80,10 +80,10 @@ const Header = () => {
         className={`fixed w-full top-0 z-50 transition-all duration-300 ease-out glass-header ${isScrolled ? 'scrolled' : ''}`}
         style={{
           height: '76px',
-          background: isScrolled ? 'rgba(10, 12, 24, 0.82)' : 'rgba(10, 12, 24, 0.55)',
+          background: isScrolled ? 'rgba(3, 4, 8, 0.23)' : 'rgba(0, 1, 1, 0.25)',
           backdropFilter: 'blur(28px) saturate(200%)',
-          WebkitBackdropFilter: 'blur(28px) saturate(200%)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+          WebkitBackdropFilter: 'blur(35px) saturate(200%)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.4)',
           boxShadow: isScrolled ? '0 8px 32px rgba(0,0,0,0.45)' : '0 4px 24px rgba(0,0,0,0.3)',
         }}
       >
