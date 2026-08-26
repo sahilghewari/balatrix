@@ -44,6 +44,7 @@ const Pricing = () => {
     {
       name: 'Starter Plan',
       description: 'Perfect for small businesses and startups',
+      note: '(For Pricing Contact Support)',
       monthlyPrice: 39.99,
       yearlyPrice: 383.90,
       savings: '20%',
@@ -60,6 +61,7 @@ const Pricing = () => {
     {
       name: 'Pro Plan',
       description: 'Ideal for growing businesses with higher volume needs',
+      note: '(For Pricing Contact Support)',
       monthlyPrice: 79.99,
       yearlyPrice: 767.90,
       savings: '20%',
@@ -76,6 +78,7 @@ const Pricing = () => {
     {
       name: 'Enterprise Plan',
       description: 'For call centers and large organizations requiring scale',
+      note: '(For Pricing Contact Support)',
       monthlyPrice: 149.99,
       yearlyPrice: 1439.90,
       savings: '20%',
@@ -93,6 +96,7 @@ const Pricing = () => {
     {
       name: 'Whitelabel Reseller',
       description: 'Ideal for resellers and entrepreneurs wanting to brand their own PBX',
+      note: '(For Pricing Contact Support)',
       monthlyPrice: 299.99,
       yearlyPrice: 2879.90,
       savings: '20%',
@@ -271,7 +275,12 @@ const Pricing = () => {
 
                       <div className="p-8 border-b border-[var(--border-dark)]">
                         <h3 className="text-xl font-bold text-[var(--text-dark-primary)] mb-2">{tier.name}</h3>
-                        <p className="text-[var(--text-dark-secondary)] text-xs font-normal mb-6 h-8">{tier.description}</p>
+                        <p className="text-[var(--text-dark-secondary)] text-xs font-normal mb-3">{tier.description}</p>
+                        {tier.note && (
+                          <div className="inline-flex items-center text-xs font-medium text-[var(--color-accent-light)] bg-[var(--color-accent)]/10 px-2.5 py-1 rounded-md border border-[var(--color-accent)]/20">
+                            {tier.note}
+                          </div>
+                        )}
                       </div>
 
                       <div className="p-8 flex-grow bg-[var(--canvas-dark-deep)] rounded-b-2xl">

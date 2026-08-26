@@ -54,9 +54,24 @@ const Header = () => {
     {
       name: 'Services', href: '/services',
       dropdown: [
-        { name: 'PBX', href: '/services/pbx', icon: PhoneCall },
-        { name: 'Wholesale Toll-Free DID', href: '/services/tollfree', icon: PhoneIncoming },
-        { name: 'PBX Whitelabel', href: '/services/pbx-whitelabel', icon: Building2 },
+        {
+          name: 'PBX System',
+          href: '/services/pbx',
+          icon: PhoneCall,
+          badge: 'Popular'
+        },
+        {
+          name: 'Wholesale Toll-Free DID',
+          href: '/services/tollfree',
+          icon: PhoneIncoming,
+          badge: 'Global'
+        },
+        {
+          name: 'PBX Whitelabel',
+          href: '/services/pbx-whitelabel',
+          icon: Building2,
+          badge: 'Turnkey'
+        },
       ]
     },
     { name: 'Pricing', href: '/pricing' },
@@ -126,21 +141,39 @@ const Header = () => {
 
                   {/* Desktop Dropdown Menu */}
                   {item.dropdown && (
-                    <div className="absolute left-0 top-full pt-2 w-60 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-300 transform translate-y-2 group-hover/dropdown:translate-y-0 z-50">
-                      <div className="py-2 bg-[var(--canvas-dark-deep)]/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl">
-                        {item.dropdown.map((subItem) => {
-                          const IconComp = subItem.icon;
-                          return (
-                            <Link
-                              key={subItem.name}
-                              to={subItem.href}
-                              className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors duration-150"
-                            >
-                              {IconComp && <IconComp className="w-4 h-4 text-blue-400 shrink-0" />}
-                              <span>{subItem.name}</span>
-                            </Link>
-                          );
-                        })}
+                    <div className="absolute left-0 top-full pt-2 w-72 md:w-80 opacity-0 invisible scale-95 -translate-y-2 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:visible group-hover/dropdown:scale-100 group-hover/dropdown:translate-y-0 group-hover/dropdown:pointer-events-auto transition-all duration-250 ease-out origin-top-left z-50">
+                      <div className="p-1.5 bg-[var(--canvas-dark-deep)]/95 backdrop-blur-2xl border border-white/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.7),0_0_20px_rgba(56,189,248,0.15)] relative overflow-hidden">
+                        {/* Ambient glow effect inside menu */}
+                        <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+                        <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+
+                        <div className="relative z-10 space-y-1">
+                          {item.dropdown.map((subItem) => {
+                            const IconComp = subItem.icon;
+                            return (
+                              <Link
+                                key={subItem.name}
+                                to={subItem.href}
+                                className="group/item flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-white/[0.07] border border-transparent hover:border-white/10 transition-all duration-200"
+                              >
+                                <div className="flex items-center gap-3 min-w-0">
+                                  <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 group-hover/item:bg-blue-600 group-hover/item:text-white group-hover/item:border-blue-400 group-hover/item:shadow-[0_0_12px_rgba(59,130,246,0.5)] transition-all duration-200 shrink-0">
+                                    {IconComp && <IconComp className="w-4 h-4" />}
+                                  </div>
+                                  <span className="text-sm font-semibold text-slate-100 group-hover/item:text-white transition-colors duration-150 truncate">
+                                    {subItem.name}
+                                  </span>
+                                </div>
+
+                                {subItem.badge && (
+                                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-300 border border-blue-400/30 group-hover/item:border-blue-400/60 shrink-0">
+                                    {subItem.badge}
+                                  </span>
+                                )}
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -199,18 +232,25 @@ const Header = () => {
 
                     {/* Mobile Dropdown Items */}
                     {item.dropdown && (
-                      <div className="flex flex-col space-y-2 mb-2">
+                      <div className="flex flex-col space-y-2 mb-2 w-full max-w-xs">
                         {item.dropdown.map((subItem, subIndex) => {
                           const IconComp = subItem.icon;
                           return (
                             <Link
                               key={subIndex}
                               to={subItem.href}
-                              className="flex items-center justify-center gap-2 text-lg font-light tracking-wide text-slate-400 hover:text-[var(--color-accent)] transition-all duration-200"
+                              className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 text-slate-300 hover:text-white transition-all duration-200"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
-                              {IconComp && <IconComp className="w-4 h-4 text-blue-400 shrink-0" />}
-                              <span>{subItem.name}</span>
+                              <div className="flex items-center gap-2.5">
+                                {IconComp && <IconComp className="w-4 h-4 text-blue-400 shrink-0" />}
+                                <span className="text-sm font-medium">{subItem.name}</span>
+                              </div>
+                              {subItem.badge && (
+                                <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                                  {subItem.badge}
+                                </span>
+                              )}
                             </Link>
                           );
                         })}

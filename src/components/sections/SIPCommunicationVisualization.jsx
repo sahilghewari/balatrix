@@ -240,13 +240,33 @@ const SIPCommunicationVisualization = ({ background = false, scrollTarget = null
             {activeSteps.map((step) => {
               const state = stepStates.find((item) => item.id === step.id);
               const d = step.path ? offsetPath(step.path, nodeFloatOffsets[step.source], nodeFloatOffsets[step.target]) : step.path;
-              return <path key={step.id} ref={(element) => { stepPaths.current[step.id] = element; }} d={d} stroke={step.color} strokeWidth={state?.active ? 1.4 : 0.8} opacity={state?.active ? 0.85 : 0} />;
+              return (
+                <path
+                  key={step.id}
+                  ref={(element) => { stepPaths.current[step.id] = element; }}
+                  d={d}
+                  stroke={step.color}
+                  strokeWidth={state?.active ? 1.5 : 0}
+                  opacity={state?.active ? 5 : 0}
+                  filter={state?.active ? "url(#network-glow)" : undefined}
+                />
+              );
             })}
             {activeVoicePaths.map((path, index) => {
               const srcId = index % 2 === 0 ? 'caller' : 'callee';
               const tgtId = index % 2 === 0 ? 'callee' : 'caller';
               const d = offsetPath(path, nodeFloatOffsets[srcId], nodeFloatOffsets[tgtId]);
-              return <path key={`voice-${index}`} ref={(element) => { voicePaths.current[index] = element; }} d={d} stroke="#38BDF8" strokeWidth="0.8" opacity={voiceActive ? 0.45 : 0} />;
+              return (
+                <path
+                  key={`voice-${index}`}
+                  ref={(element) => { voicePaths.current[index] = element; }}
+                  d={d}
+                  stroke="#38BDF8"
+                  strokeWidth={voiceActive ? 1.5 : 0}
+                  opacity={voiceActive ? 5 : 0}
+                  filter={voiceActive ? "url(#network-glow)" : undefined}
+                />
+              );
             })}
           </g>
 
@@ -284,10 +304,10 @@ const SIPCommunicationVisualization = ({ background = false, scrollTarget = null
                   <circle cx={node.x} cy={node.y} r="22" fill="url(#glass-node)" stroke={color} strokeWidth="1.8" strokeOpacity={0.58 + signal * 0.35} />
                   {/* AI Neural / Spark Icon inside the circle */}
                   <g transform={`translate(${node.x}, ${node.y})`}>
-                    <line x1="-8" y1="-8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="0.6" />
-                    <line x1="8" y1="-8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="0.6" />
-                    <line x1="-8" y1="8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="0.6" />
-                    <line x1="8" y1="8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="0.6" />
+                    <line x1="-8" y1="-8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="1.5" />
+                    <line x1="8" y1="-8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="1.5" />
+                    <line x1="-8" y1="8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="1.5" />
+                    <line x1="8" y1="8" x2="0" y2="0" stroke={color} strokeWidth="1.2" opacity="1.5" />
                     <circle cx="-8" cy="-8" r="2.5" fill="url(#glass-node)" stroke={color} strokeWidth="1.2" />
                     <circle cx="8" cy="-8" r="2.5" fill={color} />
                     <circle cx="-8" cy="8" r="2.5" fill={color} />
@@ -332,8 +352,8 @@ const SIPCommunicationVisualization = ({ background = false, scrollTarget = null
           })}
 
           {stepStates.map((step) => step.active && <g key={`packet-${step.id}`} opacity={1}>
-            {step.active && <line x1={step.trail.x} y1={step.trail.y} x2={step.point.x} y2={step.point.y} stroke={step.color} strokeWidth="2.5" strokeLinecap="round" opacity="0.65" filter="url(#network-glow)" />}
-            <circle cx={step.point.x} cy={step.point.y} r="13" fill={step.color} opacity="0.35" filter="url(#network-bloom)" />
+            {step.active && <line x1={step.trail.x} y1={step.trail.y} x2={step.point.x} y2={step.point.y} stroke={step.color} strokeWidth="2.5" strokeLinecap="round" opacity="25" filter="url(#network-glow)" />}
+            <circle cx={step.point.x} cy={step.point.y} r="13" fill={step.color} opacity="2" filter="url(#network-bloom)" />
             <circle cx={step.point.x} cy={step.point.y} r="9" fill={step.color} filter="url(#network-glow)" />
             <path
               d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27 11.5 11.5 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.58 1 1 0 01-.27 1.11z"
