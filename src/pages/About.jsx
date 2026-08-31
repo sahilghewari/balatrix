@@ -7,32 +7,32 @@ const About = () => {
   const pageRef = useRef(null);
   const teamMembers = [
     {
-      name: 'Michael Chen',
+      name: 'Anant D Kamat',
       role: 'Chief Executive Officer',
-      bio: '15+ years in telecommunications infrastructure. Former VP of Engineering at major VoIP transit carriers.',
-      image: '/images/team/michael.jpg',
-      linkedin: '#'
+      bio: 'Driving the company’s vision and growth with extensive experience in telecommunications, business strategy, and unified communication solutions.',
+      image: '/images/team/anant_kamat.jpg',
+      linkedin: 'https://www.linkedin.com/in/anantdkamat/'
     },
     {
-      name: 'Sarah Rodriguez',
-      role: 'Chief Technology Officer',
-      bio: 'Expert in global scalable SIP networks and WebRTC architectures. Led tech teams at leading platforms.',
-      image: '/images/team/sarah.jpg',
-      linkedin: '#'
+      name: 'Aniket Jadhav',
+      role: 'Head of Engineering Department',
+      bio: 'Leading engineering initiatives and building scalable, reliable communication platforms with expertise in SIP, VoIP, WebRTC, and modern software architecture.',
+      image: '/images/team/aniket_jadhav.jpg',
+      linkedin: 'https://www.linkedin.com/in/aniket-jadhav-92072a258/'
     },
     {
-      name: 'David Thompson',
-      role: 'Chief Operations Officer',
-      bio: 'Compliance specialist with deep expertise in North American carrier regulations and DID provisioning.',
-      image: '/images/team/david.jpg',
-      linkedin: '#'
+      name: 'Avinash Shanbhag',
+      role: 'Backend Developer',
+      bio: 'Developing robust and scalable backend systems that power communication services, APIs, data processing, and seamless platform integrations.',
+      image: '/images/team/Avinash.jpg',
+      linkedin: 'https://www.linkedin.com/in/avinashuday/'
     },
     {
-      name: 'Lisa Wang',
-      role: 'VP of Customer Success',
-      bio: 'Customer success champion ensuring business clients obtain optimal PBX configuration and onboarding routing.',
-      image: '/images/team/lisa.jpg',
-      linkedin: '#'
+      name: 'Vivek Ghagare',
+      role: 'Support Engineer',
+      bio: 'Providing technical support and troubleshooting expertise to ensure smooth platform operations, reliable communication services, and a seamless customer experience.',
+      image: '/images/team/Vivek_Support.jpg',
+      linkedin: 'https://www.linkedin.com/in/vivek-ghagare-454035317/'
     }
   ];
 
@@ -183,7 +183,7 @@ const About = () => {
               Our <span className="font-normal text-[var(--color-accent)]">Mission</span>
             </h2>
 
-            <div className="space-y-6 text-slate-300 font-normal text-lg md:text-lg lg:text-xl max-w-5xl mx-auto text-justify">
+            <div className="space-y-3 text-slate-300 font-normal text-lg md:text-lg lg:text-xl max-w-5xl mx-auto text-justify">
               <p>
                 At Balatrix, we believe that enterprise-grade telecommunications should not be locked behind complex legacy systems or exorbitant pricing models.
               </p>
@@ -320,7 +320,7 @@ const About = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
@@ -328,22 +328,25 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-[var(--canvas-dark-elevated)] border border-[var(--border-dark)] rounded-2xl p-6 text-center group hover:border-[var(--color-accent)]/50 transition-colors"
+                className="flex flex-col h-full bg-[var(--canvas-dark-elevated)] border border-[var(--border-dark)] rounded-2xl p-6 text-center group hover:border-[var(--color-accent)]/50 transition-colors"
               >
                 <div className="w-24 h-24 mx-auto rounded-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] overflow-hidden mb-5 group-hover:scale-105 transition-transform duration-300">
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-lg font-bold text-[var(--text-dark-primary)] mb-1">{member.name}</h3>
-                <p className="text-[var(--color-accent)] text-xs font-semibold uppercase tracking-wider mb-4">{member.role}</p>
-                <p className="text-[var(--text-dark-secondary)] text-[11px] leading-relaxed font-normal mb-6">
+                <p className="text-[var(--color-accent)] text-xs font-semibold uppercase tracking-wider mb-4 min-h-[32px] flex items-center justify-center">{member.role}</p>
+                <p className="text-[var(--text-dark-secondary)] text-[11px] leading-relaxed font-normal mb-6 flex-1">
                   {member.bio}
                 </p>
-                <div className="flex justify-center space-x-3">
-                  <a href={member.linkedin} className="w-8 h-8 rounded-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-secondary)] flex items-center justify-center hover:bg-[var(--border-dark)] hover:text-[var(--text-dark-primary)] transition-colors">
+                <div className="flex justify-center space-x-3 mt-auto">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${member.name} LinkedIn Profile`}
+                    className="w-8 h-8 rounded-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-secondary)] flex items-center justify-center hover:bg-[var(--border-dark)] hover:text-[var(--text-dark-primary)] transition-colors"
+                  >
                     in
-                  </a>
-                  <a href={member.twitter} className="w-8 h-8 rounded-full bg-[var(--canvas-dark-deep)] border border-[var(--border-dark)] text-[var(--text-dark-secondary)] flex items-center justify-center hover:bg-[var(--border-dark)] hover:text-[var(--text-dark-primary)] transition-colors">
-                    tw
                   </a>
                 </div>
               </motion.div>

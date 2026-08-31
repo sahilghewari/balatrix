@@ -217,7 +217,7 @@ const Contact = () => {
                 <h3 className="text-lg font-bold text-[var(--text-dark-primary)] mb-2">Get In Touch</h3>
                 <p className="text-xs text-[var(--text-dark-secondary)] mb-6 font-normal">Multiple ways to connect with our expert team.</p>
                 <div className="flex items-center justify-center gap-2 text-xs text-[var(--text-dark-primary)] bg-[var(--canvas-dark-deep)] py-2.5 rounded-xl border border-[var(--border-dark)]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-emerald)] animate-pulse animate-float-slow"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-emerald)] animate-pulse"></span>
                   <span>24/7 Availability Support</span>
                 </div>
               </div>

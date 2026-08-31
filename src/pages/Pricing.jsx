@@ -15,17 +15,21 @@ const Pricing = () => {
   useEffect(() => {
     const context = gsap.context(() => {
       const row = pricingRowRef.current;
-      if (!row) return;
+      const container = pricingContainerRef.current;
+      if (!row || !container) return;
 
-      const scrollWidth = row.scrollWidth;
-      const windowWidth = window.innerWidth;
-      const translateAmount = scrollWidth - windowWidth + (windowWidth * 0.2);
+      const getTranslate = () => {
+        const scrollWidth = row.scrollWidth;
+        const windowWidth = window.innerWidth;
+        const offset = windowWidth >= 768 ? windowWidth * 0.08 : windowWidth * 0.05;
+        return scrollWidth - windowWidth + (offset * 2);
+      };
 
       gsap.to(row, {
-        x: -translateAmount,
+        x: () => -getTranslate(),
         ease: 'none',
         scrollTrigger: {
-          trigger: pricingContainerRef.current,
+          trigger: container,
           start: 'top top',
           end: 'bottom bottom',
           scrub: 1,
@@ -223,13 +227,13 @@ const Pricing = () => {
             <div className="absolute top-[30%] left-[5%] w-[300px] h-[300px] bg-[var(--color-accent)]/5 rounded-full blur-[100px]" />
           </div>
 
-          <div className="relative z-10 w-full flex flex-col justify-between py-12 md:py-16">
+          <div className="relative z-10 w-full flex flex-col justify-center py-2 md:py-4">
             {/* Billing Toggle */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col items-center justify-center space-y-4 mb-10 md:mb-12 shrink-0"
+              className="flex flex-col items-center justify-center space-y-3 mb-4 md:mb-6 shrink-0"
             >
               <div className="flex items-center bg-[var(--canvas-dark-elevated)] p-1.5 rounded-full border border-[var(--border-dark)] relative">
                 <button
@@ -259,8 +263,8 @@ const Pricing = () => {
             </motion.div>
 
             {/* Horizontal Cards row */}
-            <div className="w-full overflow-hidden px-[10vw]">
-              <div ref={pricingRowRef} className="pricing-cards-row flex flex-row gap-8 w-max">
+            <div className="w-full overflow-hidden px-[10vw] py-10">
+              <div ref={pricingRowRef} className="pricing-cards-row flex flex-row gap-6 w-max py-4">
                 {pricingTiers.map((tier, index) => (
                   <div key={index} className="w-[400px] sm:w-[500px] md:w-[550px] shrink-0">
                     <TiltCard className={`premium-card rounded-2xl relative flex flex-col h-full ${tier.popular ? 'border-[var(--color-accent)] ring-1 ring-[var(--color-accent)]/30' : ''
